@@ -506,6 +506,39 @@
         ]
       },
       {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Staurosporine"
+          },
+          {
+            "name" : "CID",
+            "value" : "7048594",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/7048594"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "62996-74-1"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q2054",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2054"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "type" : "Exposure information",
         "attributes" : [
           {
@@ -827,10 +860,6 @@
             "value" : "Rotenone",
             "valqual" : [
               {
-                "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
-              },
-              {
                 "name" : "Concentration",
                 "value" : "100",
                 "valqual" : [
@@ -956,14 +985,6 @@
             "name" : "Positive control",
             "value" : "Staurosporine",
             "valqual" : [
-              {
-                "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/44259"
-              },
-              {
-                "name" : "CAS",
-                "value" : "62996-74-1"
-              },
               {
                 "name" : "Concentration",
                 "value" : "1",

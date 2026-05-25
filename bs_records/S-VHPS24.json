@@ -287,6 +287,16 @@
           {
             "name" : "CAS",
             "value" : "109581-93-3"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4921",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4921"
+              }
+            ]
           }
         ]
       },

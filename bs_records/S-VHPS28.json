@@ -545,6 +545,52 @@
         ]
       },
       {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Hydrogen peroxide"
+          },
+          {
+            "name" : "CAS",
+            "value" : "7722-84-1"
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Staurosporine"
+          },
+          {
+            "name" : "CID",
+            "value" : "7048594",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/7048594"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "62996-74-1"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q2054",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2054"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "type" : "Exposure information",
         "attributes" : [
           {
@@ -742,17 +788,7 @@
           },
           {
             "name" : "Positive control",
-            "value" : "Hydrogen peroxide",
-            "valqual" : [
-              {
-                "name" : "CID",
-                "value" : "784"
-              },
-              {
-                "name" : "CAS",
-                "value" : "7722-84-1"
-              }
-            ]
+            "value" : "Hydrogen peroxide"
           }
         ],
         "subsections" : [
@@ -838,21 +874,7 @@
           },
           {
             "name" : "Positive control",
-            "value" : "Rotenone",
-            "valqual" : [
-              {
-                "name" : "CID",
-                "value" : "6758"
-              },
-              {
-                "name" : "CAS",
-                "value" : "83-79-4"
-              },
-              {
-                "name" : "URL",
-                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
-              }
-            ]
+            "value" : "Rotenone"
           }
         ],
         "subsections" : [
@@ -948,21 +970,7 @@
           },
           {
             "name" : "Positive control",
-            "value" : "Staurosporine",
-            "valqual" : [
-              {
-                "name" : "CID",
-                "value" : "7048594"
-              },
-              {
-                "name" : "CAS",
-                "value" : "62996-74-1"
-              },
-              {
-                "name" : "URL",
-                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2054"
-              }
-            ]
+            "value" : "Staurosporine"
           }
         ],
         "subsections" : [

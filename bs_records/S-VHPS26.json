@@ -402,21 +402,21 @@
           },
           {
             "name" : "CID",
-            "value" : "5282412",
+            "value" : "19190",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/5282412"
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/19190"
               }
             ]
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q5156",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5156"
               }
             ]
           }
@@ -445,11 +445,11 @@
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q5157",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5157"
               }
             ]
           }
@@ -478,11 +478,11 @@
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q5160",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5160"
               }
             ]
           }
@@ -511,11 +511,11 @@
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q5161",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5161"
               }
             ]
           }
@@ -534,21 +534,21 @@
           },
           {
             "name" : "CID",
-            "value" : "6282",
+            "value" : "138397684",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6282"
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/138397684"
               }
             ]
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q4750",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4750"
               }
             ]
           }
@@ -907,11 +907,11 @@
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
+            "value" : "Q5162",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5162"
               }
             ]
           }
@@ -978,6 +978,39 @@
               {
                 "name" : "URL",
                 "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/5564"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "DMSO"
+          },
+          {
+            "name" : "CID",
+            "value" : "679",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/679"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "67-68-5"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q5143",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5143"
               }
             ]
           }
@@ -1089,10 +1122,6 @@
             "name" : "Positive control",
             "value" : "Indocyanine green",
             "valqual" : [
-              {
-                "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/5282412"
-              },
               {
                 "name" : "Concentration",
                 "value" : "100",

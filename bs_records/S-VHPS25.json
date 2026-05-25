@@ -581,6 +581,15 @@
         ]
       },
       {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Hydrogen peroxide"
+          }
+        ]
+      },
+      {
         "type" : "Exposure information",
         "attributes" : [
           {
