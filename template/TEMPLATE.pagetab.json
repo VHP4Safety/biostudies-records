@@ -1,5 +1,5 @@
 {
-  "accno" : "[DRAFT] S-VHPSxx",
+  "accno" : "[DRAFT]",
   "attributes" : [
     {
       "name" : "Template",
@@ -7,15 +7,15 @@
     },
     {
       "name" : "Title",
-      "value" : "[DRAFT] Study title — descriptive and concise"
+      "value" : "[DRAFT]"
     },
     {
       "name" : "DOI",
-      "value" : "[DRAFT] 10.6019/S-VHPSxx"
+      "value" : "[DRAFT]"
     },
     {
       "name" : "ReleaseDate",
-      "value" : "[DRAFT] YYYY-MM-DD"
+      "value" : "[DRAFT]"
     },
     {
       "name" : "AttachTo",
@@ -27,149 +27,149 @@
     "attributes" : [
       {
         "name" : "Title",
-        "value" : "[DRAFT] mirror the top-level Title"
+        "value" : "[DRAFT]"
       },
       {
         "name" : "ReleaseDate",
-        "value" : "[DRAFT] YYYY-MM-DD"
+        "value" : "[DRAFT]"
       },
       {
         "name" : "Description",
-        "value" : "[DRAFT] Abstract: motivation, model, exposure, readout, headline finding, relevance to chemical safety assessment (>500 chars)."
+        "value" : "[DRAFT]"
       },
       {
         "name" : "Organism",
-        "value" : "[DRAFT] Homo sapiens",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "Ontology",
-            "value" : "NCBITaxon"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "TermId",
-            "value" : "NCBITaxon_9606"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Organ",
-        "value" : "[DRAFT] default organ for all cell lines, e.g. Brain",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "Ontology",
-            "value" : "UBERON"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] UBERON_xxxxxxx"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Tissue",
-        "value" : "[DRAFT] default tissue for all cell lines, e.g. Neural tissue",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "Ontology",
-            "value" : "UBERON"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] UBERON_xxxxxxx"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Case study",
-        "value" : "[DRAFT] Thyroid | Kidney | Parkinson",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "https://platform.vhp4safety.nl/casestudies/<slug>"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Regulatory Question",
-        "value" : "[DRAFT] canonical key reg_q_xx (e.g. reg_q_2a) — NOT Q1/Q2; repeat per question",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "https://platform.vhp4safety.nl/casestudies/<slug>"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Process Flow Step",
-        "value" : "[DRAFT] glossary label e.g. Toxicodynamics; repeat per step",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "https://glossary.vhp4safety.nl/#VHP0000xxx"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "License",
-        "value" : "CC-BY",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "Bioassay",
-        "value" : "[DRAFT] assay name — REPEAT this attribute, one per assay; the value is referenced by Endpoint readout / Exposure",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT] https://platform.vhp4safety.nl/methods/<slug>"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Ontology",
-            "value" : "[DRAFT] BAO | OBI | ENM"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] BAO_xxxxxxx"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "AOP",
-        "value" : "[DRAFT] full AOP title from AOPwiki",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT] https://aopwiki.org/aops/xxx"
+            "value" : "[DRAFT]"
           }
         ]
       },
       {
         "name" : "AOP event",
-        "value" : "[DRAFT] key event title; repeat per event",
+        "value" : "[DRAFT]",
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+            "value" : "[DRAFT]"
           }
         ]
       }
     ],
     "files" : [
       {
-        "path" : "[DRAFT] S-VHPSxx_YYYYMMDD_rocrate.zip",
+        "path" : "[DRAFT]",
         "size" : 0,
         "attributes" : [
           {
             "name" : "Description",
-            "value" : "Research Object (RO) crate."
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Type",
-            "value" : "Dataset"
+            "value" : "[DRAFT]"
           }
         ],
         "type" : "file"
@@ -177,11 +177,11 @@
     ],
     "links" : [
       {
-        "url" : "[DRAFT] https://platform.vhp4safety.nl/casestudies/<slug>",
+        "url" : "[DRAFT]",
         "attributes" : [
           {
             "name" : "Description",
-            "value" : "VHP4Safety Case Studies"
+            "value" : "[DRAFT]"
           }
         ]
       }
@@ -192,19 +192,19 @@
         "attributes" : [
           {
             "name" : "Name",
-            "value" : "[DRAFT] First Last — duplicate this subsection per author"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "E-mail",
-            "value" : "[DRAFT] first.last@institution.nl"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT] 0000-0000-0000-0000"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Role",
-            "value" : "[DRAFT] Corresponding author | Data producer | Data processor | Contributor"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "affiliation",
@@ -219,15 +219,15 @@
         "attributes" : [
           {
             "name" : "Name",
-            "value" : "[DRAFT] Institution name"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "RORID",
-            "value" : "[DRAFT] https://ror.org/xxxxxxxxx"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Country",
-            "value" : "[DRAFT] Netherlands"
+            "value" : "[DRAFT]"
           }
         ]
       },
@@ -236,11 +236,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "[DRAFT] Dutch Research Agenda (NWA) | EU Horizon Europe | ..."
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Grant_id",
-            "value" : "[DRAFT] e.g. 1292.19.272"
+            "value" : "[DRAFT]"
           }
         ]
       },
@@ -249,67 +249,67 @@
         "attributes" : [
           {
             "name" : "Cell line",
-            "value" : "[DRAFT] e.g. HepG2 / LUHMES / CHO-K1 (one block per cell line)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "RRID",
-            "value" : "[DRAFT] CVCL_xxxxx",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT] https://www.cellosaurus.org/CVCL_xxxxx"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Supplier",
-            "value" : "[DRAFT] e.g. ATCC | ECACC | WiCell"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Cell type",
-            "value" : "[DRAFT] source/parent cell type",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Ontology",
-                "value" : "CL"
+                "value" : "[DRAFT]"
               },
               {
                 "name" : "TermId",
-                "value" : "[DRAFT] CL_xxxxxxx"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Organ",
-            "value" : "[DRAFT] OPTIONAL override — only if THIS line differs from the section-level Organ; else delete this attribute",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Ontology",
-                "value" : "UBERON"
+                "value" : "[DRAFT]"
               },
               {
                 "name" : "TermId",
-                "value" : "[DRAFT] UBERON_xxxxxxx"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Tissue",
-            "value" : "[DRAFT] OPTIONAL override — only if THIS line differs from the section-level Tissue; else delete this attribute",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Ontology",
-                "value" : "UBERON"
+                "value" : "[DRAFT]"
               },
               {
                 "name" : "TermId",
-                "value" : "[DRAFT] UBERON_xxxxxxx"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Reference source",
-            "value" : "[DRAFT] DOI/URL describing the cell model origin"
+            "value" : "[DRAFT]"
           }
         ],
         "subsections" : [
@@ -319,33 +319,33 @@
               "attributes" : [
                 {
                   "name" : "Preparation type",
-                  "value" : "[DRAFT] e.g. Stable transfection (omit subsection if the line is unmodified)",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Ontology",
-                      "value" : "BAO"
+                      "value" : "[DRAFT]"
                     },
                     {
                       "name" : "TermId",
-                      "value" : "[DRAFT] BAO_xxxxxxx"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 },
                 {
                   "name" : "Cell name",
-                  "value" : "[DRAFT] engineered cell name e.g. CHO-K1 OATP1C1"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Description",
-                  "value" : "[DRAFT] what stable construct/mutation was introduced"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Reference",
-                  "value" : "[DRAFT] DOI",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "URL",
-                      "value" : "[DRAFT] https://doi.org/xxxx"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 }
@@ -356,39 +356,39 @@
               "attributes" : [
                 {
                   "name" : "Preparation type",
-                  "value" : "Differentiation"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Cell type",
-                  "value" : "[DRAFT] differentiated phenotype (omit subsection if not differentiated)",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Ontology",
-                      "value" : "CL"
+                      "value" : "[DRAFT]"
                     },
                     {
                       "name" : "TermId",
-                      "value" : "[DRAFT] CL_xxxxxxx"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 },
                 {
                   "name" : "Differentiation protocol",
-                  "value" : "[DRAFT] protocol or reference"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Days post differentiation",
-                  "value" : "[DRAFT] numeric",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Unit",
-                      "value" : "days"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 },
                 {
                   "name" : "Transient modifications",
-                  "value" : "[DRAFT] transient transfection/transduction, if any"
+                  "value" : "[DRAFT]"
                 }
               ]
             }
@@ -399,11 +399,11 @@
               "attributes" : [
                 {
                   "name" : "ID",
-                  "value" : "[DRAFT] donor identifier — OPTIONAL block for primary/patient-derived models only; repeat per donor; delete entirely for immortalised lines"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Passage",
-                  "value" : "[DRAFT] e.g. P7–P9"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Sex",
@@ -427,27 +427,27 @@
         "attributes" : [
           {
             "name" : "Chemical",
-            "value" : "[DRAFT] compound name (one block per chemical)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "CID",
-            "value" : "[DRAFT] PubChem CID"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "CAS",
-            "value" : "[DRAFT] CAS number"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "SMILES",
-            "value" : "[DRAFT] canonical SMILES"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "CompoundCloudID",
-            "value" : "[DRAFT] Qxxxx",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT] https://compoundcloud.wikibase.cloud/wiki/Item:Qxxxx"
+                "value" : "[DRAFT]"
               }
             ]
           }
@@ -458,27 +458,27 @@
         "attributes" : [
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT] range or single value (shared)",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] nM | µM | mg/L"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Exposure-measurement interval",
-            "value" : "[DRAFT] time from end of exposure to measurement (0 = measured at end)",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "hours"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Bioassay",
-            "value" : "[DRAFT] assay this exposure applies to — repeat; move into a regimen below if regimen-specific"
+            "value" : "[DRAFT]"
           }
         ],
         "subsections" : [
@@ -488,15 +488,15 @@
               "attributes" : [
                 {
                   "name" : "Exposure type",
-                  "value" : "[DRAFT] single | chronic | continuous"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Exposure duration",
-                  "value" : "[DRAFT] numeric",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Unit",
-                      "value" : "hours"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 }
@@ -507,29 +507,29 @@
               "attributes" : [
                 {
                   "name" : "Exposure type",
-                  "value" : "repeated"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Number of repeats",
-                  "value" : "[DRAFT] e.g. 4"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Exposure duration",
-                  "value" : "[DRAFT] per repeat",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Unit",
-                      "value" : "hours"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 },
                 {
                   "name" : "Recovery period",
-                  "value" : "[DRAFT] between repeats",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "Unit",
-                      "value" : "hours"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 }
@@ -543,71 +543,71 @@
         "attributes" : [
           {
             "name" : "Bioassay",
-            "value" : "[DRAFT] must exactly match a section-level Bioassay value (enables the method link)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT] key event measured; repeat per event",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Description",
-            "value" : "[DRAFT] what this readout measures and how"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Time point",
-            "value" : "[DRAFT] e.g. 1, 24, 72",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "hours"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT] e.g. 3-4"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Measured entity",
-            "value" : "[DRAFT] e.g. Fluorescence intensity",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] a.u. | % of solvent control"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Endpoint readout",
-            "value" : "[DRAFT] e.g. Reactive oxygen species production",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] unit/scale"
+                "value" : "[DRAFT]"
               }
             ]
           },
           {
             "name" : "Positive control",
-            "value" : "[DRAFT] OPTIONAL reference compound; repeat this attribute per control; delete it if there is none",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT] https://pubchem.ncbi.nlm.nih.gov/compound/xxxx"
+                "value" : "[DRAFT]"
               },
               {
                 "name" : "Concentration",
-                "value" : "[DRAFT] numeric",
+                "value" : "[DRAFT]",
                 "valqual" : [
                   {
                     "name" : "Unit",
-                    "value" : "[DRAFT] µM | mM"
+                    "value" : "[DRAFT]"
                   }
                 ]
               }
@@ -621,11 +621,11 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT] instrument model"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "Manufacturer",
-                  "value" : "[DRAFT] manufacturer"
+                  "value" : "[DRAFT]"
                 }
               ]
             }
@@ -636,19 +636,19 @@
               "attributes" : [
                 {
                   "name" : "Compound",
-                  "value" : "[DRAFT] substrate name"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "CAS",
-                  "value" : "[DRAFT] CAS"
+                  "value" : "[DRAFT]"
                 },
                 {
                   "name" : "CompoundCloudID",
-                  "value" : "[DRAFT] Qxxxx",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "URL",
-                      "value" : "[DRAFT] https://compoundcloud.wikibase.cloud/wiki/Item:Qxxxx"
+                      "value" : "[DRAFT]"
                     }
                   ]
                 }
@@ -662,7 +662,7 @@
         "attributes" : [
           {
             "name" : "Data availability",
-            "value" : "[DRAFT] where the data live, e.g. raw + processed in this BioStudies record",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
@@ -672,7 +672,7 @@
           },
           {
             "name" : "Accession",
-            "value" : "[DRAFT] external data accession if any (GEO / ENA / ArrayExpress)",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
@@ -682,7 +682,7 @@
           },
           {
             "name" : "Analysis code",
-            "value" : "[DRAFT] code repository URL",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
@@ -692,7 +692,7 @@
           },
           {
             "name" : "Analysis pipeline",
-            "value" : "[DRAFT] named workflow if any, e.g. R-ODAF",
+            "value" : "[DRAFT]",
             "valqual" : [
               {
                 "name" : "URL",
@@ -702,15 +702,15 @@
           },
           {
             "name" : "Reference genome",
-            "value" : "[DRAFT] omics only, e.g. GRCh38 (Ensembl release 112)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Statistical method",
-            "value" : "[DRAFT] e.g. DESeq2 / 2^-ddCt / benchmark-dose (PROAST)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Significance threshold",
-            "value" : "[DRAFT] e.g. FDR < 0.01"
+            "value" : "[DRAFT]"
           }
         ],
         "subsections" : [
@@ -720,7 +720,7 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT] software/tool name",
+                  "value" : "[DRAFT]",
                   "valqual" : [
                     {
                       "name" : "URL",
@@ -730,7 +730,7 @@
                 },
                 {
                   "name" : "Version",
-                  "value" : "[DRAFT] version"
+                  "value" : "[DRAFT]"
                 }
               ]
             }
@@ -742,39 +742,39 @@
         "attributes" : [
           {
             "name" : "PMID",
-            "value" : "[DRAFT] PMID if available"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Authors",
-            "value" : "[DRAFT] AuthorList F, OtherA B, ThirdC D."
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Title",
-            "value" : "[DRAFT] publication title"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Year",
-            "value" : "[DRAFT] YYYY"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Volume",
-            "value" : "[DRAFT] volume"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Issue",
-            "value" : "[DRAFT] issue — omit this attribute entirely if there is none (do not leave empty)"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Type",
-            "value" : "[DRAFT] journal article | preprint | book chapter"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "Issn",
-            "value" : "[DRAFT] ISSN; secondary ISSN"
+            "value" : "[DRAFT]"
           },
           {
             "name" : "DOI",
-            "value" : "[DRAFT] 10.xxxx/yyyy"
+            "value" : "[DRAFT]"
           }
         ]
       }
