@@ -1,0 +1,784 @@
+{
+  "accno" : "[DRAFT] S-VHPSxx",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "[DRAFT] Study title — descriptive and concise"
+    },
+    {
+      "name" : "DOI",
+      "value" : "[DRAFT] 10.6019/S-VHPSxx"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "[DRAFT] YYYY-MM-DD"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "[DRAFT] mirror the top-level Title"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "[DRAFT] YYYY-MM-DD"
+      },
+      {
+        "name" : "Description",
+        "value" : "[DRAFT] Abstract: motivation, model, exposure, readout, headline finding, relevance to chemical safety assessment (>500 chars)."
+      },
+      {
+        "name" : "Organism",
+        "value" : "[DRAFT] Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "[DRAFT] default organ for all cell lines, e.g. Brain",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "[DRAFT] UBERON_xxxxxxx"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "[DRAFT] default tissue for all cell lines, e.g. Neural tissue",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "[DRAFT] UBERON_xxxxxxx"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "[DRAFT] Thyroid | Kidney | Parkinson",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/<slug>"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "[DRAFT] canonical key reg_q_xx (e.g. reg_q_2a) — NOT Q1/Q2; repeat per question",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/<slug>"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "[DRAFT] glossary label e.g. Toxicodynamics; repeat per step",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000xxx"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "[DRAFT] assay name — REPEAT this attribute, one per assay; the value is referenced by Endpoint readout / Exposure",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "[DRAFT] https://platform.vhp4safety.nl/methods/<slug>"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "[DRAFT] BAO | OBI | ENM"
+          },
+          {
+            "name" : "TermId",
+            "value" : "[DRAFT] BAO_xxxxxxx"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "[DRAFT] full AOP title from AOPwiki",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "[DRAFT] https://aopwiki.org/aops/xxx"
+          }
+        ]
+      },
+      {
+        "name" : "AOP event",
+        "value" : "[DRAFT] key event title; repeat per event",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+          }
+        ]
+      }
+    ],
+    "files" : [
+      {
+        "path" : "[DRAFT] S-VHPSxx_YYYYMMDD_rocrate.zip",
+        "size" : 0,
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "Research Object (RO) crate."
+          },
+          {
+            "name" : "Type",
+            "value" : "Dataset"
+          }
+        ],
+        "type" : "file"
+      }
+    ],
+    "links" : [
+      {
+        "url" : "[DRAFT] https://platform.vhp4safety.nl/casestudies/<slug>",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "[DRAFT] First Last — duplicate this subsection per author"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "[DRAFT] first.last@institution.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT] 0000-0000-0000-0000"
+          },
+          {
+            "name" : "Role",
+            "value" : "[DRAFT] Corresponding author | Data producer | Data processor | Contributor"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "[DRAFT] Institution name"
+          },
+          {
+            "name" : "RORID",
+            "value" : "[DRAFT] https://ror.org/xxxxxxxxx"
+          },
+          {
+            "name" : "Country",
+            "value" : "[DRAFT] Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "[DRAFT] Dutch Research Agenda (NWA) | EU Horizon Europe | ..."
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "[DRAFT] e.g. 1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "[DRAFT] e.g. HepG2 / LUHMES / CHO-K1 (one block per cell line)"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT] CVCL_xxxxx",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT] https://www.cellosaurus.org/CVCL_xxxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "[DRAFT] e.g. ATCC | ECACC | WiCell"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "[DRAFT] source/parent cell type",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "[DRAFT] CL_xxxxxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "[DRAFT] OPTIONAL override — only if THIS line differs from the section-level Organ; else delete this attribute",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "[DRAFT] UBERON_xxxxxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "[DRAFT] OPTIONAL override — only if THIS line differs from the section-level Tissue; else delete this attribute",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "[DRAFT] UBERON_xxxxxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Reference source",
+            "value" : "[DRAFT] DOI/URL describing the cell model origin"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Cell line preparation",
+              "attributes" : [
+                {
+                  "name" : "Preparation type",
+                  "value" : "[DRAFT] e.g. Stable transfection (omit subsection if the line is unmodified)",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "BAO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "[DRAFT] BAO_xxxxxxx"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Cell name",
+                  "value" : "[DRAFT] engineered cell name e.g. CHO-K1 OATP1C1"
+                },
+                {
+                  "name" : "Description",
+                  "value" : "[DRAFT] what stable construct/mutation was introduced"
+                },
+                {
+                  "name" : "Reference",
+                  "value" : "[DRAFT] DOI",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "[DRAFT] https://doi.org/xxxx"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Cell line preparation",
+              "attributes" : [
+                {
+                  "name" : "Preparation type",
+                  "value" : "Differentiation"
+                },
+                {
+                  "name" : "Cell type",
+                  "value" : "[DRAFT] differentiated phenotype (omit subsection if not differentiated)",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "CL"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "[DRAFT] CL_xxxxxxx"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Differentiation protocol",
+                  "value" : "[DRAFT] protocol or reference"
+                },
+                {
+                  "name" : "Days post differentiation",
+                  "value" : "[DRAFT] numeric",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "days"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Transient modifications",
+                  "value" : "[DRAFT] transient transfection/transduction, if any"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "type" : "Donor",
+              "attributes" : [
+                {
+                  "name" : "ID",
+                  "value" : "[DRAFT] donor identifier — OPTIONAL block for primary/patient-derived models only; repeat per donor; delete entirely for immortalised lines"
+                },
+                {
+                  "name" : "Passage",
+                  "value" : "[DRAFT] e.g. P7–P9"
+                },
+                {
+                  "name" : "Sex",
+                  "value" : "[DRAFT]"
+                },
+                {
+                  "name" : "Age",
+                  "value" : "[DRAFT]"
+                },
+                {
+                  "name" : "Tissue origin",
+                  "value" : "[DRAFT]"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "[DRAFT] compound name (one block per chemical)"
+          },
+          {
+            "name" : "CID",
+            "value" : "[DRAFT] PubChem CID"
+          },
+          {
+            "name" : "CAS",
+            "value" : "[DRAFT] CAS number"
+          },
+          {
+            "name" : "SMILES",
+            "value" : "[DRAFT] canonical SMILES"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "[DRAFT] Qxxxx",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT] https://compoundcloud.wikibase.cloud/wiki/Item:Qxxxx"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure concentration",
+            "value" : "[DRAFT] range or single value (shared)",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] nM | µM | mg/L"
+              }
+            ]
+          },
+          {
+            "name" : "Exposure-measurement interval",
+            "value" : "[DRAFT] time from end of exposure to measurement (0 = measured at end)",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "[DRAFT] assay this exposure applies to — repeat; move into a regimen below if regimen-specific"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "[DRAFT] single | chronic | continuous"
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "[DRAFT] numeric",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "repeated"
+                },
+                {
+                  "name" : "Number of repeats",
+                  "value" : "[DRAFT] e.g. 4"
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "[DRAFT] per repeat",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Recovery period",
+                  "value" : "[DRAFT] between repeats",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "[DRAFT] must exactly match a section-level Bioassay value (enables the method link)"
+          },
+          {
+            "name" : "AOP event",
+            "value" : "[DRAFT] key event measured; repeat per event",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "[DRAFT] what this readout measures and how"
+          },
+          {
+            "name" : "Time point",
+            "value" : "[DRAFT] e.g. 1, 24, 72",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "[DRAFT] e.g. 3-4"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "[DRAFT] e.g. Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] a.u. | % of solvent control"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "[DRAFT] e.g. Reactive oxygen species production",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] unit/scale"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "[DRAFT] OPTIONAL reference compound; repeat this attribute per control; delete it if there is none",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT] https://pubchem.ncbi.nlm.nih.gov/compound/xxxx"
+              },
+              {
+                "name" : "Concentration",
+                "value" : "[DRAFT] numeric",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "[DRAFT] µM | mM"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "[DRAFT] instrument model"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "[DRAFT] manufacturer"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "type" : "Substrate",
+              "attributes" : [
+                {
+                  "name" : "Compound",
+                  "value" : "[DRAFT] substrate name"
+                },
+                {
+                  "name" : "CAS",
+                  "value" : "[DRAFT] CAS"
+                },
+                {
+                  "name" : "CompoundCloudID",
+                  "value" : "[DRAFT] Qxxxx",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "[DRAFT] https://compoundcloud.wikibase.cloud/wiki/Item:Qxxxx"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Data & analysis",
+        "attributes" : [
+          {
+            "name" : "Data availability",
+            "value" : "[DRAFT] where the data live, e.g. raw + processed in this BioStudies record",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "name" : "Accession",
+            "value" : "[DRAFT] external data accession if any (GEO / ENA / ArrayExpress)",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "name" : "Analysis code",
+            "value" : "[DRAFT] code repository URL",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "name" : "Analysis pipeline",
+            "value" : "[DRAFT] named workflow if any, e.g. R-ODAF",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "name" : "Reference genome",
+            "value" : "[DRAFT] omics only, e.g. GRCh38 (Ensembl release 112)"
+          },
+          {
+            "name" : "Statistical method",
+            "value" : "[DRAFT] e.g. DESeq2 / 2^-ddCt / benchmark-dose (PROAST)"
+          },
+          {
+            "name" : "Significance threshold",
+            "value" : "[DRAFT] e.g. FDR < 0.01"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "[DRAFT] software/tool name",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "[DRAFT]"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Version",
+                  "value" : "[DRAFT] version"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Publication",
+        "attributes" : [
+          {
+            "name" : "PMID",
+            "value" : "[DRAFT] PMID if available"
+          },
+          {
+            "name" : "Authors",
+            "value" : "[DRAFT] AuthorList F, OtherA B, ThirdC D."
+          },
+          {
+            "name" : "Title",
+            "value" : "[DRAFT] publication title"
+          },
+          {
+            "name" : "Year",
+            "value" : "[DRAFT] YYYY"
+          },
+          {
+            "name" : "Volume",
+            "value" : "[DRAFT] volume"
+          },
+          {
+            "name" : "Issue",
+            "value" : "[DRAFT] issue — omit this attribute entirely if there is none (do not leave empty)"
+          },
+          {
+            "name" : "Type",
+            "value" : "[DRAFT] journal article | preprint | book chapter"
+          },
+          {
+            "name" : "Issn",
+            "value" : "[DRAFT] ISSN; secondary ISSN"
+          },
+          {
+            "name" : "DOI",
+            "value" : "[DRAFT] 10.xxxx/yyyy"
+          }
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

@@ -1,0 +1,1031 @@
+{
+  "accno" : "S-VHPS16",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Exposure matters: the impact of in vitro exposure scenarios"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS16"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-05-25"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Exposure matters: the impact of in vitro exposure scenarios"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-05-25"
+      },
+      {
+        "name" : "Description",
+        "value" : "This study examines how different in vitro exposure scenarios influence the toxicity of pesticides in differentiated SH-SY5Y dopaminergic-like cells. Cells were exposed under varying scenarios — single 24 h exposures with different delays before measurement (0, 18, 72 h), a repeated exposure (4 × 6 h) and a prolonged 96 h exposure — and two endpoints were measured in parallel: mitochondrial metabolic activity (alamarBlue) and cytotoxicity (lactate dehydrogenase release)."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Parkinson",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2a",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q1"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q2"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Adverse Outcome",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000158"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Chemical Characteristics and Hazard Identification",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000153"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Alamar blue",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "ENM"
+          },
+          {
+            "name" : "TermId",
+            "value" : "ENM_8000224"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Lactate dehydrogenase (LDH)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/ldh_activity_assay_to_determine_cell_death"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0013056"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "Calcium overload in dopaminergic neurons of the substantia nigra leading to parkinsonian motor deficits",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/aops/464"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/parkinson",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Julia Meerman"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "julia.meerman@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-6487-1655"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "National Institute for Public Health and the Environment"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/01cesdt21"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Harm Heusinkveld"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "harm.heusinkveld@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-3269-5586"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "SH-SY5Y"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_0019",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_0019"
+              }
+            ]
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Neuroblastoma-derived cell",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CLO"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CLO_0037083"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Brain",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0000955"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Substantia nigra pars compacta",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0001965"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "VUmc"
+          },
+          {
+            "name" : "Description",
+            "value" : "Human SH-SY5Y neuroblastoma cells differentiated to a dopaminergic-like phenotype, used as an in vitro model of substantia nigra dopaminergic neurons."
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Cell line preparation",
+              "attributes" : [
+                {
+                  "name" : "Preparation type",
+                  "value" : "Differentiation"
+                },
+                {
+                  "name" : "Cell type",
+                  "value" : "Dopaminergic-like neuron",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "CL"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "CL_0000700"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Differentiation protocol",
+                  "value" : "Differentiation induced with 5 nM staurosporine in reduced-serum medium on vitronectin-coated plates (induced DIV1; cells used DIV7–11), adapted from Ducray et al. (2020)."
+                },
+                {
+                  "name" : "Reference",
+                  "value" : "10.2174/1871527319666200708132716",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "https://doi.org/10.2174/1871527319666200708132716"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Dinoseb"
+          },
+          {
+            "name" : "CID",
+            "value" : "6950",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6950"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "88-85-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4723",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4723"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Endosulfan"
+          },
+          {
+            "name" : "CID",
+            "value" : "3224",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3224"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "115-29-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4727",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4727"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Mancozeb"
+          },
+          {
+            "name" : "CID",
+            "value" : "3034368",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3034368"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "8018-01-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4734",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4734"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Rotenone"
+          },
+          {
+            "name" : "CID",
+            "value" : "6758",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "83-79-4"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure concentration",
+            "value" : "[DRAFT]",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue"
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "Lactate dehydrogenase (LDH)"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "acute",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "recovery",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "18",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "delayed",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "72",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "repeated",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000171"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Number of repeats",
+                  "value" : "4"
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "6",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Recovery period",
+                  "value" : "18",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "chronic",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "96",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue"
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Mitochondrial dysfunction",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/177"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Mitochondrial Injury",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1547"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "Mitochondrial metabolic activity of differentiated SH-SY5Y cells after pesticide exposure, measured as resazurin-to-resorufin conversion (alamarBlue). Reduced signal indicates loss of metabolic activity."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "4-6 (4 for 0 µM, 6 for other concentrations)"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Mitochondrial metabolic activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "%"
+              }
+            ]
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "Invitrogen"
+          },
+          {
+            "name" : "Assay catalogue number",
+            "value" : "R12204"
+          },
+          {
+            "name" : "Reagent concentration",
+            "value" : "25",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Assay incubation time",
+            "value" : "1",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Rotenone",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              },
+              {
+                "name" : "Concentration",
+                "value" : "100",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "µM"
+                  }
+                ]
+              },
+              {
+                "name" : "Exposure duration",
+                "value" : "24",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "hours"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "SpectraMax M2 microplate reader"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                },
+                {
+                  "name" : "Excitation wavelength",
+                  "value" : "530",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Emission wavelength",
+                  "value" : "590",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Lactate dehydrogenase (LDH)"
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Cell death",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1825"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "Cytotoxicity of differentiated SH-SY5Y cells after pesticide exposure, measured as lactate dehydrogenase (LDH) activity released into the culture medium (colorimetric). Increased signal indicates loss of membrane integrity / cell death."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "4-6 (4 for 0 µM, 6 for other concentrations)"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Colorimetric (absorbance)"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Lactate dehydrogenase activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of LDH max"
+              }
+            ]
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "Roche"
+          },
+          {
+            "name" : "Assay catalogue number",
+            "value" : "11644793001"
+          },
+          {
+            "name" : "Assay incubation time",
+            "value" : "30",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "minutes"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Staurosporine",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/44259"
+              },
+              {
+                "name" : "CAS",
+                "value" : "62996-74-1"
+              },
+              {
+                "name" : "Concentration",
+                "value" : "1",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "µM"
+                  }
+                ]
+              },
+              {
+                "name" : "Exposure duration",
+                "value" : "24",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "hours"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "SpectraMax M2 microplate reader"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                },
+                {
+                  "name" : "Absorbance wavelength",
+                  "value" : "490",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Reference wavelength",
+                  "value" : "600",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

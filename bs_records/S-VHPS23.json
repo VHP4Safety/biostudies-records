@@ -1,0 +1,375 @@
+{
+  "accno" : "S-VHPS23",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Tacrolimus-induced nephrotoxicity in iPSC-derived kidney organoids"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS23"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-03-18"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Tacrolimus-induced nephrotoxicity in iPSC-derived kidney organoids"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-03-18"
+      },
+      {
+        "name" : "Description",
+        "value" : "Tacrolimus (TAC) is a first-line immunosuppressant used to prevent rejection after solid-organ transplantation, yet its clinical utility is limited by nephrotoxicity, which can progress to irreversible kidney injury or graft loss. The molecular mechanisms underlying TAC-induced nephrotoxicity remain insufficiently understood. Here, we systematically assessed TAC responses across human in vitro nephron model: iPSC-derived kidney organoids."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002113"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_1b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "[DRAFT] Cytotoxicity / nephrotoxicity assay (specify)",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "[DRAFT] BAO_xxxxx"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "Calcineurin inhibitor induced nephrotoxicity leading to kidney failure",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/aops/622"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/kidney",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Kate Liang"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "K.H.Liang-2@umcutrecht.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0009-0001-0965-4436"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "University Medical Center Utrecht"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/0575yy874"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Anne Metje van Genderen"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "a.m.vangenderen@uu.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-9643-7722"
+          },
+          {
+            "name" : "Role"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o2",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Utrecht University"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/04pp8hn57"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "[DRAFT] Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "[DRAFT] 1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "[DRAFT] iPSC-derived kidney organoids"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT] CVCL_xxxx"
+          },
+          {
+            "name" : "Supplier",
+            "value" : "[DRAFT] specify iPSC line donor / source"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "[DRAFT] Pluripotent stem cell derivative"
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Tacrolimus"
+          },
+          {
+            "name" : "CID",
+            "value" : "445643"
+          },
+          {
+            "name" : "CAS",
+            "value" : "109581-93-3"
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure type",
+            "value" : "[DRAFT] single / repeated / chronic — specify"
+          },
+          {
+            "name" : "Exposure duration",
+            "value" : "[DRAFT] specify",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] hours / days"
+              }
+            ]
+          },
+          {
+            "name" : "Exposure concentration",
+            "value" : "[DRAFT]",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] µM"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "[DRAFT] Cytotoxicity / nephrotoxicity assay (specify)"
+          },
+          {
+            "name" : "AOP event",
+            "value" : "[DRAFT] Specify the relevant key event within AOP 622",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+              }
+            ]
+          },
+          {
+            "name" : "Time point",
+            "value" : "[DRAFT] specify",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] hours / days"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "[DRAFT] specify number"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "[DRAFT] specify (e.g. ATP, LDH release, KIM-1 expression, viability)"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "[DRAFT] specify",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "[DRAFT] specify"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "[DRAFT] specify"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "[DRAFT] specify"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

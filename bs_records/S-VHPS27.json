@@ -1,0 +1,979 @@
+{
+  "accno" : "S-VHPS27",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Cell model comparison in the context of in vitro Parkinson studies"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS27"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-03-18"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Cell model comparison in the context of in vitro Parkinson studies"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-03-18"
+      },
+      {
+        "name" : "Description",
+        "value" : "Pesticide exposure is associated with an increased risk of developing Parkinson’s disease (PD), though currently neurodegeneration is not covered in safety assessment of pesticides. This indicates a need for an updated safety assessment framework, preferably without the use of animal models. Death of dopaminergic (DA) neurons of the substantia nigra is a hallmark of PD. Vulnerability of these neurons to a combination of oxidative stress, mitochondrial dysfunction, and calcium dyshomeostasis is thought to underlie their selective cell death upon pesticide exposure. An in vitro model should reflect this vulnerability in order to be relevant for use in safety assessment studies. Here we assessed to what extent a commonly used PD model system displays this vulnerability. To this end, LUHMES (DA neuronal model) and HepG2 (liver model) cells were exposed to four pesticides (dinoseb, endosulfan, mancozeb, and rotenone). Cells were exposed short term (18 hours), long term (72 hours), or repeatedly (4x 6 hours with 18 hours recovery). After exposure, mitochondrial metabolic activity and cytotoxicity were determined by Alamar blue and lactate dehydrogenase assay, respectively. Both HepG2 and LUHMES cells responded similarly to dinoseb and rotenone in all scenarios. Mancozeb led to more severe inhibition of mitochondrial metabolic activity in the LUHMES cells in comparison to the HepG2 cells in all scenarios. Endosulfan led to more severe effects after short term and repeated exposure, but not long term exposure. Here we show that the expected increased vulnerability of a DA neuronal model to pesticide effects cannot be confirmed for all tested compounds. Our results demonstrate differential effects of the four pesticides in both models, which can be explained by physiological characteristics of the cell models and mechanisms of action of the pesticides. These findings highlight that to be used for safety assessment of pesticides, a chosen in vitro model should be characterized for its relevance to the expected mechanism of action of the tested compound and the mechanistic endpoint tested."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Parkinson",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2a",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q1"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q2"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Adverse Outcome",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000158"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Chemical Characteristics and Hazard Identification",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000153"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Alamar blue",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "ENM"
+          },
+          {
+            "name" : "TermId",
+            "value" : "ENM_8000224"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Lactate dehydrogenase (LDH)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/ldh_activity_assay_to_determine_cell_death"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0013056"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "Calcium overload in dopaminergic neurons of the substantia nigra leading to parkinsonian motor deficits",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/aops/464"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/parkinson",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Julia Meerman"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "julia.meerman@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-6487-1655"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "National Institute for Public Health and the Environment"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/01cesdt21"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Harm Heusinkveld"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "harm.heusinkveld@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-3269-5586"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "LUHMES"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_B056",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_B056"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Leist lab Konstanz University"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Dopaminergic neuron",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000700"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Brain",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0000955"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Blood brain barrier",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0000120"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "hBMEC"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT]",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Brain microvascular endothelial cells",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_2000044"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Brain",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0000955"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "HepG2"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_0027",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_0027"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Human liver-derived immortal cell line",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CLO"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CLO_0037254"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Dinoseb"
+          },
+          {
+            "name" : "CID",
+            "value" : "6950",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6950"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "88-85-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4723",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4723"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Pyraclostrobin"
+          },
+          {
+            "name" : "CID",
+            "value" : "6422843",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6422843"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "175013-18-0"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q5155",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5155"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Endosulfan"
+          },
+          {
+            "name" : "CID",
+            "value" : "3224",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3224"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "115-29-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4727",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4727"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Mancozeb"
+          },
+          {
+            "name" : "CID",
+            "value" : "3034368",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3034368"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "8018-01-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4734",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4734"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Rotenone"
+          },
+          {
+            "name" : "CID",
+            "value" : "6758",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "83-79-4"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure-measurement interval",
+            "value" : "0",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Exposure concentration",
+            "value" : "[DRAFT]",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue"
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "Lactate dehydrogenase (LDH)"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single"
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "18",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "72",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "repeated",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "EXO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "ExO_0000171"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Number of repeats",
+                  "value" : "4"
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "6",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Recovery period",
+                  "value" : "18",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Mitochondrial dysfunction",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/177"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Mitochondrial Injury",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1547"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "A mitochondrial metabolic activity assay conducted using differentiated LUHMES cells (dopaminergic-like phenotype), hBMECs, and HepG2 cells to determine effects of pesticides by measuring conversion of resazurin to resorufin through a fluorescence assay."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "4-6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Absorbance wavelength",
+                "value" : "530"
+              },
+              {
+                "name" : "Reference wavelength",
+                "value" : "590"
+              },
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Mitochondrial metabolic activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of solvent control"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Rotenone",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              },
+              {
+                "name" : "CAS",
+                "value" : "83-79-4"
+              },
+              {
+                "name" : "CID",
+                "value" : "6758"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            },
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Spectramax M2 microplate reader"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Lactate dehydrogenase (LDH)",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/ldh_activity_assay_to_determine_cell_death"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Cell death",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1825"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "A cytotoxicity assay conducted using differentiated LUHMES cells (dopaminergic-like phenotype), hBMECs, and HepG2 cells to determine effects of pesticides by measuring lactate dehydrogenase activity in culture medium with a colorimetric assay."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "4-6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Colorimetric",
+            "valqual" : [
+              {
+                "name" : "Excitation wavelength",
+                "value" : "490"
+              },
+              {
+                "name" : "Emission wavelength",
+                "value" : "600"
+              },
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Cell viability",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of LDH max"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Staurosporine",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2054"
+              },
+              {
+                "name" : "CAS",
+                "value" : "62996-74-1"
+              },
+              {
+                "name" : "CID",
+                "value" : "7048594"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            },
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Spectramax M2 microplate reader"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

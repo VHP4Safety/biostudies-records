@@ -1,0 +1,728 @@
+{
+  "accno" : "S-VHPS20",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Effect of three triiodothyronine (T3) conditions on neuronal differentiation of human embryonic stem cell derived neural progenitors"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS20"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-03-18"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Effect of three triiodothyronine (T3) conditions on neuronal differentiation of human embryonic stem cell derived neural progenitors"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-03-18"
+      },
+      {
+        "name" : "Description",
+        "value" : "Thyroid hormone (TH) is an important regulator of human brain development, and maternal TH imbalance is linked to adverse outcomes such as reduced IQ and decreased motorimpaired brain function in children. As part of the VHP4Safety initiative, we investigated the molecular effects of altered TH levels using the human neural progenitor test (hNPT). Neural progenitor cells were differentiated in vitro under no (0 nM), normal (4.1 nM), or high (410 nM) triiodothyronine (T3) conditions. RNA-Seq was used to assess gene expression, and a brain-specific molecular Adverse Outcome Pathway (AOP) network was applied to interpret transcriptomic changes alongside Gene Ontology (GO) enrichment analysis. No T3 exposure significantly altered gene expression in pathways related to neurogenesis, synaptogenesis, differentiation and metabolism, including pathways of BDNF signalling, proliferation, oligodendrocyte specification, and glycolysis. Key Events (KEs) such as reduced BDNF and impaired proliferation were enriched in the molecular AOP network. High T3 had minimal transcriptional effects. Our findings demonstrate that low T3 conditions affect key neurodevelopmental processes in vitro. This study illustrates the utility of integrating transcriptomics with molecular AOPs to provide a structured, mechanistic framework for evaluating the regulation of neuronal cell proliferation and differentiation in brain development. The framework may be useful for chemical risk assessment."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Brain",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0000955"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "Neural tissue",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0003714"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Thyroid",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/thyroid"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_3b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/thyroid"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "RNA-seq assay",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/rna_sequencing"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "OBI"
+          },
+          {
+            "name" : "TermId",
+            "value" : "OBI:0001271"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "Decreased thyroid hormone levels in the brain regulated via transport, metabolism and TR activation leading to decreased cognition and motor function",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/aops/610"
+          }
+        ]
+      }
+    ],
+    "files" : [
+      {
+        "path" : "S-VHPS20_ro-crate_20260129.zip",
+        "size" : 32399061450,
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "RO-Crate"
+          },
+          {
+            "name" : "Type",
+            "value" : "Dataset"
+          }
+        ],
+        "type" : "file"
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/thyroid",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety thyroid case study portal"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Nathalie Dierichs"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "nathalie.dierichs@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0009-0000-5074-6239"
+          },
+          {
+            "name" : "Role",
+            "value" : "Data producer"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o3",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Marvin Martens"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "marvin.martens@maastrichtuniversity.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0003-2230-0840"
+          },
+          {
+            "name" : "Role",
+            "value" : "Data producer"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Jeroen LA Pennings"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contributor"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "jeroen.pennings@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-9188-6358"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Aldert H Piersma"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contributor"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o4",
+            "reference" : true
+          },
+          {
+            "name" : "E-mail",
+            "value" : "a.h.piersma@uu.nl"
+          },
+          {
+            "name" : "ORCID"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Victoria C de Leeuw"
+          },
+          {
+            "name" : "Role",
+            "value" : "Data producer"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "victoria.de.leeuw@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-3239-2227"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Conny TM van Oostrom"
+          },
+          {
+            "name" : "Role",
+            "value" : "Data producer"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "conny.van.oostrom@rivm.nl"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          },
+          {
+            "name" : "ORCID"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Celina Malyar"
+          },
+          {
+            "name" : "Role",
+            "value" : "Data processor"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "c.malyar@erasmusmc.nl"
+          },
+          {
+            "name" : "ORCID"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Anne S Kienhuis"
+          },
+          {
+            "name" : "Role"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "anne.kienhuis@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-6465-4498"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o4",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Chris T Evelo"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contributor"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "chris.evelo@maastrichtuniversity.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-5301-3142"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Egon L Willighagen"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contributor"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "egon.willighagen@maastrichtuniversity.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-7542-0286"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Ellen VS Hessel"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contributor"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          },
+          {
+            "name" : "E-mail",
+            "value" : "ellen.hessel@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0003-3960-7523"
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "National Institute for Public Health and the Environment (RIVM)"
+          },
+          {
+            "name" : "Address",
+            "value" : "Antonie van Leeuwenhoeklaan 9, 3721 MA Bilthoven, The Netherlands"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "accno" : "o2",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Maastricht University"
+          },
+          {
+            "name" : "Address",
+            "value" : "Minderbroedersberg 4-6, 6211 LK Maastricht, The Netherlands"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "accno" : "o3",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Academic Centre for Thyroid Diseases, Erasmus Medical Centre"
+          },
+          {
+            "name" : "Address",
+            "value" : "Doctor Molewaterplein 40, 3015 GD Rotterdam, The Netherlands"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "accno" : "o4",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Institute for Risk Assessment Sciences, Utrecht University"
+          },
+          {
+            "name" : "Address",
+            "value" : "Yalelaan 2, 3584 CM Utrecht, The Netherlands"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "H9 human embryonic stem cell-derived neural progenitors"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_9773",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_9773"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "WiCell Research Institute"
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Triiodo-L-thyronine (T3)"
+          },
+          {
+            "name" : "CID",
+            "value" : "6433",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6433"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "55-06-1"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q5027",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5027"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure type",
+            "value" : "Prolonged T3 concentration exposure (0, 4.1, 410 nM)"
+          },
+          {
+            "name" : "Exposure duration",
+            "value" : "10",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "days"
+              }
+            ]
+          },
+          {
+            "name" : "Time between exposures",
+            "value" : "3-4",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "days"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "RNA-seq assay"
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Reduced levels of BDNF",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/381"
+              }
+            ]
+          },
+          {
+            "name" : "Time point",
+            "value" : "Day 0; Day 10"
+          },
+          {
+            "name" : "Replicates",
+            "value" : "8 technical replicates per condition"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "RNA"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Gene-level read counts and differential expression"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "accno" : "1762359640915-1-removable",
+              "type" : "Substrate",
+              "attributes" : [
+                {
+                  "name" : "Compound",
+                  "value" : "Triiodo-L-thyronine (T3)"
+                },
+                {
+                  "name" : "CAS",
+                  "value" : "55-06-1"
+                },
+                {
+                  "name" : "CompoundCloudID",
+                  "value" : "Q5027",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5027"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Illumina NextSeq 500"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Illumina"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

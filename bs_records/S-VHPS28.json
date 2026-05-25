@@ -1,0 +1,989 @@
+{
+  "accno" : "S-VHPS28",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Quantitative assessment of KEs in AOP464 Parkinson's disease"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS28"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-03-18"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Quantitative assessment of KEs in AOP464 Parkinson's disease"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-03-18"
+      },
+      {
+        "name" : "Description",
+        "value" : "Parkinson’s disease (PD) is a progressive neurodegenerative disorder that has been associated with exposure to pesticides. Nevertheless, neurodegeneration is not currently an endpoint that is covered in pesticide safety assessment. Adverse Outcome Pathways (AOPs) are increasingly being developed for risk assessment purposes. To make practical use of these AOPs, quantifying Key Event Relationships (KERs) is a critical next step. Here, we demonstrate one approach of quantifying an AOP (AOP464) for pesticide-induced PD. Dopaminergic cell lines were used to generate data for KEs ‘oxidative stress’, ‘mitochondrial damage’, and ‘cell death’. Effects on oxidative stress were determined with the H2DCFDA-AM probe after 1, 24, and 72 hour(s). Mitochondrial damage and cell death were determined after 24, and 72 hour(s) by Alamar blue and CFDA-AM assay, respectively. Six pesticides (dinoseb, endosulfan, folpet, mancozeb, pyraclostrobin, and rotenone) were used for all experiments. Preliminary data shows that the pesticides tested do not necessarily trigger the KEs in the same linear manner. For instance, mancozeb and folpet induce ROS after 1 hour of exposure, but do not significantly affect mitochondrial activity at 24 hours. In contrast, dinoseb and pyraclostrobin do not induce ROS at 1 hour, but do cause mitochondrial dysfunction at 24 hours. As such, a common linear response-response model is not applicable in this case study. Instead, a probabilistic model that combines effects of early KEs to predict cell death provides a more fitting approach. Here we show that although qualitative AOPs are linear by design, this linearity is not mirrored in vitro. For practical application of qAOPs, it is necessary that this is taken into consideration, for instance by applying a probabilistic modelling approach. Moreover, to support mechanistic understanding and increase confidence in the model, measuring KEs at multiple time points can be useful. Finally, this case study highlights that developing AOPs for use in safety assessment should be an iterative process in which KEs and KERs are drawn and redrawn based on new data."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Brain",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0000955"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "Substantia nigra pars compacta",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0001965"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Parkinson",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2a",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q1"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_2b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/parkinson/Q2"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Adverse Outcome",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000158"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Chemical Characteristics and Hazard Identification",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000153"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "H2DCFDA-AM",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/h2dcfda_am_assay_for_detection_of_oxidative_stress_production"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0002168"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "5-CFDA",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/5_cfda_assay_to_determine_cytotoxicity"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0002993"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Alamar blue",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "ENM"
+          },
+          {
+            "name" : "TermId",
+            "value" : "ENM_8000224"
+          }
+        ]
+      },
+      {
+        "name" : "AOP",
+        "value" : "Calcium overload in dopaminergic neurons of the substantia nigra leading to parkinsonian motor deficits",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/aops/464"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/parkinson",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Julia Meerman"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "julia.meerman@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-6487-1655"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "National Institute for Public Health and the Environment"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/01cesdt21"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Harm Heusinkveld"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "harm.heusinkveld@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-3269-5586"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "LUHMES"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_B056",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://scicrunch.org/resolver/CVCL_B056"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Leist lab, Konstanz University"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Dopaminergic neurons",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000700"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Dinoseb"
+          },
+          {
+            "name" : "CID",
+            "value" : "6950",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6950"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "88-85-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4723",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4723"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Endosulfan"
+          },
+          {
+            "name" : "CID",
+            "value" : "3224",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3224"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "115-29-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4727",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4727"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Folpet"
+          },
+          {
+            "name" : "CID",
+            "value" : "8607",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/8607"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "133-07-3"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4771",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4771"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Mancozeb"
+          },
+          {
+            "name" : "CID",
+            "value" : "3034368",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3034368"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "8018-01-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4734",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4734"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Pyraclostrobin"
+          },
+          {
+            "name" : "CID",
+            "value" : "6422843",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6422843"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "175013-18-0"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q5155",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q5155"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Rotenone"
+          },
+          {
+            "name" : "CID",
+            "value" : "6758",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "83-79-4"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure concentration",
+            "value" : "[DRAFT]",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Exposure type",
+            "value" : "single"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "72",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Alamar blue"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "5-CFDA"
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure duration",
+                  "value" : "1",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "3",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "23",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "H2DCFDA-AM"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "H2DCFDA-AM",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/h2dcfda_am_assay_for_detection_of_oxidative_stress_production"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Oxidative Stress",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1392"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "A H2DCFDA-AM assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by measuring oxidation of the probe by reactive oxygen species combined with Hoechst to control for cells present, both through measurement of fluorescence."
+          },
+          {
+            "name" : "Time point",
+            "value" : "1, 24, 72",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3-4"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Excitation wavelength",
+                "value" : "485"
+              },
+              {
+                "name" : "Emission wavelength",
+                "value" : "535"
+              },
+              {
+                "name" : "Excitation wavelength",
+                "value" : "352"
+              },
+              {
+                "name" : "Emission wavelength",
+                "value" : "454"
+              },
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Reactive oxygen species production",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "Increase in fluorescence over 1 hour in comparison to startvalue (ratio)"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Hydrogen peroxide",
+            "valqual" : [
+              {
+                "name" : "CID",
+                "value" : "784"
+              },
+              {
+                "name" : "CAS",
+                "value" : "7722-84-1"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Mitochondrial Injury",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1547"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "A mitochondrial metabolic activity assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by measuring conversion of resazurin to resorufin through a fluorescence assay."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3-4"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Excitation wavelength",
+                "value" : "530"
+              },
+              {
+                "name" : "Emission wavelength",
+                "value" : "590"
+              },
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Mitochondrial metabolic activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of solvent control"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Rotenone",
+            "valqual" : [
+              {
+                "name" : "CID",
+                "value" : "6758"
+              },
+              {
+                "name" : "CAS",
+                "value" : "83-79-4"
+              },
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "5-CFDA",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/5_cfda_assay_to_determine_cytotoxicity"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Cell death",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/1825"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "A CFDA-AM assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by cellular damage through measurement of fluorescence."
+          },
+          {
+            "name" : "Time point",
+            "value" : "24, 72",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3-4"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Excitation wavelength",
+                "value" : "485"
+              },
+              {
+                "name" : "Emission wavelength",
+                "value" : "535"
+              },
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Cell death",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of solvent control"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Staurosporine",
+            "valqual" : [
+              {
+                "name" : "CID",
+                "value" : "7048594"
+              },
+              {
+                "name" : "CAS",
+                "value" : "62996-74-1"
+              },
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2054"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}

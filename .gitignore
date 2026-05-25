@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# local backups (not version-controlled; git history is the backup now)
+_bak_aop/
+*.kename
+*.methodurl
+
+# claude
+CHANGELOG.md
+COMPOUNDCLOUD_TODO.md
+METHOD_PAGES_TODO.md
+PARKED_DECISIONS.md
+PAGETAB_ISATOX_PROJECTION.md
