@@ -667,28 +667,28 @@
                   ]
                 },
                 {
+                  "name" : "Exposure duration",
+                  "value" : "4",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                 {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
                   "name" : "Exposure-measurement interval",
                   "value" : "0",
-                  "valqual" : [
-                    {
-                      "name" : "Unit",
-                      "value" : "hours"
-                    }
-                  ]
-                },
-                {
-                  "name" : "Exposure-measurement interval",
-                  "value" : "3",
-                  "valqual" : [
-                    {
-                      "name" : "Unit",
-                      "value" : "hours"
-                    }
-                  ]
-                },
-                {
-                  "name" : "Exposure-measurement interval",
-                  "value" : "23",
                   "valqual" : [
                     {
                       "name" : "Unit",
@@ -733,16 +733,6 @@
             "value" : "A H2DCFDA-AM assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by measuring oxidation of the probe by reactive oxygen species combined with Hoechst to control for cells present, both through measurement of fluorescence."
           },
           {
-            "name" : "Time point",
-            "value" : "1, 24, 72",
-            "valqual" : [
-              {
-                "name" : "Unit",
-                "value" : "hours"
-              }
-            ]
-          },
-          {
             "name" : "Replicates",
             "value" : "3-4"
           },
@@ -782,7 +772,7 @@
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "Increase in fluorescence over 1 hour in comparison to startvalue (ratio)"
+                "value" : "Increase in fluorescence over 1 hour in comparison to startvalue (%)"
               }
             ]
           },
@@ -921,16 +911,6 @@
           {
             "name" : "Description",
             "value" : "A CFDA-AM assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by cellular damage through measurement of fluorescence."
-          },
-          {
-            "name" : "Time point",
-            "value" : "24, 72",
-            "valqual" : [
-              {
-                "name" : "Unit",
-                "value" : "hours"
-              }
-            ]
           },
           {
             "name" : "Replicates",
