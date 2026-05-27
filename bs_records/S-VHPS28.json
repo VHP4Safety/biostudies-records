@@ -204,6 +204,16 @@
         ]
       },
       {
+        "name" : "Bioassay",
+        "value" : "CellTiter-Glo 2.0",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/celltiter_glo_20_assay_for_detection_of_cellular_atp_content"
+          }
+        ]
+      },
+      {
         "name" : "AOP",
         "value" : "Calcium overload in dopaminergic neurons of the substantia nigra leading to parkinsonian motor deficits",
         "valqual" : [
@@ -701,6 +711,35 @@
                   "value" : "H2DCFDA-AM"
                 }
               ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure duration",
+                  "value" : "8",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "CellTiter-Glo 2.0"
+                }
+              ]
             }
           ]
         ]
@@ -951,6 +990,78 @@
           {
             "name" : "Positive control",
             "value" : "Staurosporine"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Tecan Infinite 200 pro M-plex"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Tecan"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "CellTiter-Glo 2.0",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://platform.vhp4safety.nl/methods/celltiter_glo_20_assay_for_detection_of_cellular_atp_content"
+              }
+            ]
+          },
+          {
+            "name" : "AOP event",
+            "value" : "Increase, Mitochondrial dysfunction",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://aopwiki.org/events/177"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "An ATP content assay conducted using differentiated LUHMES cells (dopaminergic characteristics) to determine effects of pesticides by measuring luminescence."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "4"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "6"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Luminescence"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Mitochondrial metabolic activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "% of solvent control"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Rotenone"
           }
         ],
         "subsections" : [
