@@ -27,3 +27,4 @@ build/
 dist/
 .pytest_cache/
 .ruff_cache/
+docs/TEMPLATE.README.md
