@@ -165,7 +165,7 @@
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] BAO_xxxxxxx (CellTiter-Glo / ATP cell viability)"
+            "value" : "BAO_0010001"
           }
         ]
       },
@@ -1045,7 +1045,7 @@
           },
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]",
+            "value" : "0.003–100",
             "valqual" : [
               {
                 "name" : "Unit",
