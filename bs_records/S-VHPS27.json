@@ -657,7 +657,7 @@
           },
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]",
+            "value" : "0.1–100",
             "valqual" : [
               {
                 "name" : "Unit",

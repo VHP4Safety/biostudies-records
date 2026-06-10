@@ -706,16 +706,6 @@
                 "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/122180"
               }
             ]
-          },
-          {
-            "name" : "CompoundCloudID",
-            "value" : "[DRAFT]",
-            "valqual" : [
-              {
-                "name" : "URL",
-                "value" : "[DRAFT]"
-              }
-            ]
           }
         ]
       },

@@ -1260,7 +1260,7 @@
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT]"
+            "value" : "2"
           },
           {
             "name" : "Measured entity",
@@ -1366,7 +1366,7 @@
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT]"
+            "value" : "2"
           },
           {
             "name" : "Measured entity",
@@ -1472,7 +1472,7 @@
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT]"
+            "value" : "3"
           },
           {
             "name" : "Measured entity",
@@ -1500,11 +1500,11 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT] real-time PCR system"
+                  "value" : "QuantStudio 7 Flex"
                 },
                 {
                   "name" : "Manufacturer",
-                  "value" : "[DRAFT]"
+                  "value" : "Applied Biosystems"
                 }
               ]
             }

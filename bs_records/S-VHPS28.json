@@ -605,7 +605,7 @@
         "attributes" : [
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]",
+            "value" : "0.01–100",
             "valqual" : [
               {
                 "name" : "Unit",
