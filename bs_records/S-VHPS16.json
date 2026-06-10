@@ -543,7 +543,7 @@
         "attributes" : [
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "Unit",

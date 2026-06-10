@@ -121,7 +121,7 @@
       },
       {
         "name" : "Bioassay",
-        "value" : "[DRAFT] Cytotoxicity / nephrotoxicity assay (specify)",
+        "value" : "",
         "valqual" : [
           {
             "name" : "Ontology",
@@ -129,7 +129,7 @@
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] BAO_xxxxx"
+            "value" : ""
           }
         ]
       },
@@ -244,11 +244,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "[DRAFT] Dutch Research Agenda (NWA)"
+            "value" : ""
           },
           {
             "name" : "Grant_id",
-            "value" : "[DRAFT] 1292.19.272"
+            "value" : ""
           }
         ]
       },
@@ -257,19 +257,19 @@
         "attributes" : [
           {
             "name" : "Cell line",
-            "value" : "[DRAFT] Proximal tubule cells sorted from iPSC-derived kidney organoids"
+            "value" : ""
           },
           {
             "name" : "RRID",
-            "value" : "[DRAFT] CVCL_xxxx"
+            "value" : ""
           },
           {
             "name" : "Supplier",
-            "value" : "[DRAFT] specify iPSC line donor / source"
+            "value" : ""
           },
           {
             "name" : "Cell type",
-            "value" : "[DRAFT] iPSC-derived sorted proximal tubule cells"
+            "value" : ""
           }
         ]
       },
@@ -305,25 +305,25 @@
         "attributes" : [
           {
             "name" : "Exposure type",
-            "value" : "[DRAFT] single / repeated / chronic — specify"
+            "value" : ""
           },
           {
             "name" : "Exposure duration",
-            "value" : "[DRAFT] specify",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] hours / days"
+                "value" : ""
               }
             ]
           },
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] µM"
+                "value" : ""
               }
             ]
           }
@@ -334,43 +334,43 @@
         "attributes" : [
           {
             "name" : "Bioassay",
-            "value" : "[DRAFT] Cytotoxicity / nephrotoxicity assay (specify)"
+            "value" : ""
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT] Specify the relevant key event within AOP 622",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT] https://aopwiki.org/events/xxxx"
+                "value" : ""
               }
             ]
           },
           {
             "name" : "Time point",
-            "value" : "[DRAFT] specify",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] hours / days"
+                "value" : ""
               }
             ]
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT] specify number"
+            "value" : ""
           },
           {
             "name" : "Measured entity",
-            "value" : "[DRAFT] specify"
+            "value" : ""
           },
           {
             "name" : "Endpoint readout",
-            "value" : "[DRAFT] specify",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "Unit",
-                "value" : "[DRAFT] specify"
+                "value" : ""
               }
             ]
           }
@@ -382,11 +382,11 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT] specify"
+                  "value" : ""
                 },
                 {
                   "name" : "Manufacturer",
-                  "value" : "[DRAFT] specify"
+                  "value" : ""
                 }
               ]
             }

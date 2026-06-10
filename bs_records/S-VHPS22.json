@@ -125,7 +125,7 @@
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT] (no VHP4Safety method page yet)"
+            "value" : ""
           },
           {
             "name" : "Ontology",
@@ -143,7 +143,7 @@
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT] (no VHP4Safety method page yet)"
+            "value" : ""
           },
           {
             "name" : "Ontology",
@@ -161,7 +161,7 @@
         "valqual" : [
           {
             "name" : "URL",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Ontology",
@@ -967,7 +967,7 @@
         "attributes" : [
           {
             "name" : "Exposure concentration",
-            "value" : "[DRAFT]"
+            "value" : ""
           }
         ],
         "subsections" : [

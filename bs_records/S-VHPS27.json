@@ -337,17 +337,17 @@
           },
           {
             "name" : "RRID",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : ""
               }
             ]
           },
           {
             "name" : "Supplier",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Cell type",
@@ -398,7 +398,7 @@
           },
           {
             "name" : "Supplier",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Cell type",

@@ -75,7 +75,7 @@
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT] UBERON_0001231 (nephron tubule) — verify"
+            "value" : ""
           }
         ]
       },
@@ -129,11 +129,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT]"
+            "value" : ""
           }
         ]
       },
@@ -147,11 +147,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT]"
+            "value" : ""
           }
         ]
       },
@@ -183,11 +183,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "TermId",
-            "value" : "[DRAFT]"
+            "value" : ""
           }
         ]
       },
@@ -223,7 +223,7 @@
           },
           {
             "name" : "E-mail",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "ORCID",
@@ -337,7 +337,7 @@
           },
           {
             "name" : "E-mail",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "ORCID",
@@ -363,7 +363,7 @@
           },
           {
             "name" : "E-mail",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "ORCID",
@@ -389,7 +389,7 @@
           },
           {
             "name" : "E-mail",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "ORCID",
@@ -468,15 +468,15 @@
                 },
                 {
                   "name" : "Sex",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Age",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Tissue origin",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             },
@@ -493,15 +493,15 @@
                 },
                 {
                   "name" : "Sex",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Age",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Tissue origin",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             }
@@ -530,7 +530,7 @@
                 },
                 {
                   "name" : "Differentiation protocol",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Reference",
@@ -628,7 +628,7 @@
                 },
                 {
                   "name" : "Exposure concentration",
-                  "value" : "[DRAFT]",
+                  "value" : "",
                   "valqual" : [
                     {
                       "name" : "Unit",
@@ -665,7 +665,7 @@
                 },
                 {
                   "name" : "Exposure concentration",
-                  "value" : "[DRAFT]",
+                  "value" : "",
                   "valqual" : [
                     {
                       "name" : "Unit",
@@ -695,11 +695,11 @@
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : ""
               }
             ]
           },
@@ -806,11 +806,11 @@
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : ""
               }
             ]
           },
@@ -876,11 +876,11 @@
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : ""
               }
             ]
           },
@@ -890,7 +890,7 @@
           },
           {
             "name" : "Replicates",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Measured entity",
@@ -924,11 +924,11 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Manufacturer",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             }
@@ -944,11 +944,11 @@
           },
           {
             "name" : "AOP event",
-            "value" : "[DRAFT]",
+            "value" : "",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "[DRAFT]"
+                "value" : ""
               }
             ]
           },
@@ -992,11 +992,11 @@
               "attributes" : [
                 {
                   "name" : "Name",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 },
                 {
                   "name" : "Manufacturer",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             }
