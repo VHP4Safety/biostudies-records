@@ -52,16 +52,6 @@
         ]
       },
       {
-        "name" : "Case study",
-        "value" : "Other",
-        "valqual" : [
-          {
-            "name" : "URL",
-            "value" : "https://platform.vhp4safety.nl/"
-          }
-        ]
-      },
-      {
         "name" : "Process Flow Step",
         "value" : "Toxicokinetics",
         "valqual" : [
@@ -395,6 +385,128 @@
         ]
       },
       {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Mancozeb"
+          },
+          {
+            "name" : "CID",
+            "value" : "3034368",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3034368"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "8018-01-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4734",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4734"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Chlorpyrifos"
+          },
+          {
+            "name" : "CID",
+            "value" : "2730",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/2730"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "2921-88-2"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4722",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4722"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Atenolol"
+          },
+          {
+            "name" : "CID",
+            "value" : "2249",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/2249"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "29122-68-7"
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Caffeine"
+          },
+          {
+            "name" : "CID",
+            "value" : "2519",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/2519"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "58-08-2"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q2026",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "type" : "Exposure information",
         "subsections" : [
           [
@@ -513,7 +625,7 @@
                 },
                 {
                   "name" : "Exposure concentration",
-                  "value" : "0.1–100",
+                  "value" : "0.1–10000",
                   "valqual" : [
                     {
                       "name" : "Unit",
@@ -612,8 +724,50 @@
             "value" : "Alamar blue"
           },
           {
+            "name" : "Assay format",
+            "value" : "Cell-based format",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "BAO"
+              },
+              {
+                "name" : "TermId",
+                "value" : "BAO_0000219"
+              }
+            ]
+          },
+          {
+            "name" : "Detection agent",
+            "value" : "alamarBlue",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "BAO"
+              },
+              {
+                "name" : "TermId",
+                "value" : "BAO_0100002"
+              },
+              {
+                "name" : "Role",
+                "value" : "detection agent",
+                "valqual" : [
+                  {
+                    "name" : "Ontology",
+                    "value" : "BAO"
+                  },
+                  {
+                    "name" : "TermId",
+                    "value" : "BAO_0110004"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "name" : "Description",
-            "value" : "Mitochondrial metabolic activity (viability) of confluent Caco-2 cells in 96-well plates after 24 h pesticide exposure, measured as resazurin-to-resorufin conversion (alamarBlue). Reagent added at a 1:1000 final dilution and incubated 1–4 h at 37 °C before reading. Used to establish non-cytotoxic concentrations for the permeability assay; reduced signal indicates loss of metabolic activity. Untreated cells define 100% activity and 1% Triton X-100 (or Tween 20) lysis defines 0% activity."
+            "value" : "Mitochondrial metabolic activity (viability) of confluent Caco-2 cells in 96-well plates after 18–24 h pesticide exposure, measured as resazurin-to-resorufin conversion (alamarBlue). Reagent added at a 1:1000 final dilution and incubated 1–4 h at 37 °C before reading. Used to establish non-cytotoxic concentrations for the permeability assay; reduced signal indicates loss of metabolic activity. Untreated cells define 100% activity and 1% Triton X-100 (or Tween 20) lysis defines 0% activity."
           },
           {
             "name" : "Replicates",
@@ -626,6 +780,14 @@
               {
                 "name" : "Unit",
                 "value" : "RFU"
+              },
+              {
+                "name" : "Ontology",
+                "value" : "BAO"
+              },
+              {
+                "name" : "TermId",
+                "value" : "BAO_0000363"
               }
             ]
           },
