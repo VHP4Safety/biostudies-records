@@ -1,0 +1,724 @@
+{
+  "accno" : "S-VHPS18",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Intestinal absorption of pesticides across Caco-2 cell monolayers"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS18"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-06-01"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Intestinal absorption of pesticides across Caco-2 cell monolayers"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-06-01"
+      },
+      {
+        "name" : "Description",
+        "value" : "A monolayer of Caco-2 cells was cultured in transwells, maintaining a stable TEER for at least one week. On the apical side, cells were exposed to pesticides in HBSS (without additives) for a maximum of 5 hours. Samples were collected over time from both the basolateral and apical compartments: either 50 µL or 100 µL immediately after exposure (time point 0.01), and at 30 minutes, 1 hour, 2 hours, and 5 hours. Each sample was diluted with an equal volume (50 µL or 100 µL) of LC-MS/MS grade methanol (cyclohexane for endosulfan). Pesticide concentrations were quantified by LC-MS/MS and used to determine apical-to-basolateral transport (absorption) across the intestinal epithelial barrier. In parallel, the cytotoxicity of the pesticides towards Caco-2 cells was assessed with an alamarBlue (resazurin) mitochondrial-activity assay, to confirm that the tested concentrations did not compromise monolayer viability. The Transwell permeability procedure was adapted from Hubatsch et al., Nature Protocols 2007 (doi:10.1038/nprot.2007.303)."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Other",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicokinetics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000155"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC0",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Caco-2 monolayer permeability assay",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0010008"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Alamar blue",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/alamar_blue_assay_for_detection_of_mitochondrial_activity"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "ENM"
+          },
+          {
+            "name" : "TermId",
+            "value" : "ENM_8000224"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety platform"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Alex KleinJan"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "alex.kleinjan@hu.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0003-0226-1362"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "HU University of Applied Sciences Utrecht, Institute for Life Sciences & Chemistry, Research Group Innovative Testing in Life Sciences & Chemistry"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/028z9kw20"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Agenda (NWA)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "Caco-2"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_0025",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_0025"
+              }
+            ]
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Enterocyte",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000584"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Intestine",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0000160"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Intestinal epithelium",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0001277"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "ATCC (HTB-37)",
+            "valqual": [
+              {
+                "name" : "URL",
+                "value" : "https://www.atcc.org/products/htb-37"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "Human colorectal adenocarcinoma cell line that spontaneously differentiates into a polarized, enterocyte-like monolayer with tight junctions, widely used as an in vitro model of the intestinal epithelial barrier for absorption/permeability studies."
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Dinoseb"
+          },
+          {
+            "name" : "CID",
+            "value" : "6950",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6950"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "88-85-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4723",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4723"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Diazinon"
+          },
+          {
+            "name" : "CID",
+            "value" : "3017",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3017"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "333-41-5"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4726",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4726"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Rotenone"
+          },
+          {
+            "name" : "CID",
+            "value" : "6758",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "83-79-4"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Endosulfan"
+          },
+          {
+            "name" : "CID",
+            "value" : "3224",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/3224"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "115-29-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4727",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4727"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single"
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "0.1, 1, 10",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "0.01",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Caco-2 monolayer permeability assay"
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "continuous",
+                  "valqual":[
+                    {
+                        "name": "Ontology",
+                        "value": "EXO"
+                    },
+                    {
+                        "name": "TermId",
+                        "value": "EXO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "0.1, 1, 10",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "5",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Caco-2 monolayer permeability assay"
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "continuous",
+                  "valqual":[
+                    {
+                        "name": "Ontology",
+                        "value": "EXO"
+                    },
+                    {
+                        "name": "TermId",
+                        "value": "EXO_0000167"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "0.1–100",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "2",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Alamar blue"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Caco-2 monolayer permeability assay"
+          },
+          {
+            "name" : "Description",
+            "value" : "Apical-to-basolateral transport of pesticides across a Caco-2 cell monolayer cultured on Transwell inserts (GBO ThinCert, 0.4 µm pore, 0.336 cm² growth area, 24-well) with a stable TEER. Cells were exposed apically to pesticide dissolved in HBSS (with Ca²⁺/Mg²⁺; max 0.1% DMSO); 50–100 µL samples were collected from the apical and basolateral compartments at 0.01, 0.5, 1, 2 and 5 h (or 0.01, 2 and 4 h) and the insert was extracted at the final time point, then diluted 1:1 in LC-MS/MS-grade methanol (1:2 in cyclohexane for endosulfan). Pesticide concentrations were quantified by LC-MS/MS and used to derive apparent permeability (Papp) / fraction absorbed."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "2"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Pesticide concentration",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "nM"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Apparent permeability (Papp)",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "cm/s"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Liquid chromatography–tandem mass spectrometry (LC-MS/MS)"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Alamar blue"
+          },
+          {
+            "name" : "Description",
+            "value" : "Mitochondrial metabolic activity (viability) of confluent Caco-2 cells in 96-well plates after 24 h pesticide exposure, measured as resazurin-to-resorufin conversion (alamarBlue). Reagent added at a 1:1000 final dilution and incubated 1–4 h at 37 °C before reading. Used to establish non-cytotoxic concentrations for the permeability assay; reduced signal indicates loss of metabolic activity. Untreated cells define 100% activity and 1% Triton X-100 (or Tween 20) lysis defines 0% activity."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "RFU"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Relative mitochondrial metabolic activity",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "%"
+              }
+            ]
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "MedChemExpress / Gibco"
+          },
+          {
+            "name" : "Reagent concentration",
+            "value" : "1",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µg/mL"
+              }
+            ]
+          },
+          {
+            "name" : "Assay incubation time",
+            "value" : "1–4",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Positive control",
+            "value" : "Triton X-100",
+            "valqual" : [
+              {
+                "name" : "Concentration",
+                "value" : "1",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "%"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "CLARIOstar microplate reader"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "BMG Labtech"
+                },
+                {
+                  "name" : "Excitation wavelength",
+                  "value" : "530–560",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Emission wavelength",
+                  "value" : "590",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "nm"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}
