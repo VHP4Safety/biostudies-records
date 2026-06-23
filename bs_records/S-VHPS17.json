@@ -1,0 +1,455 @@
+{
+  "accno" : "S-VHPS17",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "TempO-Seq transcriptomics of iPSC-derived proximal tubular-like and endothelial-like cell mono- and co-cultures"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS17"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-06-01"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "TempO-Seq transcriptomics of iPSC-derived proximal tubular-like and endothelial-like cell mono- and co-cultures"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-06-01"
+      },
+      {
+        "name" : "Description",
+        "value" : "TempO-Seq transcriptomics was used to characterise iPSC-derived proximal tubular-like cell (PTL) and endothelial-like cell (ELC) mono- and co-cultures in either static or organ-on-a-chip conditions, to assess whether these culture conditions could enhance the maturity and function of PTL and ELC. Both cell types were differentiated from the human induced pluripotent stem cell line SBAD3-01 (STBCi322-A). Untreated cultures were profiled across nine conditions — PTL and ELC mono-cultures and PTL/ELC co-cultures (on the same filter, or on filter and well), under static or microfluidic organ-on-a-chip conditions, with three biological replicates each — using the BioSpyder TempO-Seq Human Whole Transcriptome assay (~22,500 target genes), with gene expression quantified as mRNA read counts."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002113"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_1b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicokinetics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000155"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "TempO-Seq targeted RNA sequencing",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/rna_sequencing"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0010045"
+          }
+        ]
+      }
+    ],
+    "links" : [
+      {
+        "url" : "https://platform.vhp4safety.nl/casestudies/kidney",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "VHP4Safety Case Studies"
+          }
+        ]
+      },
+      {
+        "url" : "https://docs.vhp4safety.nl/en/latest/",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "Documentation page VHP4Safety"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Anja Wilmes"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-9485-4565"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Lenya de Brouwer"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0009-0006-4058-5842"
+          },
+          {
+            "name" : "Role",
+            "value" : "Contact person"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Vrije Universiteit Amsterdam"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/008xxew50"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Council (NWO)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "Proximal tubular-like cells (PTL-SBAD3-01)"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_ZX55",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_ZX55"
+              }
+            ]
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Epithelial cell of proximal tubule",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0002306"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Kidney",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002113"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Proximal tubule",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0004134"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "StemBANCC"
+          },
+          {
+            "name" : "Description",
+            "value" : "Proximal tubular-like cells differentiated from the human induced pluripotent stem cell line SBAD3-01 (Cellosaurus STBCi322-A, CVCL_ZX55; original iPSC source StemBANCC), used as the epithelial compartment of an iPSC-based kidney proximal tubule model."
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "Endothelial-like cells (ELC-SBAD3-01)"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_ZX55",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_ZX55"
+              }
+            ]
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Endothelial cell",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000115"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Kidney",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002113"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Vascular endothelium",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0001986"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "StemBANCC"
+          },
+          {
+            "name" : "Description",
+            "value" : "Endothelial-like cells differentiated from the human induced pluripotent stem cell line SBAD3-01 (Cellosaurus STBCi322-A, CVCL_ZX55; original iPSC source StemBANCC), used as the vascular/endothelial compartment of the iPSC-based kidney model."
+          }
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "TempO-Seq targeted RNA sequencing"
+          },
+          {
+            "name" : "Description",
+            "value" : "Whole-transcriptome gene expression of PTL and ELC mono- and co-cultures profiled with the BioSpyder TempO-Seq Human Whole Transcriptome assay (~22,500 target genes), quantified as raw mRNA read counts per gene per sample. Used to characterise cell-type identity, maturity and the effect of static versus organ-on-a-chip culture."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "mRNA read counts"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Gene expression",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "read counts"
+              }
+            ]
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "BioSpyder Technologies Inc."
+          }
+        ]
+      },
+      {
+        "type" : "Data & analysis",
+        "subsections" : [
+          [
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "GraphPad Prism"
+                },
+                {
+                  "name" : "Version",
+                  "value" : "9.0.0 (121)"
+                }
+              ]
+            },
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "RStudio"
+                },
+                {
+                  "name" : "Version",
+                  "value" : "2025.09.2 build 418"
+                }
+              ]
+            },
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "R"
+                },
+                {
+                  "name" : "Version",
+                  "value" : "4.5.1"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}
