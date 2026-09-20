@@ -156,6 +156,16 @@
             "value" : "https://aopwiki.org/aops/610"
           }
         ]
+      },
+      {
+        "name" : "AOP event",
+        "value" : "Inhibition, monocarboxylate transporter 8 (MCT8)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/events/2258"
+          }
+        ]
       }
     ],
     "files" : [
@@ -232,11 +242,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "EU Horizon 2020"
+            "value" : "European Commission"
           },
           {
             "name" : "Grant_id",
-            "value" : "825161"
+            "value" : "H2020 825161"
           }
         ]
       },

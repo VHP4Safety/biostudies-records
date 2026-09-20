@@ -178,6 +178,16 @@
             "value" : "https://aopwiki.org/aops/610"
           }
         ]
+      },
+      {
+        "name" : "AOP event",
+        "value" : "Inhibition, organic anion-transporting polypeptide 1C1 (OATP1C1)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/events/2376"
+          }
+        ]
       }
     ],
     "links" : [
@@ -237,11 +247,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "EU Horizon 2020"
+            "value" : "European Commission"
           },
           {
             "name" : "Grant_id",
-            "value" : "825161"
+            "value" : "H2020 825161"
           }
         ]
       },
@@ -402,11 +412,11 @@
           },
           {
             "name" : "CID",
-            "value" : "19190",
+            "value" : "5282412",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/19190"
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/5282412"
               }
             ]
           },
@@ -534,11 +544,11 @@
           },
           {
             "name" : "CID",
-            "value" : "138397684",
+            "value" : "6282",
             "valqual" : [
               {
                 "name" : "URL",
-                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/138397684"
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6282"
               }
             ]
           },

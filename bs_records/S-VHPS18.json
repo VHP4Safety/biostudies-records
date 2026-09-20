@@ -169,11 +169,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "Dutch Research Agenda (NWA)"
+            "value" : "Dutch Research Council (NWO)"
           },
           {
             "name" : "Grant_id",
-            "value" : "1292.19.272"
+            "value" : "NWA 1292.19.272"
           }
         ]
       },
@@ -239,7 +239,7 @@
           {
             "name" : "Supplier",
             "value" : "ATCC (HTB-37)",
-            "valqual": [
+            "valqual" : [
               {
                 "name" : "URL",
                 "value" : "https://www.atcc.org/products/htb-37"
@@ -559,14 +559,14 @@
                 {
                   "name" : "Exposure type",
                   "value" : "continuous",
-                  "valqual":[
+                  "valqual" : [
                     {
-                        "name": "Ontology",
-                        "value": "EXO"
+                      "name" : "Ontology",
+                      "value" : "EXO"
                     },
                     {
-                        "name": "TermId",
-                        "value": "EXO_0000167"
+                      "name" : "TermId",
+                      "value" : "EXO_0000167"
                     }
                   ]
                 },
@@ -612,14 +612,14 @@
                 {
                   "name" : "Exposure type",
                   "value" : "continuous",
-                  "valqual":[
+                  "valqual" : [
                     {
-                        "name": "Ontology",
-                        "value": "EXO"
+                      "name" : "Ontology",
+                      "value" : "EXO"
                     },
                     {
-                        "name": "TermId",
-                        "value": "EXO_0000167"
+                      "name" : "TermId",
+                      "value" : "EXO_0000167"
                     }
                   ]
                 },
