@@ -435,11 +435,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "Dutch Research Agenda (NWA)"
+            "value" : "Dutch Research Council (NWO)"
           },
           {
             "name" : "Grant_id",
-            "value" : "1292.19.272"
+            "value" : "NWA 1292.19.272"
           }
         ]
       },

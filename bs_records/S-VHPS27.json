@@ -166,6 +166,26 @@
             "value" : "https://aopwiki.org/aops/464"
           }
         ]
+      },
+      {
+        "name" : "AOP event",
+        "value" : "Increase, Cell death",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/events/1825"
+          }
+        ]
+      },
+      {
+        "name" : "AOP event",
+        "value" : "Increase, Mitochondrial dysfunction",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://aopwiki.org/events/177"
+          }
+        ]
       }
     ],
     "links" : [
@@ -255,11 +275,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "Dutch Research Agenda (NWA)"
+            "value" : "Dutch Research Council (NWO)"
           },
           {
             "name" : "Grant_id",
-            "value" : "1292.19.272"
+            "value" : "NWA 1292.19.272"
           }
         ]
       },

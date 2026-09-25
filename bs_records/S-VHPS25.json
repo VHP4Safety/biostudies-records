@@ -411,11 +411,11 @@
         "attributes" : [
           {
             "name" : "Agency",
-            "value" : "Dutch Research Agenda (NWA)"
+            "value" : "Dutch Research Council (NWO)"
           },
           {
             "name" : "Grant_id",
-            "value" : "1292.19.272"
+            "value" : "NWA 1292.19.272"
           }
         ]
       },
@@ -628,7 +628,7 @@
                 },
                 {
                   "name" : "Exposure concentration",
-                  "value" : "",
+                  "value" : "16-104 (12-point linear series, 8 µM steps); LC-MS quantified an 8-point subset",
                   "valqual" : [
                     {
                       "name" : "Unit",
@@ -665,7 +665,7 @@
                 },
                 {
                   "name" : "Exposure concentration",
-                  "value" : "",
+                  "value" : "16, 40 (RNA-seq also tested 64, excluded as outlier)",
                   "valqual" : [
                     {
                       "name" : "Unit",
