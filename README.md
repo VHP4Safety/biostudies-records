@@ -12,7 +12,7 @@ PageTab records for the [VHP4Safety collection](https://www.ebi.ac.uk/biostudies
 
 - **New record:** copy `template/TEMPLATE.pagetab.json` to `bs_records/<dataset>.pagetab.json`, fill the `[DRAFT]` values, `check-terms`, `submit`; the file is renamed to its accession.
 - **Edit a record:** change the JSON, `fmt`, `check-terms`, commit, PR, then `submit`.
-- **Attach an RO-Crate:** `attach`, then `submit`.
+- **Attach an RO-Crate:** `attach`, then `submit`. The crate is stored as `<accession>_rocrate_<YYYYMMDD>.zip` whatever the local file is called.
 
 ```sh
 python3 bsmeta.py fmt [--check] bs_records/*.json           # canonical JSON layout

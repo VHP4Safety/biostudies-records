@@ -20,7 +20,7 @@ Mirrors the structure of S-VHPS21 — the most complete record currently in the 
 - `Bioassay` (BAO or OBI term)
 - `AOP`, `AOP event` (AOPwiki URLs)
 
-**`section.files`** — the RO-Crate zip, referenced by file name. Upload it to your BioStudies user area first (`python3 bsmeta.py attach`; files over a few GB go through the Submission Tool's FTP/Aspera route).
+**`section.files`** — the RO-Crate zip, named `<accession>_rocrate_<YYYYMMDD>.zip`. `python3 bsmeta.py attach` uploads it under that name and adds the entry; files over a few GB go through the Submission Tool's FTP/Aspera route, then add the entry by hand with the same name.
 
 **`section.links`** — outbound link to the relevant VHP4Safety case study page.
 
