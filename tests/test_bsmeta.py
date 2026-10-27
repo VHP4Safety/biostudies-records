@@ -138,24 +138,39 @@ def test_fmt_check_flags_and_fmt_rewrites(tmp_path, capsys):
     assert e.value.code == 0
 
 
-def test_attach_uploads_and_lists_the_file_once(tmp_path, monkeypatch):
+def test_attach_uploads_under_the_naming_convention(tmp_path, monkeypatch):
     import argparse
     import json
-
+    from datetime import date
 
     uploads = []
-    monkeypatch.setattr(bsmeta, "upload", lambda path, session: uploads.append(path))
+    monkeypatch.setattr(bsmeta, "upload", lambda path, session, name=None: uploads.append((path, name)))
     monkeypatch.setattr(bsmeta, "_session", lambda: "tok")
     rec = tmp_path / "S-X.json"
     rec.write_text(json.dumps(DOC))
-    crate = tmp_path / "S-X_rocrate.zip"
+    crate = tmp_path / "whatever_the_builder_called_it.zip"
     crate.write_bytes(b"zip")
     bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
     bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
-    assert uploads == [str(crate)] * 2
+    name = f"S-X_rocrate_{date.today():%Y%m%d}.zip"
+    assert uploads == [(str(crate), name)] * 2
     assert json.loads(rec.read_text())["section"]["files"] == [
-        {"path": "S-X_rocrate.zip", "size": 3, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
+        {"path": name, "size": 3, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
     ]
+
+
+def test_attach_needs_an_accession(tmp_path, monkeypatch):
+    import argparse
+    import json
+
+    import pytest
+
+    monkeypatch.setattr(bsmeta, "_session", lambda: "tok")
+    rec = tmp_path / "draft.pagetab.json"
+    rec.write_text(json.dumps({k: v for k, v in DOC.items() if k != "accno"}))
+    with pytest.raises(SystemExit) as e:
+        bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=["x.zip"]))
+    assert "submit the record first" in str(e.value)
 
 
 def test_submit_registers_a_new_accession(tmp_path, monkeypatch):

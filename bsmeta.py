@@ -16,6 +16,7 @@ import urllib.request
 
 from collections.abc import Iterator
 from dataclasses import dataclass
+from datetime import date
 from functools import cache
 from pathlib import Path
 
@@ -176,9 +177,10 @@ def login(user: str, password: str) -> str:
     return _request(f"{API}/auth/login", {"login": user, "password": password})["sessid"]
 
 
-def upload(path: str, session: str) -> None:
-    """Stream a file into the user area (curl, so size is not held in memory)."""
-    subprocess.run(["curl", "-sSf", "-H", f"X-SESSION-TOKEN: {session}", "-F", f"files=@{path}", f"{API}/files/user"], check=True)
+def upload(path: str, session: str, name: str | None = None) -> None:
+    """Stream a file into the user area (curl, so size is not held in memory), optionally under another name."""
+    part = f"files=@{path}" + (f";filename={name}" if name else "")
+    subprocess.run(["curl", "-sSf", "-H", f"X-SESSION-TOKEN: {session}", "-F", part, f"{API}/files/user"], check=True)
 
 
 def submit(doc: dict, session: str) -> dict:
@@ -390,15 +392,17 @@ def cmd_upload(args) -> None:
 
 def cmd_attach(args) -> None:
     doc = _load(args.record)
+    if "accno" not in doc:
+        sys.exit(f"{args.record}: submit the record first; a crate is named after its accession")
     files = doc["section"].get("files") or []
     doc["section"]["files"] = files
     session = _session()
     for path in args.files:
-        upload(path, session)
-        name = os.path.basename(path)
+        name = f"{doc['accno']}_rocrate_{date.today():%Y%m%d}{Path(path).suffix}"
+        upload(path, session, name)
         if not any(f.get("path") == name for f in files):
             files.append({"path": name, "size": os.path.getsize(path), "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"})
-        print(f"{path}: uploaded and listed in {args.record}")
+        print(f"{path}: uploaded as {name} and listed in {args.record}")
     Path(args.record).write_text(dumps(doc))
     print(f"next: python3 bsmeta.py submit {args.record}")
 
