@@ -1,32 +1,21 @@
 # VHP4Safety BioStudies metadata
 
-Curated [BioStudies](https://www.ebi.ac.uk/biostudies/) **PageTab** metadata records for
-VHP4Safety case-study datasets.
+PageTab records for the [VHP4Safety collection](https://www.ebi.ac.uk/biostudies/vhp4safety/) and `bsmeta`, which checks and submits them.
 
-## Contents
-
-| File | description |
+| path | what |
 |---|---|
-| `bs_records/S-VHPSxx.json` | One BioStudies PageTab submission per study record. Usually corresponds to one publication. |
-| `template/TEMPLATE.pagetab.json` / `template/TEMPLATE.README.md` | Template for creating a new record. |
-
-## Status
-
-Several records still contain `[DRAFT]` placeholders. 
-
-## Conventions 
-
-See `template/TEMPLATE.README.md` for conventions on how to fill in the metadata fields, and the [BioStudies submission guidelines](https://www.ebi.ac.uk/biostudies/submission-guide) for more general guidance.
-
-## Validation
+| `bs_records/` | one JSON per accession, `<dataset>.pagetab.json` until BioStudies issues one; unfilled fields in `bs_records/README.md` |
+| `template/` | skeleton and conventions for a new record |
+| `bsmeta/` | `uv run bsmeta --help` |
 
 ```sh
-python3 -m json.tool bs_records/S-VHPSxx.json > /dev/null   # JSON is valid
-grep -c '\[DRAFT\]' bs_records/S-VHPSxx.json                # count remaining drafts
+uv run bsmeta check-terms bs_records/*.json        # ontology terms resolve in OLS4
+uv run bsmeta check-links bs_records/*.json        # method slugs, CompoundCloud ids, DOIs, bioassay names
+uv run bsmeta check-sheet bs_records/S-VHPS*.json  # RO inventory tracker matches the records
+uv run bsmeta diff bs_records/S-VHPS*.json         # differences from the live record
+uv run bsmeta login                                # session id -> ~/.config/bsmeta/session
+uv run bsmeta upload <crate>.zip                   # to your BioStudies user area; then list it under section.files
+uv run bsmeta submit bs_records/<accession>.json   # blank and [DRAFT] attributes are dropped; no accno = new record
 ```
 
-## Related
-
-- BioStudies VHP4Safety collection (where these records are submitted).
-- `rocrate-wizard` builds the ISA-Tox RO-Crates these records project onto.
-
+CI runs the tests and term check on every push, the full freshness check monthly, and submits only from the manual "Run workflow" trigger (`biostudies` environment with `BIOSTUDIES_LOGIN` and `BIOSTUDIES_PASSWORD`). Findings appear as annotations on the run.
