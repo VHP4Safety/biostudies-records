@@ -1,6 +1,6 @@
 # TEMPLATE.pagetab.json — VHP4Safety BioStudies submission skeleton
 
-Copy this file to `bs_records/<dataset>.pagetab.json`, replace every value marked `[DRAFT]` with the real content, delete any subsection you don't need, and submit it with `bsmeta submit`. BioStudies issues the accession; rename the file to `S-VHPSxx.json` and add `accno` and `DOI` once it does.
+Copy this file to `bs_records/<dataset>.pagetab.json`, replace every value marked `[DRAFT]` with the real content, delete any subsection you don't need, and submit it with `python3 bsmeta.py submit`. BioStudies issues the accession; rename the file to `S-VHPSxx.json` and add `accno` and `DOI` once it does.
 
 ## What's in here
 
@@ -20,7 +20,7 @@ Mirrors the structure of S-VHPS21 — the most complete record currently in the 
 - `Bioassay` (BAO or OBI term)
 - `AOP`, `AOP event` (AOPwiki URLs)
 
-**`section.files`** — the RO-Crate zip, referenced by file name. Upload it to your BioStudies user area first (`bsmeta upload`; files over a few GB go through the Submission Tool's FTP/Aspera route).
+**`section.files`** — the RO-Crate zip, referenced by file name. Upload it to your BioStudies user area first (`python3 bsmeta.py attach`; files over a few GB go through the Submission Tool's FTP/Aspera route).
 
 **`section.links`** — outbound link to the relevant VHP4Safety case study page.
 
@@ -78,7 +78,7 @@ Note the **two LabProcesses acting on the sample**: `Cell line preparation` prep
 ## Conventions
 
 - **Every value the submitter must fill in is prefixed `[DRAFT]`.** Search-and-replace `[DRAFT]` to verify nothing was missed.
-- **Empty attributes have an empty string in `value` rather than being omitted** — keeps the structure stable and obvious to reviewers. `bsmeta submit` drops blank and `[DRAFT]` attributes, so they never reach BioStudies.
+- **Empty attributes have an empty string in `value` rather than being omitted** — keeps the structure stable and obvious to reviewers. `python3 bsmeta.py submit` drops blank and `[DRAFT]` attributes, so they never reach BioStudies.
 - **`Funding`:** `Agency` is the ROR-registered organization, the programme goes in `Grant_id` (`Dutch Research Council (NWO)` + `NWA 1292.19.272`; `European Commission` + `H2020 825161`).
 - **`Organism`, `Organ`, `Tissue`, `Bioassay`** must carry ontology term IDs in `valqual`. Don't strip those — without them the FAIR-Interoperability score drops.
 - **Extra attributes** beyond this template are fine for assay-specific detail (wavelengths, technical replicates, assay supplier, …); reuse a name another record already uses rather than inventing a variant.
