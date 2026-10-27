@@ -2,7 +2,7 @@
 name = "bsmeta"
 version = "0.1.0"
 description = "Validator/linter for VHP4Safety BioStudies PageTab metadata records"
-readme = "bsmeta/README.md"
+readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pydantic2-schemaorg>=0.3.0",
