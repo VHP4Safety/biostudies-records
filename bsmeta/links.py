@@ -17,12 +17,15 @@ def method_slugs() -> set[str]:
 
 
 def status(url: str) -> int:
+    """HTTP status of a HEAD request; 0 when the host cannot be reached or verified."""
     req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "bsmeta"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             return r.status
     except urllib.error.HTTPError as e:
         return e.code
+    except OSError:
+        return 0
 
 
 def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:

@@ -113,3 +113,9 @@ def test_report_annotates_github_actions(monkeypatch, capsys, tmp_path):
         cli._report(argparse.Namespace(files=[str(f)], verbose=False), lambda d: check_terms(d, lookup=FAKE))
     assert f"::error file={f}::UNRESOLVED" in capsys.readouterr().out
     assert "UNRESOLVED" in (tmp_path / "summary.md").read_text()
+
+
+def test_status_unreachable_is_unknown():
+    from bsmeta.links import status
+
+    assert status("https://localhost:1") == 0
