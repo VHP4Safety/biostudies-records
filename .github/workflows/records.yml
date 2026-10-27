@@ -1,0 +1,52 @@
+name: records
+
+on:
+  push:
+    paths: ["bs_records/**", "bsmeta/**", "tests/**", "pyproject.toml", "uv.lock", ".github/workflows/records.yml"]
+  pull_request:
+    paths: ["bs_records/**", "bsmeta/**", "tests/**", "pyproject.toml", "uv.lock", ".github/workflows/records.yml"]
+  schedule:
+    - cron: "17 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      submit:
+        description: "Resubmit every bs_records/S-VHPS*.json to BioStudies"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run python -m pytest -q
+      - run: uv run bsmeta check-terms bs_records/*.json
+
+  fresh:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run bsmeta check-links bs_records/*.json
+      - run: uv run bsmeta check-sheet bs_records/S-VHPS*.json
+      - run: uv run bsmeta diff bs_records/S-VHPS*.json
+
+  submit:
+    if: github.event_name == 'workflow_dispatch' && inputs.submit
+    needs: check
+    runs-on: ubuntu-latest
+    environment: biostudies
+    env:
+      BIOSTUDIES_LOGIN: ${{ secrets.BIOSTUDIES_LOGIN }}
+      BIOSTUDIES_PASSWORD: ${{ secrets.BIOSTUDIES_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync
+      - run: uv run bsmeta submit bs_records/S-VHPS*.json
+      - run: sleep 120 && uv run bsmeta diff bs_records/S-VHPS*.json
