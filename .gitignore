@@ -6,17 +6,6 @@ _bak_aop/
 *.kename
 *.methodurl
 
-# claude
-CHANGELOG.md
-COMPOUNDCLOUD_TODO.md
-METHOD_PAGES_TODO.md
-PARKED_DECISIONS.md
-PAGETAB_ISATOX_PROJECTION.md
-
-# prelim
-template/TEMPLATE.pagetab.json
-template/TEMPLATE.README.md
-
 # python (bsmeta tooling)
 __pycache__/
 *.py[cod]
@@ -27,4 +16,3 @@ build/
 dist/
 .pytest_cache/
 .ruff_cache/
-docs/TEMPLATE.README.md
