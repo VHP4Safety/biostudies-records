@@ -183,11 +183,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : "MESH"
+            "value" : "BAO"
           },
           {
             "name" : "TermId",
-            "value" : "MESH_D060888"
+            "value" : "BAO_0002090"
           }
         ]
       },
