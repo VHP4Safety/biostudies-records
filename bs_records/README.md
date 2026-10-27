@@ -18,7 +18,7 @@ _Updated 2026-10-27._ These are the authored records; `uv run bsmeta diff` shows
 | S-VHPS26 | – | `Tissue` is *epithelium of female gonad* (UBERON_0004911) for CHO-K1, to be confirmed by the depositor. `Sulfobromophthalein sodium` cites CAS 71-67-0 but CompoundCloudID Q4750 is the hydrate (CAS 123359-42-2); Compound Wiki has no item for 71-67-0. Indocyanine green CID 5282412 is unverified (Wikidata lists several) |
 | S-VHPS27 | `RRID`, `Supplier` (hBMEC) | |
 | S-VHPS28 | – | |
-| 2OC.pagetab.json | see below | not yet submitted |
+| 2OC.pagetab.json | see below | held, see below |
 
 Blank attributes are dropped at submit; they stay in these files only to show what is wanted.
 
@@ -30,6 +30,8 @@ Blank attributes are dropped at submit; they stay in these files only to show wh
 
 ### 2OC — TempO-Seq transcriptomics of kidney-liver organ-on-a-chip co-cultures (Anja Wilmes, VU)
 No `accno` or `DOI` until BioStudies issues them on first submission; without a `ReleaseDate` the record stays private. Still needed from the depositor: `ReleaseDate`; `Grant_id` (NWO, RiskHunt3R H2020, or both); co-authors; `RRID` for SIGi001-HC3x, PTL-SIGi001-A and HLC-SIGi001-HC3x (not the parent line's); Ifosfamide `CID` and `CompoundCloudID` (Compound Wiki has no item for CAS 3778-73-2 yet).
+
+Held: the RO inventory tracker lists this dataset as BioStudies S-RHER381 (RiskHunt3R, not public). The depositor must confirm whether that is the same data; if so, S-RHER381 should carry `AttachTo: VHP4Safety` instead of a second record.
 
 ## Open decision
 
