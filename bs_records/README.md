@@ -1,51 +1,36 @@
-# BioStudies records — outstanding `[TODO]` punch-list
+# Records
 
-_Last updated: 2026-06-10._
+_Updated 2026-10-27._ These are the authored records; `uv run bsmeta diff` shows whether BioStudies has the same.
 
-Every former `[DRAFT]` marker in these PageTab records has been replaced with `[TODO]`.
-This file lists the records that still carry open `[TODO]` fields and **who needs to supply
-each value**. The `[TODO]` text in each record keeps a hint where one was known.
+## Status
 
-**Complete (no `[TODO]`):** S-VHPS20, S-VHPS21, **S-VHPS26**, **S-VHPS28**.
+| accession | unfilled | notes |
+|---|---|---|
+| S-VHPS16 | – | |
+| S-VHPS17 | – | `CVCL_ZX55` on both the PTL and ELC lines is the parent iPSC (STBCi322-A), not either derivative |
+| S-VHPS18 | – | |
+| S-VHPS20 | `ORCID`, `Role` | |
+| S-VHPS21 | `Issue`, `Role` | |
+| S-VHPS22 | `Exposure concentration` | |
+| S-VHPS23 | see below | tacrolimus, iPSC kidney organoids |
+| S-VHPS24 | see below | tacrolimus, sorted proximal tubule cells |
+| S-VHPS25 | see below | tacrolimus, tubuloids |
+| S-VHPS26 | – | `Tissue` is *epithelium of female gonad* (UBERON_0004911) for CHO-K1, to be confirmed by the depositor. `Sulfobromophthalein sodium` cites CAS 71-67-0 but CompoundCloudID Q4750 is the hydrate (CAS 123359-42-2); Compound Wiki has no item for 71-67-0. Indocyanine green CID 5282412 is unverified (Wikidata lists several) |
+| S-VHPS27 | `RRID`, `Supplier` (hBMEC) | |
+| S-VHPS28 | – | |
+| 2OC.pagetab.json | see below | not yet submitted |
 
-## Status at a glance
+Blank attributes are dropped at submit; they stay in these files only to show what is wanted.
 
-| Record | Topic | Open `[TODO]` | Owner |
-|---|---|---|---|
-| S-VHPS22 | Thyroid — neural cell screening | 4 | Nathalie Dierichs (RIVM) |
-| S-VHPS27 | Parkinson — cell model comparison | 4 | Julia Meerman (RIVM) |
-| S-VHPS16 | Exposure scenarios | 1 | — |
-| S-VHPS23 | Tacrolimus — iPSC kidney organoids | 24 | Kate Liang |
-| S-VHPS24 | Tacrolimus — sorted proximal tubule cells | 24 | Kate Liang |
-| S-VHPS25 | Tacrolimus — tubuloids | 33 | Sendino Garvi / Masereeuw (UU) |
+### S-VHPS23, S-VHPS24
+`AOP event`, `Bioassay`, `Cell line`, `Cell type`, `Endpoint readout`, `Exposure concentration`, `Exposure duration`, `Exposure type`, `Manufacturer`, `Measured entity`, `Name`, `RRID`, `Replicates`, `Role`, `Supplier`, `Time point`
 
----
+### S-VHPS25
+`AOP event`, `Age`, `Differentiation protocol`, `E-mail`, `Manufacturer`, `Name`, `Replicates`, `Sex`, `Tissue origin`
 
-## S-VHPS22 — Thyroid (owner: Nathalie Dierichs)
-*Instrument + replicates already filled from the `study_01_TH-DNT` assay Excels (QuantStudio 7 Flex / Applied Biosystems; deiodinase 2, metabolism 2, KLF9 3).*
-- **Exposure concentration** (study-level) — heterogeneous across the 4 assays; can be summarised as `0.1–300` µM if a single value is acceptable.
-- **Bioassay method-page URLs** (3): *Thyroid hormone uptake*, *Deiodinase activity (D3)*, *Whole-cell TH metabolism* — no VHP4Safety method page exists yet.
+### 2OC — TempO-Seq transcriptomics of kidney-liver organ-on-a-chip co-cultures (Anja Wilmes, VU)
+No `accno` or `DOI` until BioStudies issues them on first submission; without a `ReleaseDate` the record stays private. Still needed from the depositor: `ReleaseDate`; `Grant_id` (NWO, RiskHunt3R H2020, or both); co-authors; `RRID` for SIGi001-HC3x, PTL-SIGi001-A and HLC-SIGi001-HC3x (not the parent line's); Ifosfamide `CID` and `CompoundCloudID` (Compound Wiki has no item for CAS 3778-73-2 yet).
 
-## S-VHPS27 — Parkinson (owner: Julia Meerman)
-*Exposure concentration filled (`0.1–100` µM).*
-- **hBMEC** `RRID` (+ its Cellosaurus `URL`) — Excel notes *"need to ask for details"*.
-- **hBMEC** `Supplier` — likely **IRAS, Utrecht University** (per Excel comment "Cell line IRAS") — please confirm.
-- **HepG2** `Supplier` — not recorded (HepG2 = CVCL_0027 is typically ATCC) — please confirm.
+## Open decision
 
-## S-VHPS16 — Exposure scenarios
-- **Exposure concentration** (Alamar blue bioassay).
-
----
-
-## S-VHPS23 — Tacrolimus, iPSC kidney organoids (owner: Kate Liang) — *deferred*
-- Bioassay + BAO `TermId`; Funding `Agency`/`Grant_id`; cell line `RRID`/`Supplier`/`Cell type`; exposure `type`/`duration`/`concentration` (+ units); endpoint `AOP event` (+ aopwiki URL, AOP 622), `Time point`, `Replicates`, `Measured entity`, `Endpoint readout`; detection instrument `Name`/`Manufacturer`.
-
-## S-VHPS24 — Tacrolimus, sorted proximal tubule cells (owner: Kate Liang) — *deferred*
-- Same field set as S-VHPS23 (sibling record).
-
-## S-VHPS25 — Tacrolimus, tubuloids (owner: Sendino Garvi / Masereeuw) — *deferred*
-- Bioassay `Ontology`/`TermId` (CellTiter-Fluor, LCMS, RNA-sequencing); Tissue `TermId` (verify UBERON_0001231); author `E-mail`s (Sendino Garvi, Masereeuw, Slaats, Verhaar); Donor `Sex`/`Age`/`Tissue origin` (×2); `Differentiation protocol`; per-assay `Exposure concentration`, `AOP event` (+ URLs), `Replicates`; detection instrument `Name`/`Manufacturer` (×2).
-
----
-
-_Tacrolimus records (S-VHPS23/24/25) were intentionally deferred — listed here for completeness only._
+`Exposure concentration`: single value, range or dose series, and whether it lives at `Exposure information` or per `Exposure regimen`. Decide together with the crate mapping (one sample per concentration, concentration as a factor value).
