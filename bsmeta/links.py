@@ -34,7 +34,7 @@ def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:
         name, value, url = a.get("name"), a.get("value"), valquals(a).get("URL")
         where = f"{path} {name}={value!r}"
         if name == "Bioassay" and value:
-            if path == "/Submission/Study":
+            if path.count("/") == 2:  # the study section itself, not a subsection
                 study.add(value.strip().lower())
             else:
                 used.append((where, value.strip().lower()))
