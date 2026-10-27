@@ -1,0 +1,798 @@
+{
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "TempO-Seq transcriptomics of kidney-liver organ-on-a-chip co-cultures"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "[DRAFT]"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "TempO-Seq transcriptomics of kidney-liver organ-on-a-chip co-cultures"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "[DRAFT]"
+      },
+      {
+        "name" : "Description",
+        "value" : "TempO-Seq transcriptomics was used to characterise various co-culture set ups of iPSC-derived proximal tubular-like cell (PTL), iPSC-derived hepatocyte-like cell (HLC) organoids and HepaRG spheroids cultured statically or in organ-on-a-chip. PTL-HepaRG were co-cultured statically or in chips; PTL and HLC were mono-cultured and co-cultured in chips."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002113"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Liver",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002107"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "Proximal tubule",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0004134"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "Liver",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002107"
+          }
+        ]
+      },
+      {
+        "name" : "Case study",
+        "value" : "Kidney",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Regulatory Question",
+        "value" : "reg_q_1b",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/casestudies/kidney"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicokinetics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000155"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicodynamics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000156"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "TempO-Seq targeted RNA sequencing",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0010045"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Anja Wilmes"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0001-9485-4565"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1"
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1"
+          }
+        ]
+      },
+      {
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Vrije Universiteit Amsterdam"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/008xxew50"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ],
+        "accno" : "o1"
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Council (NWO)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "[DRAFT]"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "SIGi001-A"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_EE38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_EE38"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Sigma Aldrich"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Induced pluripotent stem cell",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0002248"
+              }
+            ]
+          },
+          {
+            "name" : "Reference source",
+            "value" : "https://hpscreg.eu/cell-line/SIGi001-A",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://hpscreg.eu/cell-line/SIGi001-A"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "SIGi001-HC3x (SIGi001-A-23)"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Supplier",
+            "value" : "KU Leuven"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Induced pluripotent stem cell",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0002248"
+              }
+            ]
+          },
+          {
+            "name" : "Reference source",
+            "value" : "[DRAFT]"
+          }
+        ],
+        "subsections" : [
+          {
+            "type" : "Cell line preparation",
+            "attributes" : [
+              {
+                "name" : "Preparation type",
+                "value" : "Stable transfection"
+              },
+              {
+                "name" : "Cell name",
+                "value" : "SIGi001-HC3x (SIGi001-A-23)"
+              },
+              {
+                "name" : "Description",
+                "value" : "Overexpression of transcription factors FOXA3, PROX1 and HNF1A."
+              },
+              {
+                "name" : "Reference",
+                "value" : "[DRAFT]"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "PTL-SIGi001-A"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Vrije Universiteit Amsterdam"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Epithelial cell of proximal tubule",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0002306"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Kidney",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002113"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Proximal tubule",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0004134"
+              }
+            ]
+          },
+          {
+            "name" : "Reference source",
+            "value" : "[DRAFT]"
+          }
+        ],
+        "subsections" : [
+          {
+            "type" : "Cell line preparation",
+            "attributes" : [
+              {
+                "name" : "Preparation type",
+                "value" : "Differentiation"
+              },
+              {
+                "name" : "Cell name",
+                "value" : "PTL-SIGi001-A"
+              },
+              {
+                "name" : "Description",
+                "value" : "Proximal tubular-like cells differentiated from the human iPSC line SIGi001-A."
+              },
+              {
+                "name" : "Reference",
+                "value" : "[DRAFT]"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "HLC-SIGi001-HC3x"
+          },
+          {
+            "name" : "RRID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Vrije Universiteit Amsterdam"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Hepatocyte",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000182"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          },
+          {
+            "name" : "Reference source",
+            "value" : "[DRAFT]"
+          }
+        ],
+        "subsections" : [
+          {
+            "type" : "Cell line preparation",
+            "attributes" : [
+              {
+                "name" : "Preparation type",
+                "value" : "Differentiation"
+              },
+              {
+                "name" : "Cell name",
+                "value" : "HLC-SIGi001-HC3x"
+              },
+              {
+                "name" : "Description",
+                "value" : "Hepatocyte-like cells differentiated from the modified human iPSC line SIGi001-HC3x."
+              },
+              {
+                "name" : "Reference",
+                "value" : "[DRAFT]"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "HepaRG"
+          },
+          {
+            "name" : "RRID",
+            "value" : "CVCL_9720",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://www.cellosaurus.org/CVCL_9720"
+              }
+            ]
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Biopredic International"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Hepatocyte",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0000182"
+              }
+            ]
+          },
+          {
+            "name" : "Organ",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          },
+          {
+            "name" : "Tissue",
+            "value" : "Liver",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "UBERON"
+              },
+              {
+                "name" : "TermId",
+                "value" : "UBERON_0002107"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Ifosfamide"
+          },
+          {
+            "name" : "CID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "CAS",
+            "value" : "3778-73-2"
+          },
+          {
+            "name" : "SMILES",
+            "value" : "ClCCNP1(=O)OCCCN1CCCl"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "[DRAFT]"
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure concentration",
+            "value" : "200",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Bioassay",
+            "value" : "TempO-Seq targeted RNA sequencing"
+          }
+        ],
+        "subsections" : [
+          {
+            "type" : "Exposure regimen",
+            "attributes" : [
+              {
+                "name" : "Exposure type",
+                "value" : "Repeat"
+              },
+              {
+                "name" : "Exposure duration",
+                "value" : "24",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "hours"
+                  }
+                ]
+              },
+              {
+                "name" : "Number of repeats",
+                "value" : "[DRAFT]"
+              },
+              {
+                "name" : "Recovery period",
+                "value" : "[DRAFT]"
+              }
+            ]
+          },
+          {
+            "type" : "Exposure regimen",
+            "attributes" : [
+              {
+                "name" : "Exposure type",
+                "value" : "Total exposure"
+              },
+              {
+                "name" : "Exposure duration",
+                "value" : "96",
+                "valqual" : [
+                  {
+                    "name" : "Unit",
+                    "value" : "hours"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "TempO-Seq targeted RNA sequencing"
+          },
+          {
+            "name" : "Description",
+            "value" : "Whole-transcriptome gene expression profiling with the TempO-Seq Human Whole Transcriptome Assay (BioSpyder Technologies Inc.)."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3 to 5"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "mRNA read counts"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Gene expression"
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "BioSpyder Technologies Inc."
+          }
+        ]
+      },
+      {
+        "type" : "Data & analysis",
+        "attributes" : [
+          {
+            "name" : "Data availability",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Accession",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Analysis code",
+            "value" : "[DRAFT]"
+          }
+        ],
+        "subsections" : [
+          {
+            "type" : "Software",
+            "attributes" : [
+              {
+                "name" : "Name",
+                "value" : "GraphPad Prism"
+              },
+              {
+                "name" : "Version",
+                "value" : "9.0.0 (121)"
+              }
+            ]
+          },
+          {
+            "type" : "Software",
+            "attributes" : [
+              {
+                "name" : "Name",
+                "value" : "RStudio"
+              },
+              {
+                "name" : "Version",
+                "value" : "2025.09.2 build 418"
+              }
+            ]
+          },
+          {
+            "type" : "Software",
+            "attributes" : [
+              {
+                "name" : "Name",
+                "value" : "R"
+              },
+              {
+                "name" : "Version",
+                "value" : "4.5.1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "files" : [
+      {
+        "path" : "2OC-readcounts-raw.xlsx",
+        "type" : "file",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "TempO-Seq raw read counts"
+          }
+        ]
+      },
+      {
+        "path" : "2OC-sample-annotation.xlsx",
+        "type" : "file",
+        "attributes" : [
+          {
+            "name" : "Description",
+            "value" : "Sample annotation"
+          }
+        ]
+      }
+    ]
+  },
+  "type" : "submission"
+}
