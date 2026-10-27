@@ -66,3 +66,50 @@ def test_diff_lists_changed_rows_only():
     live["section"]["attributes"][0]["value"] = "Organ"
     out = diff(DOC, live)
     assert len(out) == 2 and out[0].startswith("- ") and out[1].startswith("+ ")
+
+
+def test_check_sheet_reports_only_differing_cells():
+    from bsmeta.sheet import check_sheet
+
+    row = {
+        "title": "T",
+        "license": "CC BY 4.0",
+        "releaseMetadata": "2026-05-01",
+        "hasROCrate": "Yes",
+        "caseStudy ": "Thyroid",
+        "workflowStep": "Toxicodynamics, Chemical Characteristics and Hazard Indentification",
+    }
+    doc = {
+        "type": "Submission",
+        "accno": "S-Y",
+        "attributes": [{"name": "Title", "value": "T"}, {"name": "ReleaseDate", "value": "2026-05-01"}],
+        "section": {
+            "type": "Study",
+            "attributes": [
+                {"name": "License", "value": "CC-BY"},
+                {"name": "Case study", "value": "Thyroid"},
+                {"name": "Process Flow Step", "value": "Toxicodynamics"},
+                {"name": "Process Flow Step", "value": "Chemical Characteristics and Hazard Identification"},
+            ],
+        },
+    }
+    assert [(i.code, i.where) for i in check_sheet(doc, {"S-Y": row})] == [("SHEET_CELL", "S-Y hasROCrate")]
+    assert [i.code for i in check_sheet(doc, {})] == ["SHEET_ROW"]
+
+
+def test_report_annotates_github_actions(monkeypatch, capsys, tmp_path):
+    import argparse
+    import json
+
+    import pytest
+
+    from bsmeta import cli
+
+    monkeypatch.setenv("GITHUB_ACTIONS", "true")
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(tmp_path / "summary.md"))
+    f = tmp_path / "r.json"
+    f.write_text(json.dumps(DOC))
+    with pytest.raises(SystemExit):
+        cli._report(argparse.Namespace(files=[str(f)], verbose=False), lambda d: check_terms(d, lookup=FAKE))
+    assert f"::error file={f}::UNRESOLVED" in capsys.readouterr().out
+    assert "UNRESOLVED" in (tmp_path / "summary.md").read_text()
