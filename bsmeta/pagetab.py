@@ -1,8 +1,14 @@
 """Pure helpers over a raw PageTab JSON document."""
+import json
 from collections.abc import Iterator
 from dataclasses import dataclass
 
 DRAFT = "[DRAFT]"
+
+
+def dumps(doc) -> str:
+    """The one JSON layout every record uses."""
+    return json.dumps(doc, indent=2, separators=(",", " : "), ensure_ascii=False) + "\n"
 
 
 @dataclass(frozen=True)
