@@ -2,9 +2,9 @@ name: records
 
 on:
   push:
-    paths: ["bs_records/**", "bsmeta/**", "tests/**", "pyproject.toml", "uv.lock", ".github/workflows/records.yml"]
+    paths: ["bs_records/**", "template/**", "bsmeta.py", "tests/**", ".github/workflows/records.yml"]
   pull_request:
-    paths: ["bs_records/**", "bsmeta/**", "tests/**", "pyproject.toml", "uv.lock", ".github/workflows/records.yml"]
+    paths: ["bs_records/**", "template/**", "bsmeta.py", "tests/**", ".github/workflows/records.yml"]
   schedule:
     - cron: "17 6 1 * *"
   workflow_dispatch:
@@ -19,11 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - run: uv sync
-      - run: uv run python -m pytest -q
-      - run: uv run bsmeta fmt --check bs_records/*.json template/TEMPLATE.pagetab.json
-      - run: uv run bsmeta check-terms bs_records/*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pytest
+      - run: python -m pytest -q
+      - run: python bsmeta.py fmt --check bs_records/*.json template/TEMPLATE.pagetab.json
+      - run: python bsmeta.py check-terms bs_records/*.json
 
   fresh:
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -31,11 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - run: uv sync
-      - run: uv run bsmeta check-links bs_records/*.json
-      - run: uv run bsmeta check-sheet bs_records/S-VHPS*.json
-      - run: uv run bsmeta diff bs_records/S-VHPS*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python bsmeta.py check-links bs_records/*.json
+      - run: python bsmeta.py check-sheet bs_records/S-VHPS*.json
+      - run: python bsmeta.py diff bs_records/S-VHPS*.json
 
   submit:
     if: github.event_name == 'workflow_dispatch' && inputs.submit
@@ -47,7 +50,8 @@ jobs:
       BIOSTUDIES_PASSWORD: ${{ secrets.BIOSTUDIES_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - run: uv sync
-      - run: uv run bsmeta submit bs_records/S-VHPS*.json
-      - run: sleep 120 && uv run bsmeta diff bs_records/S-VHPS*.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python bsmeta.py submit bs_records/S-VHPS*.json
+      - run: sleep 120 && python bsmeta.py diff bs_records/S-VHPS*.json
