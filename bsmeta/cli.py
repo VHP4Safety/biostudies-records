@@ -1,4 +1,4 @@
-"""bsmeta: check-terms | check-links | check-sheet | diff | login | upload | submit."""
+"""bsmeta: fmt | check-terms | check-links | check-sheet | diff | login | upload | attach | submit."""
 import argparse
 import getpass
 import json
@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from . import biostudies, links, ols, sheet
-from .pagetab import strip_unfilled
+from .pagetab import dumps, strip_unfilled
 
 SESSION_FILE = Path.home() / ".config" / "bsmeta" / "session"
 
@@ -45,6 +45,23 @@ def _report(args, check) -> None:
             errors += i.level == "error"
     print(f"{errors} error(s)")
     sys.exit(1 if errors else 0)
+
+
+def cmd_fmt(args) -> None:
+    bad = 0
+    for path in args.files:
+        want = dumps(_load(path))
+        if Path(path).read_text() == want:
+            continue
+        if args.check:
+            _emit("error", path, "FORMAT not canonical; run `bsmeta fmt`")
+            bad += 1
+        else:
+            Path(path).write_text(want)
+            print(f"{path}: formatted")
+    if args.check:
+        print(f"{bad} error(s)")
+        sys.exit(1 if bad else 0)
 
 
 def cmd_check_terms(args) -> None:
@@ -92,9 +109,41 @@ def cmd_upload(args) -> None:
         print(f"{path}: uploaded")
 
 
+def cmd_attach(args) -> None:
+    doc = _load(args.record)
+    files = doc["section"].get("files") or []
+    doc["section"]["files"] = files
+    session = _session()
+    for path in args.files:
+        biostudies.upload(path, session)
+        name = os.path.basename(path)
+        if not any(f.get("path") == name for f in files):
+            files.append({"path": name, "size": os.path.getsize(path), "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"})
+        print(f"{path}: uploaded and listed in {args.record}")
+    Path(args.record).write_text(dumps(doc))
+    print(f"next: bsmeta submit {args.record}")
+
+
+def _register(path: str, raw: dict, accno: str) -> Path:
+    """First submission: write the accession and its DOI into the record and rename it after the accession."""
+    doc = {"accno": accno, **raw}
+    attrs = doc.setdefault("attributes", [])
+    doi = next((a for a in attrs if a.get("name") == "DOI"), None)
+    if doi:
+        doi["value"] = f"10.6019/{accno}"
+    else:
+        after = next((n + 1 for n, a in enumerate(attrs) if a.get("name") == "Title"), len(attrs))
+        attrs.insert(after, {"name": "DOI", "value": f"10.6019/{accno}"})
+    new = Path(path).with_name(f"{accno}.json")
+    new.write_text(dumps(doc))
+    Path(path).unlink()
+    return new
+
+
 def cmd_submit(args) -> None:
     for path in args.files:
-        doc = strip_unfilled(_load(path))
+        raw = _load(path)
+        doc = strip_unfilled(raw)
         errors = [i for i in ols.check_terms(doc) if i.level == "error"]
         if errors:
             sys.exit(f"{path}: {len(errors)} ontology error(s); run `bsmeta check-terms {path}`")
@@ -102,7 +151,10 @@ def cmd_submit(args) -> None:
             print(f"{path}: would submit {doc.get('accno', '<new accession>')}")
             continue
         reply = biostudies.submit(doc, _session())
-        print(f"{path}: submitted as {reply.get('accno')}")
+        if "accno" in raw:
+            print(f"{path}: resubmitted {reply.get('accno')}")
+        else:
+            print(f"{path}: created {reply['accno']}, moved to {_register(path, raw, reply['accno'])}")
 
 
 def main(argv=None) -> None:
@@ -122,6 +174,14 @@ def main(argv=None) -> None:
         s.add_argument("--dry-run", action="store_true")
         s.set_defaults(fn=fn)
     sub.add_parser("login", help="store a BioStudies session token").set_defaults(fn=cmd_login)
+    s = sub.add_parser("fmt", help="rewrite records in the canonical JSON layout (--check only reports)")
+    s.add_argument("files", nargs="+")
+    s.add_argument("--check", action="store_true")
+    s.set_defaults(fn=cmd_fmt)
+    s = sub.add_parser("attach", help="upload RO-Crate zips to the user area and list them in the record")
+    s.add_argument("record")
+    s.add_argument("files", nargs="+")
+    s.set_defaults(fn=cmd_attach)
     args = p.parse_args(argv)
     try:
         args.fn(args)

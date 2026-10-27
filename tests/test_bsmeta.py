@@ -119,3 +119,65 @@ def test_status_unreachable_is_unknown():
     from bsmeta.links import status
 
     assert status("https://localhost:1") == 0
+
+
+def test_fmt_check_flags_and_fmt_rewrites(tmp_path, capsys):
+    import argparse
+    import json
+
+    import pytest
+
+    from bsmeta import cli
+    from bsmeta.pagetab import dumps
+
+    f = tmp_path / "r.json"
+    f.write_text(json.dumps(DOC, indent=4))
+    with pytest.raises(SystemExit) as e:
+        cli.cmd_fmt(argparse.Namespace(files=[str(f)], check=True))
+    assert e.value.code == 1 and "FORMAT" in capsys.readouterr().out
+    cli.cmd_fmt(argparse.Namespace(files=[str(f)], check=False))
+    assert f.read_text() == dumps(DOC)
+    with pytest.raises(SystemExit) as e:
+        cli.cmd_fmt(argparse.Namespace(files=[str(f)], check=True))
+    assert e.value.code == 0
+
+
+def test_attach_uploads_and_lists_the_file_once(tmp_path, monkeypatch):
+    import argparse
+    import json
+
+    from bsmeta import cli
+
+    uploads = []
+    monkeypatch.setattr(cli.biostudies, "upload", lambda path, session: uploads.append(path))
+    monkeypatch.setattr(cli, "_session", lambda: "tok")
+    rec = tmp_path / "S-X.json"
+    rec.write_text(json.dumps(DOC))
+    crate = tmp_path / "S-X_rocrate.zip"
+    crate.write_bytes(b"zip")
+    cli.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
+    cli.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
+    assert uploads == [str(crate)] * 2
+    assert json.loads(rec.read_text())["section"]["files"] == [
+        {"path": "S-X_rocrate.zip", "size": 3, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
+    ]
+
+
+def test_submit_registers_a_new_accession(tmp_path, monkeypatch):
+    import argparse
+    import json
+
+    from bsmeta import cli
+
+    monkeypatch.setattr(cli.biostudies, "submit", lambda doc, session: {"accno": "S-VHPS99"})
+    monkeypatch.setattr(cli, "_session", lambda: "tok")
+    monkeypatch.setattr(cli.ols, "check_terms", lambda doc: [])
+    new = {k: v for k, v in DOC.items() if k != "accno"}
+    new["attributes"] = [{"name": "Title", "value": "T"}, {"name": "AttachTo", "value": "VHP4Safety"}]
+    f = tmp_path / "dataset.pagetab.json"
+    f.write_text(json.dumps(new))
+    cli.cmd_submit(argparse.Namespace(files=[str(f)], dry_run=False, verbose=False))
+    out = json.loads((tmp_path / "S-VHPS99.json").read_text())
+    assert not f.exists()
+    assert list(out)[0] == "accno" and out["accno"] == "S-VHPS99"
+    assert out["attributes"][1] == {"name": "DOI", "value": "10.6019/S-VHPS99"}
