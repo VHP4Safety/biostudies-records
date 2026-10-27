@@ -366,7 +366,15 @@ def cmd_diff(args) -> None:
 
 
 def cmd_login(args) -> None:
-    tok = login(input("BioStudies login: "), getpass.getpass("BioStudies password: "))
+    try:
+        tok = login(input("BioStudies login: ").strip(), getpass.getpass("BioStudies password: "))
+    except BioStudiesError as e:
+        if "401" not in str(e):
+            raise
+        sys.exit(
+            "BioStudies rejected that email and password. Retype them carefully; if the web tool signs you in\n"
+            "another way, set a password with 'Forgot password' at https://www.ebi.ac.uk/biostudies/submissions/ and retry."
+        )
     SESSION_FILE.parent.mkdir(parents=True, exist_ok=True)
     SESSION_FILE.write_text(tok)
     SESSION_FILE.chmod(0o600)

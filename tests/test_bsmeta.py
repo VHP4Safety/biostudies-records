@@ -182,3 +182,21 @@ def test_check_sheet_treats_missing_case_study_as_other():
 
     doc = {"attributes": [{"name": "Title", "value": "T"}], "section": {"type": "Study", "attributes": []}}
     assert expected(doc)["caseStudy"] == "Other"
+
+
+def test_login_explains_a_rejected_password(monkeypatch, tmp_path):
+    import argparse
+
+    import pytest
+
+    def rejected(user, password):
+        raise bsmeta.BioStudiesError("401 https://example/auth/login\nInvalid email address or password.")
+
+    monkeypatch.setattr(bsmeta, "login", rejected)
+    monkeypatch.setattr("builtins.input", lambda prompt="": " someone@example.org ")
+    monkeypatch.setattr(bsmeta.getpass, "getpass", lambda prompt="": "pw")
+    monkeypatch.setattr(bsmeta, "SESSION_FILE", tmp_path / "session")
+    with pytest.raises(SystemExit) as e:
+        bsmeta.cmd_login(argparse.Namespace())
+    assert "Forgot password" in str(e.value)
+    assert not (tmp_path / "session").exists()
