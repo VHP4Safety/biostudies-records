@@ -1,12 +1,7 @@
 # macOS
 .DS_Store
 
-# local backups (not version-controlled; git history is the backup now)
-_bak_aop/
-*.kename
-*.methodurl
-
-# python (bsmeta tooling)
+# python
 __pycache__/
 *.py[cod]
 .venv/
