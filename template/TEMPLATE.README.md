@@ -81,6 +81,7 @@ Note the **two LabProcesses acting on the sample**: `Cell line preparation` prep
 - **Empty attributes have an empty string in `value` rather than being omitted** — keeps the structure stable and obvious to reviewers. `bsmeta submit` drops blank and `[DRAFT]` attributes, so they never reach BioStudies.
 - **`Funding`:** `Agency` is the ROR-registered organization, the programme goes in `Grant_id` (`Dutch Research Council (NWO)` + `NWA 1292.19.272`; `European Commission` + `H2020 825161`).
 - **`Organism`, `Organ`, `Tissue`, `Bioassay`** must carry ontology term IDs in `valqual`. Don't strip those — without them the FAIR-Interoperability score drops.
+- **Extra attributes** beyond this template are fine for assay-specific detail (wavelengths, technical replicates, assay supplier, …); reuse a name another record already uses rather than inventing a variant.
 - **Use NCBITaxon for every organism entry.** Don't mix in SNOMED — the rest of the collection now uses NCBITaxon uniformly.
 - **`Organ` / `Tissue` inherit, so you only enter them once.** Put the study-wide values at the **section level** — they apply to *every* `Biological model information` block by default. Only add an `Organ`/`Tissue` attribute *inside* a cell-line block when **that line differs** (e.g. a multi-model study with brain *and* liver lines, like S-VHPS27: section default Brain, HepG2 block overrides to Liver). The platform renders per-cell-line value if present, else the section-level default — so shared organ/tissue is never re-typed per line.
 
