@@ -22,6 +22,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv sync
       - run: uv run python -m pytest -q
+      - run: uv run bsmeta fmt --check bs_records/*.json template/TEMPLATE.pagetab.json
       - run: uv run bsmeta check-terms bs_records/*.json
 
   fresh:
