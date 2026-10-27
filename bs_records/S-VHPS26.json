@@ -75,13 +75,13 @@
           },
           {
             "name" : "TermId",
-            "value" : "UBERON_0000062"
+            "value" : "UBERON_0000992"
           }
         ]
       },
       {
         "name" : "Tissue",
-        "value" : "Epithelial ovary cell",
+        "value" : "Ovarian epithelium",
         "valqual" : [
           {
             "name" : "Ontology",
@@ -89,7 +89,7 @@
           },
           {
             "name" : "TermId",
-            "value" : "UBERON_0000479"
+            "value" : "UBERON_0004911"
           }
         ]
       },

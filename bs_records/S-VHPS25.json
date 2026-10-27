@@ -75,7 +75,7 @@
           },
           {
             "name" : "TermId",
-            "value" : ""
+            "value" : "UBERON_0004810"
           }
         ]
       },
@@ -129,11 +129,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : ""
+            "value" : "BAO"
           },
           {
             "name" : "TermId",
-            "value" : ""
+            "value" : "BAO_0003009"
           }
         ]
       },
@@ -147,11 +147,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : ""
+            "value" : "OBI"
           },
           {
             "name" : "TermId",
-            "value" : ""
+            "value" : "OBI_0003097"
           }
         ]
       },
@@ -165,11 +165,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : "MESH"
+            "value" : "BAO"
           },
           {
             "name" : "TermId",
-            "value" : "MESH_D060888"
+            "value" : "BAO_0002090"
           }
         ]
       },
@@ -183,11 +183,11 @@
           },
           {
             "name" : "Ontology",
-            "value" : ""
+            "value" : "BAO"
           },
           {
             "name" : "TermId",
-            "value" : ""
+            "value" : "BAO_0010045"
           }
         ]
       },
@@ -440,7 +440,7 @@
               },
               {
                 "name" : "TermId",
-                "value" : "CL_0002306"
+                "value" : "CL_1000494"
               }
             ]
           },
