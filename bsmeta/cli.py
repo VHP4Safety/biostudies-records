@@ -1,4 +1,4 @@
-"""bsmeta: check-terms | check-links | diff | login | upload | submit."""
+"""bsmeta: check-terms | check-links | check-sheet | diff | login | upload | submit."""
 import argparse
 import getpass
 import json
@@ -6,7 +6,7 @@ import os
 import sys
 from pathlib import Path
 
-from . import biostudies, links, ols
+from . import biostudies, links, ols, sheet
 from .pagetab import strip_unfilled
 
 SESSION_FILE = Path.home() / ".config" / "bsmeta" / "session"
@@ -26,12 +26,22 @@ def _session() -> str:
     return tok
 
 
+def _emit(level: str, path: str, text: str) -> None:
+    """Print a finding; inside GitHub Actions also raise it as an annotation and in the job summary."""
+    print(f"{path}: {level.upper()} {text}")
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::{'error' if level == 'error' else 'warning'} file={path}::{text}")
+        if summary := os.environ.get("GITHUB_STEP_SUMMARY"):
+            with open(summary, "a") as f:
+                f.write(f"- {level}: `{path}` {text}\n")
+
+
 def _report(args, check) -> None:
     errors = 0
     for path in args.files:
         for i in check(strip_unfilled(_load(path))):
             if i.level == "error" or args.verbose:
-                print(f"{path}: {i.level.upper()} {i.code} {i.where}: {i.message}")
+                _emit(i.level, path, f"{i.code} {i.where}: {i.message}")
             errors += i.level == "error"
     print(f"{errors} error(s)")
     sys.exit(1 if errors else 0)
@@ -45,6 +55,11 @@ def cmd_check_links(args) -> None:
     _report(args, links.check_links)
 
 
+def cmd_check_sheet(args) -> None:
+    rows = sheet.rows()
+    _report(args, lambda doc: sheet.check_sheet(doc, rows))
+
+
 def cmd_diff(args) -> None:
     stale = 0
     for path in args.files:
@@ -53,7 +68,11 @@ def cmd_diff(args) -> None:
             print(f"{path}: not submitted yet")
             continue
         lines = biostudies.diff(doc, biostudies.fetch_live(doc["accno"]))
-        print(f"{doc['accno']}: {'up to date' if not lines else f'{len(lines)} difference(s)'}", *lines, sep="\n")
+        if lines:
+            _emit("error", path, f"{doc['accno']} differs from BioStudies in {len(lines)} row(s)")
+            print(*lines, sep="\n")
+        else:
+            print(f"{doc['accno']}: up to date")
         stale += bool(lines)
     sys.exit(1 if stale else 0)
 
@@ -92,6 +111,7 @@ def main(argv=None) -> None:
     for name, fn, help_ in [
         ("check-terms", cmd_check_terms, "resolve every Ontology/TermId against OLS4"),
         ("check-links", cmd_check_links, "method slugs, CompoundCloud ids, DOIs, bioassay cross-references"),
+        ("check-sheet", cmd_check_sheet, "RO inventory tracker rows match the records"),
         ("diff", cmd_diff, "compare records with what is live on BioStudies"),
         ("upload", cmd_upload, "upload files (RO-Crate zips) to the BioStudies user area"),
         ("submit", cmd_submit, "(re)submit records; blank and [DRAFT] attributes are dropped"),
