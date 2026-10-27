@@ -4,7 +4,7 @@ from bsmeta.ols import OlsTerm, check_terms
 from bsmeta.pagetab import iter_terms, strip_unfilled
 
 DOC = {
-    "type": "Submission",
+    "type": "submission",
     "accno": "S-X",
     "attributes": [{"name": "ReleaseDate", "value": "[DRAFT]"}, {"name": "AttachTo", "value": "VHP4Safety"}],
     "section": {
@@ -46,7 +46,7 @@ def test_strip_unfilled_drops_blank_and_draft():
 
 def test_iter_terms():
     t = next(iter_terms(DOC))
-    assert (t.path, t.name, t.ontology, t.term_id) == ("/Submission/Study", "Organ", "UBERON", "UBERON_0000992")
+    assert (t.path, t.name, t.ontology, t.term_id) == ("/submission/Study", "Organ", "UBERON", "UBERON_0000992")
 
 
 def test_check_terms_codes():
