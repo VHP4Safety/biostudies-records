@@ -181,3 +181,10 @@ def test_submit_registers_a_new_accession(tmp_path, monkeypatch):
     assert not f.exists()
     assert list(out)[0] == "accno" and out["accno"] == "S-VHPS99"
     assert out["attributes"][1] == {"name": "DOI", "value": "10.6019/S-VHPS99"}
+
+
+def test_check_sheet_treats_missing_case_study_as_other():
+    from bsmeta.sheet import expected
+
+    doc = {"attributes": [{"name": "Title", "value": "T"}], "section": {"type": "Study", "attributes": []}}
+    assert expected(doc)["caseStudy"] == "Other"

@@ -31,7 +31,7 @@ def expected(doc: dict) -> dict:
         "license": st.get("License", [""])[0],
         "releaseMetadata": top.get("ReleaseDate") or st.get("ReleaseDate", [""])[0],
         "hasROCrate": "Yes" if sec.get("files") else "No",
-        "caseStudy": ", ".join(st.get("Case study", [])),
+        "caseStudy": ", ".join(st.get("Case study", [])) or "Other",
         "workflowStep": set(st.get("Process Flow Step", [])),
     }
 
