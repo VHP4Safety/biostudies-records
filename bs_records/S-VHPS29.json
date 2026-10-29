@@ -1,0 +1,1387 @@
+{
+  "accno" : "S-VHPS29",
+  "type" : "submission",
+  "attributes" : [
+    {
+      "name" : "Template",
+      "value" : "VHP4Safety"
+    },
+    {
+      "name" : "Title",
+      "value" : "Respiratory uptake of inhaled dinoseb and rotenone using primary bronchial epithelial cells"
+    },
+    {
+      "name" : "DOI",
+      "value" : "10.6019/S-VHPS29"
+    },
+    {
+      "name" : "ReleaseDate",
+      "value" : "2026-10-29"
+    },
+    {
+      "name" : "AttachTo",
+      "value" : "VHP4Safety"
+    }
+  ],
+  "section" : {
+    "type" : "Study",
+    "attributes" : [
+      {
+        "name" : "Title",
+        "value" : "Respiratory uptake of inhaled dinoseb and rotenone using primary bronchial epithelial cells"
+      },
+      {
+        "name" : "ReleaseDate",
+        "value" : "2026-10-29"
+      },
+      {
+        "name" : "Description",
+        "value" : "Inhaled substances can be taken up via the respiratory tract and reach the systemic circulation. To improve estimates of respiratory uptake with in vitro models of the respiratory epithelium, normal human primary bronchial epithelial cells (NHBE, three donors; a donor mix in the 2024 pilot) were differentiated at the air-liquid interface and exposed to dinoseb or rotenone by applying a small droplet on the apical side of the culture (quasi-ALI). Samples of the basolateral medium were taken during the exposure period; at the start and end of the exposure an apical wash, a cell lysate and an extract of the insert membrane were taken for chemical analysis by LC-MS. Cytotoxicity was measured by LDH release and WST-1, barrier integrity by transepithelial electrical resistance (TEER) and cytokine production with a LEGENDplex panel. Reference compounds: caffeine, antipyrine and fluorescein."
+      },
+      {
+        "name" : "Organism",
+        "value" : "Homo sapiens",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "NCBITaxon"
+          },
+          {
+            "name" : "TermId",
+            "value" : "NCBITaxon_9606"
+          }
+        ]
+      },
+      {
+        "name" : "Organ",
+        "value" : "Lung",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002048"
+          }
+        ]
+      },
+      {
+        "name" : "Tissue",
+        "value" : "Bronchial epithelium",
+        "valqual" : [
+          {
+            "name" : "Ontology",
+            "value" : "UBERON"
+          },
+          {
+            "name" : "TermId",
+            "value" : "UBERON_0002031"
+          }
+        ]
+      },
+      {
+        "name" : "Process Flow Step",
+        "value" : "Toxicokinetics",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://glossary.vhp4safety.nl/#VHP0000155"
+          }
+        ]
+      },
+      {
+        "name" : "License",
+        "value" : "CC-BY",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://creativecommons.org/licenses/by/4.0/legalcode"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Respiratory uptake (LC-MS chemical analysis)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "OBI"
+          },
+          {
+            "name" : "TermId",
+            "value" : "OBI_0003097"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "LDH release assay",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : "https://platform.vhp4safety.nl/methods/ldh_activity_assay_to_determine_cell_death"
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0013056"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "WST-1 cell viability assay",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0003009"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Transepithelial electrical resistance (TEER)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "OBI"
+          },
+          {
+            "name" : "TermId",
+            "value" : "OBI_0003902"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Cytokine secretion (LEGENDplex)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0003003"
+          }
+        ]
+      },
+      {
+        "name" : "Bioassay",
+        "value" : "Fluorescein permeability (pilot)",
+        "valqual" : [
+          {
+            "name" : "URL",
+            "value" : ""
+          },
+          {
+            "name" : "Ontology",
+            "value" : "BAO"
+          },
+          {
+            "name" : "TermId",
+            "value" : "BAO_0010083"
+          }
+        ]
+      }
+    ],
+    "subsections" : [
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Yvonne Staal"
+          },
+          {
+            "name" : "E-mail",
+            "value" : "yvonne.staal@rivm.nl"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0002-7187-0121"
+          },
+          {
+            "name" : "Role",
+            "value" : "Corresponding author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Véronique de Bruijn"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "0000-0003-0248-2309"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Jolanda Vermeulen"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Eric Gremmer"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Theo Sinnige"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Edwin Zwart"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Eline Groeneveld"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o1",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "type" : "author",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Chiel Jonker"
+          },
+          {
+            "name" : "ORCID",
+            "value" : "[DRAFT]"
+          },
+          {
+            "name" : "Role",
+            "value" : "Author"
+          },
+          {
+            "name" : "affiliation",
+            "value" : "o2",
+            "reference" : true
+          }
+        ]
+      },
+      {
+        "accno" : "o1",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "National Institute for Public Health and the Environment (RIVM)"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/01cesdt21"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "accno" : "o2",
+        "type" : "organisation",
+        "attributes" : [
+          {
+            "name" : "Name",
+            "value" : "Institute for Risk Assessment Sciences (IRAS), Utrecht University"
+          },
+          {
+            "name" : "RORID",
+            "value" : "https://ror.org/04pp8hn57"
+          },
+          {
+            "name" : "Country",
+            "value" : "Netherlands"
+          }
+        ]
+      },
+      {
+        "type" : "Funding",
+        "attributes" : [
+          {
+            "name" : "Agency",
+            "value" : "Dutch Research Council (NWO)"
+          },
+          {
+            "name" : "Grant_id",
+            "value" : "NWA 1292.19.272"
+          }
+        ]
+      },
+      {
+        "type" : "Biological model information",
+        "attributes" : [
+          {
+            "name" : "Cell line",
+            "value" : "NHBE (normal human bronchial epithelial cells, primary)"
+          },
+          {
+            "name" : "RRID",
+            "value" : "N/A"
+          },
+          {
+            "name" : "Supplier",
+            "value" : "Lonza"
+          },
+          {
+            "name" : "Cell type",
+            "value" : "Bronchial epithelial cell",
+            "valqual" : [
+              {
+                "name" : "Ontology",
+                "value" : "CL"
+              },
+              {
+                "name" : "TermId",
+                "value" : "CL_0002328"
+              }
+            ]
+          },
+          {
+            "name" : "Description",
+            "value" : "Primary normal human bronchial epithelial cells from three female donors (24, 62 and 73 years), differentiated at the air-liquid interface on cell culture inserts; the 2024 pilot used a mix of donors."
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Cell line preparation",
+              "attributes" : [
+                {
+                  "name" : "Preparation type",
+                  "value" : "Differentiation",
+                  "valqual" : [
+                    {
+                      "name" : "Ontology",
+                      "value" : "GO"
+                    },
+                    {
+                      "name" : "TermId",
+                      "value" : "GO_0030154"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Cell name",
+                  "value" : "Differentiated NHBE (air-liquid interface)"
+                },
+                {
+                  "name" : "Description",
+                  "value" : "Culture at the air-liquid interface to a differentiated, polarised bronchial epithelium before exposure."
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "type" : "Donor",
+              "attributes" : [
+                {
+                  "name" : "ID",
+                  "value" : "donor 1 (Lonza lot 627466)"
+                },
+                {
+                  "name" : "Sex",
+                  "value" : "female"
+                },
+                {
+                  "name" : "Age",
+                  "value" : "24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "years"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Tissue origin",
+                  "value" : "Bronchial epithelium"
+                }
+              ]
+            },
+            {
+              "type" : "Donor",
+              "attributes" : [
+                {
+                  "name" : "ID",
+                  "value" : "donor 6 (Lonza lot 18TL057583)"
+                },
+                {
+                  "name" : "Sex",
+                  "value" : "female"
+                },
+                {
+                  "name" : "Age",
+                  "value" : "62",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "years"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Tissue origin",
+                  "value" : "Bronchial epithelium"
+                }
+              ]
+            },
+            {
+              "type" : "Donor",
+              "attributes" : [
+                {
+                  "name" : "ID",
+                  "value" : "donor 10 (Lonza lot 22TL290876)"
+                },
+                {
+                  "name" : "Sex",
+                  "value" : "female"
+                },
+                {
+                  "name" : "Age",
+                  "value" : "73",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "years"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Tissue origin",
+                  "value" : "Bronchial epithelium"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Dinoseb"
+          },
+          {
+            "name" : "CID",
+            "value" : "6950",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6950"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "88-85-7"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q4723",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q4723"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Rotenone"
+          },
+          {
+            "name" : "CID",
+            "value" : "6758",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/6758"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "83-79-4"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q38",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q38"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Caffeine"
+          },
+          {
+            "name" : "CID",
+            "value" : "2519",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/2519"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "58-08-2"
+          },
+          {
+            "name" : "CompoundCloudID",
+            "value" : "Q2026",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://compoundcloud.wikibase.cloud/wiki/Item:Q2026"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Antipyrine"
+          },
+          {
+            "name" : "CID",
+            "value" : "2206",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/2206"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "60-80-0"
+          }
+        ]
+      },
+      {
+        "type" : "Chemical information",
+        "attributes" : [
+          {
+            "name" : "Chemical",
+            "value" : "Fluorescein"
+          },
+          {
+            "name" : "CID",
+            "value" : "16850",
+            "valqual" : [
+              {
+                "name" : "URL",
+                "value" : "https://pubchem.ncbi.nlm.nih.gov/compound/16850"
+              }
+            ]
+          },
+          {
+            "name" : "CAS",
+            "value" : "2321-07-5"
+          }
+        ]
+      },
+      {
+        "type" : "Exposure information",
+        "attributes" : [
+          {
+            "name" : "Exposure type",
+            "value" : "single apical droplet (quasi-ALI)"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single"
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "dinoseb 50, 150, 500, 1000; rotenone 0.04, 0.2, 1, 2, 4, 8; caffeine 40",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "120",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0.33, 0.67, 1, 1.33, 2, 6, 24, 48, 120",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Respiratory uptake (LC-MS chemical analysis)"
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single"
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "dinoseb 50, 150, 500, 1000; rotenone 0.04, 0.2, 1, 2, 4, 8; caffeine 40",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "120",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "0, 48, 120",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "LDH release assay"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "WST-1 cell viability assay"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Transepithelial electrical resistance (TEER)"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Cytokine secretion (LEGENDplex)"
+                }
+              ]
+            },
+            {
+              "type" : "Exposure regimen",
+              "attributes" : [
+                {
+                  "name" : "Exposure type",
+                  "value" : "single"
+                },
+                {
+                  "name" : "Exposure concentration",
+                  "value" : "dinoseb 1000; rotenone 0.04, 0.2, 1; caffeine 40; antipyrine 50; fluorescein 20 (2024 pilot, 37 °C and 4 °C)",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "µM"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure duration",
+                  "value" : "6; 24",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Exposure-measurement interval",
+                  "value" : "1",
+                  "valqual" : [
+                    {
+                      "name" : "Unit",
+                      "value" : "hours"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Respiratory uptake (LC-MS chemical analysis)"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Fluorescein permeability (pilot)"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "LDH release assay"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "WST-1 cell viability assay"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Transepithelial electrical resistance (TEER)"
+                },
+                {
+                  "name" : "Bioassay",
+                  "value" : "Cytokine secretion (LEGENDplex)"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Respiratory uptake (LC-MS chemical analysis)"
+          },
+          {
+            "name" : "Description",
+            "value" : "Basolateral medium sampled over the exposure period; apical wash, cell lysate and insert-membrane extract collected at the start and end of exposure. Compound amounts quantified by LC-MS (IRAS, Utrecht University); values below the limit of quantification divided by the square root of two; translocated amounts summed per compartment and time point (R script in the dataset)."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Peak area (LC-MS)"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Respiratory uptake (amount translocated)",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "nM"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "LC-MS"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "LDH release assay"
+          },
+          {
+            "name" : "Description",
+            "value" : "Lactate dehydrogenase released into the apical and basolateral compartments measured with the Roche Cytotoxicity Detection Kit (LDH): 100 µL sample plus 100 µL reaction mix, 20 min in the dark at room temperature, stopped with 1 M HCl; absorbance read at 490 nm with 600 nm reference against an LDH standard curve."
+          },
+          {
+            "name" : "Time point",
+            "value" : "0, 120",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "1"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Absorbance",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "OD"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Cytotoxicity (LDH release)"
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "Roche"
+          },
+          {
+            "name" : "Assay catalogue number",
+            "value" : "11644793001"
+          },
+          {
+            "name" : "Assay incubation time",
+            "value" : "20",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "minutes"
+              }
+            ]
+          },
+          {
+            "name" : "Absorbance wavelength",
+            "value" : "490/600",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "SpectraMax M2"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "WST-1 cell viability assay"
+          },
+          {
+            "name" : "Description",
+            "value" : "Metabolic activity (viability) measured with the Roche Cell Proliferation Reagent WST-1 applied apically (1:10 in culture medium without serum, 0.5 mL per insert, 1 h incubation), read as absorbance in technical duplicate; medium and empty-insert interference determined alongside."
+          },
+          {
+            "name" : "Time point",
+            "value" : "48",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "2"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Absorbance",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "OD"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Relative metabolic activity"
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "Roche"
+          },
+          {
+            "name" : "Assay catalogue number",
+            "value" : "11644807001"
+          },
+          {
+            "name" : "Assay incubation time",
+            "value" : "1",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "SpectraMax M2"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Transepithelial electrical resistance (TEER)"
+          },
+          {
+            "name" : "Description",
+            "value" : "Barrier integrity measured with a chopstick electrode in 0.5 mL warm medium applied apically, background from an insert without cells subtracted; measured before and after exposure."
+          },
+          {
+            "name" : "Time point",
+            "value" : "0, 120",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "1"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Resistance",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "ohm"
+              }
+            ]
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Barrier integrity (TEER)",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "ohm·cm²"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "Millicell ERS-2"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Millipore"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Cytokine secretion (LEGENDplex)"
+          },
+          {
+            "name" : "Description",
+            "value" : "Cytokines in the basolateral medium quantified with the LEGENDplex Human Essential Immune Response Panel (bead-based immunoassay, split-volume protocol) on a flow cytometer; concentrations derived from the kit standards with the LEGENDplex data analysis software."
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Cytokine concentration",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "ng/mL"
+              }
+            ]
+          },
+          {
+            "name" : "Assay supplier",
+            "value" : "BioLegend"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "BD FACSCanto II"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "BD Biosciences"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Endpoint readout information",
+        "attributes" : [
+          {
+            "name" : "Bioassay",
+            "value" : "Fluorescein permeability (pilot)"
+          },
+          {
+            "name" : "Description",
+            "value" : "Paracellular permeability marker in the 2024 pilot: 20 µL of 20 µM fluorescein applied apically; basolateral samples taken hourly for 5 h and apical samples at 0 and 5 h; fluorescence read at 485 nm excitation and 535 nm emission (530 nm cut-off) against a two-fold fluorescein standard series."
+          },
+          {
+            "name" : "Time point",
+            "value" : "0, 1, 2, 3, 4, 5",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "hours"
+              }
+            ]
+          },
+          {
+            "name" : "Replicates",
+            "value" : "3"
+          },
+          {
+            "name" : "Technical replicates",
+            "value" : "1"
+          },
+          {
+            "name" : "Measured entity",
+            "value" : "Fluorescence intensity"
+          },
+          {
+            "name" : "Endpoint readout",
+            "value" : "Fluorescein translocation",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "µM"
+              }
+            ]
+          },
+          {
+            "name" : "Excitation wavelength",
+            "value" : "485",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          },
+          {
+            "name" : "Emission wavelength",
+            "value" : "535",
+            "valqual" : [
+              {
+                "name" : "Unit",
+                "value" : "nm"
+              }
+            ]
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Detection instrument",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "SpectraMax M2"
+                },
+                {
+                  "name" : "Manufacturer",
+                  "value" : "Molecular Devices"
+                }
+              ]
+            }
+          ]
+        ]
+      },
+      {
+        "type" : "Data & analysis",
+        "attributes" : [
+          {
+            "name" : "Analysis code",
+            "value" : "20260204_pesticide_translocatie.R (included in the dataset)"
+          },
+          {
+            "name" : "Statistical method",
+            "value" : "Values below the limit of quantification divided by the square root of two; translocated amounts summed per donor, concentration and time point"
+          }
+        ],
+        "subsections" : [
+          [
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "R (tidyverse)",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "https://www.r-project.org/"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Version",
+                  "value" : "[DRAFT]"
+                }
+              ]
+            },
+            {
+              "type" : "Software",
+              "attributes" : [
+                {
+                  "name" : "Name",
+                  "value" : "LEGENDplex Data Analysis Software Suite",
+                  "valqual" : [
+                    {
+                      "name" : "URL",
+                      "value" : "https://legendplex.qognit.com"
+                    }
+                  ]
+                },
+                {
+                  "name" : "Version",
+                  "value" : "[DRAFT]"
+                }
+              ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+}
