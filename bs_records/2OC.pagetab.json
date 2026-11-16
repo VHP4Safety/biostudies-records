@@ -189,7 +189,8 @@
           },
           {
             "name" : "affiliation",
-            "value" : "o1"
+            "value" : "o1",
+            "reference" : true
           }
         ]
       },
@@ -214,7 +215,8 @@
           },
           {
             "name" : "affiliation",
-            "value" : "o1"
+            "value" : "o1",
+            "reference" : true
           }
         ]
       },
