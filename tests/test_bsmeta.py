@@ -1,6 +1,9 @@
+import argparse
+import io
 import json
 import shutil
 import subprocess
+import urllib.error
 from pathlib import Path
 
 import pytest
@@ -73,6 +76,38 @@ def test_diff_lists_changed_rows_only():
     assert len(out) == 2 and out[0].startswith("- ") and out[1].startswith("+ ")
 
 
+def test_diff_sees_what_is_not_an_attribute():
+    live = strip_unfilled(DOC)
+    linked = {**DOC, "section": {**DOC["section"], "links": [{"url": "https://example.org"}]}}
+    assert diff(linked, live) and not diff(DOC, live)
+
+
+def refused(calls):
+    def urlopen(req, timeout=None):
+        calls.append(req)
+        if len(calls) < 3:
+            raise urllib.error.URLError(ConnectionRefusedError(61, "Connection refused"))
+        return io.BytesIO(b'{"ok": true}')
+    return urlopen
+
+
+def test_a_read_retries_a_refused_connection(monkeypatch):
+    monkeypatch.setattr(bsmeta.time, "sleep", lambda seconds: None)
+    for read in (lambda: bsmeta.get_json("https://example.org/a"), lambda: bsmeta.fetch_live("S-X")):
+        calls = []
+        monkeypatch.setattr(bsmeta.urllib.request, "urlopen", refused(calls))
+        assert read() == {"ok": True} and len(calls) == 3
+
+
+def test_a_submission_is_sent_once(monkeypatch):
+    calls = []
+    monkeypatch.setattr(bsmeta.urllib.request, "urlopen", refused(calls))
+    monkeypatch.setattr(bsmeta.time, "sleep", lambda seconds: None)
+    with pytest.raises(bsmeta.BioStudiesError):
+        bsmeta.submit({"accno": "S-X"}, "tok")
+    assert len(calls) == 1
+
+
 def test_report_annotates_github_actions(monkeypatch, capsys, tmp_path):
     import argparse
     import json
@@ -84,8 +119,9 @@ def test_report_annotates_github_actions(monkeypatch, capsys, tmp_path):
     monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(tmp_path / "summary.md"))
     f = tmp_path / "r.json"
     f.write_text(json.dumps(DOC))
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as e:
         bsmeta._report(argparse.Namespace(files=[str(f)], verbose=False), lambda d: check_terms(d, lookup=FAKE))
+    assert e.value.code == 1
     assert f"::error file={f}::UNRESOLVED" in capsys.readouterr().out
     assert "UNRESOLVED" in (tmp_path / "summary.md").read_text()
 
@@ -170,6 +206,18 @@ def test_submit_registers_a_new_accession(tmp_path, monkeypatch):
     assert out["attributes"][1] == {"name": "DOI", "value": "10.6019/S-VHPS99"}
 
 
+def test_submit_holds_back_a_file_under_embargo(tmp_path, monkeypatch):
+    monkeypatch.setattr(bsmeta, "rows", lambda: {"S-VHPS99": {**ROW, "embargoDate": "2099-01-01"}})
+    monkeypatch.setattr(bsmeta, "check_terms", lambda doc: [])
+    monkeypatch.setattr(bsmeta, "submit", lambda doc, session: pytest.fail("submitted"))
+    f = tmp_path / "S-VHPS99.json"
+    f.write_text(json.dumps(CRATED))
+    for dry_run in (True, False):
+        with pytest.raises(SystemExit) as e:
+            bsmeta.cmd_submit(argparse.Namespace(files=[str(f)], dry_run=dry_run, verbose=False))
+        assert "2099-01-01" in str(e.value)
+
+
 def test_login_explains_a_rejected_password(monkeypatch, tmp_path):
     import argparse
 
@@ -241,6 +289,10 @@ def test_status_is_public_once_a_crate_is_attached_and_the_embargo_has_passed():
     assert status(TRACKED, status="Not shared") == "Not shared"
 
 
+def test_status_is_left_alone_when_the_embargo_date_cannot_be_read():
+    assert expected(CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}, TODAY)["status"] == "Public"
+
+
 def test_check_sheet_reports_only_differing_cells():
     assert check_sheet(TRACKED, {"S-VHPS99": ROW}, TODAY) == []
     off = {**ROW, "license": "CC BY 4.0", "workflowStep": "Adverse Outcome, Toxicodynamics"}
@@ -260,12 +312,12 @@ def test_check_sheet_wants_an_iso_embargo_date():
 
 def deposit(root, record=TRACKED, files=("data.csv",)):
     """A deposit folder as vitro-crate takes it: source files and a copy of the record."""
-    folder = root / record["accno"]
+    folder = root / "S-VHPS99"
     (folder / "source").mkdir(parents=True)
     for name in files:
         (folder / "source" / name).write_text("x")
     if record:
-        (folder / f"{record['accno']}.biostudies.json").write_text(json.dumps(record))
+        (folder / "S-VHPS99.biostudies.json").write_text(json.dumps(record))
     return root
 
 
@@ -291,16 +343,78 @@ def test_check_sheet_wants_the_current_record_in_a_deposit(tmp_path):
     assert deposit_codes(CRATED, deposit(tmp_path / "public", record=old), hasROCrate="Yes", status="Public") == ["DEPOSIT"]
 
 
-def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
+def test_check_sheet_does_not_count_hidden_files_as_a_deposit(tmp_path):
+    assert deposit_codes(TRACKED, deposit(tmp_path, files=(".DS_Store",))) == ["DEPOSIT"]
+
+
+def test_check_sheet_wants_a_copy_of_the_record_in_a_deposit(tmp_path):
+    assert deposit_codes(TRACKED, deposit(tmp_path, record=None)) == ["DEPOSIT"]
+
+
+def test_check_sheet_compares_the_whole_record_copy(tmp_path):
+    linked = {**TRACKED, "section": {**TRACKED["section"], "links": [{"url": "https://example.org"}]}}
+    assert deposit_codes(TRACKED, deposit(tmp_path, record=linked)) == ["DEPOSIT"]
+
+
+def check_sheet_cli(tmp_path, monkeypatch, deposits):
+    monkeypatch.setattr(bsmeta, "rows", lambda: {"S-VHPS99": ROW})
+    f = tmp_path / "S-VHPS99.json"
+    f.write_text(json.dumps(TRACKED))
+    with pytest.raises(SystemExit) as e:
+        bsmeta.main(["check-sheet", "--deposits", deposits, str(f)])
+    return e.value.code
+
+
+def test_check_sheet_needs_an_existing_deposits_folder(tmp_path, monkeypatch):
+    assert "nowhere" in str(check_sheet_cli(tmp_path, monkeypatch, str(tmp_path / "nowhere")))
+
+
+def test_check_sheet_expands_the_home_folder(tmp_path, monkeypatch):
+    monkeypatch.setenv("HOME", str(tmp_path))
+    deposit(tmp_path / "deposits")
+    assert check_sheet_cli(tmp_path, monkeypatch, "~/deposits") == 0
+
+
+def tracker_csv(path, *identifiers):
+    """The tracker as its CSV export: every model column, one header with a trailing space."""
+    head = [column + " " if column == "caseStudy" else column for column in HEAD]
+    lines = [",".join(head)] + [",".join(found if column == "identifier" else "" for column in HEAD) for found in identifiers]
+    path.write_text("\n".join(lines) + "\n")
+    return path.as_uri()
+
+
+def test_rows_refuses_a_tracker_without_a_model_column(tmp_path):
     sheet = tmp_path / "tracker.csv"
+    sheet.write_text("title,identifier\nA,https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21\n")
+    with pytest.raises(SystemExit) as e:
+        bsmeta.rows(sheet.as_uri())
+    assert "embargoDate" in str(e.value)
+
+
+def test_rows_refuses_two_rows_for_one_accession(tmp_path):
     url = "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21"
-    sheet.write_text(f"title,identifier,caseStudy \nA,{url},Thyroid\nB,https://doi.org/10.5281/zenodo.1,Other\n")
-    assert bsmeta.rows(sheet.as_uri()) == {"S-VHPS21": {"title": "A", "identifier": url, "caseStudy": "Thyroid"}}
+    with pytest.raises(SystemExit) as e:
+        bsmeta.rows(tracker_csv(tmp_path / "tracker.csv", url, url))
+    assert "S-VHPS21" in str(e.value)
+
+
+def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
+    url = "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21"
+    other = "https://www.ebi.ac.uk/biostudies/studies/S-RHER381"
+    found = bsmeta.rows(tracker_csv(tmp_path / "tracker.csv", url, "https://doi.org/10.5281/zenodo.1", other))
+    assert sorted(found) == ["S-RHER381", "S-VHPS21"]
+    assert found["S-VHPS21"]["identifier"] == url and "caseStudy" in found["S-VHPS21"]
 
 
 def test_the_sheet_script_derives_what_bsmeta_derives():
     node = shutil.which("node") or pytest.skip("node is not installed")
-    cases = [(TRACKED, ROW), (CRATED, ROW), (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}), (BARE, {})]
+    cases = [
+        (TRACKED, ROW),
+        (CRATED, ROW),
+        (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}),
+        (CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}),
+        (BARE, {}),
+    ]
     run = (
         "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
@@ -312,26 +426,35 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
 
 
-def sync(table, studies, typed, model=bsmeta.MODEL):
-    """Run the sheet script's sync() under Node against a fake sheet whose typed columns refuse a number format, with model served as tracker.json on main; the raw values it writes."""
+def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None):
+    """Run the sheet script's sync() under Node against a fake sheet, with model served as tracker.json on main; the raw values it writes.
+
+    Typed columns refuse a number format, flaky fails every address's first request, and late is what the sheet holds
+    once every study has been fetched."""
     node = shutil.which("node") or pytest.skip("node is not installed")
     run = (
-        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [];"
+        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [], tried = new Set();"
+        "let fetched = 0;"
+        "const table = () => (i.late && fetched >= 2 + Object.keys(i.studies).length ? i.late : i.table);"
         "const cell = (r, c) => ({"
         "  setNumberFormat() { if (i.typed.includes(i.table[0][c - 1])) throw new Error('typed column'); return this; },"
         "  setValue(v) { writes.push([r, i.table[0][c - 1], v]); } });"
-        "const sheet = { getSheetId: () => i.gid, getDataRange: () => ({ getDisplayValues: () => i.table }), getRange: cell };"
+        "const sheet = { getSheetId: () => i.gid, getDataRange: () => ({ getDisplayValues: () => table() }), getRange: cell };"
         "const reply = url => url === 'https://raw.githubusercontent.com/VHP4Safety/biostudies-records/main/tracker.json' ? i.model"
         "  : url.includes('/search') ? { hits: Object.keys(i.studies).map(accession => ({ accession })) } : i.studies[url.split('/').pop()];"
+        "const fetch = url => {"
+        "  if (i.flaky && !tried.has(url)) { tried.add(url); throw new Error('Address unavailable: ' + url); }"
+        "  fetched++;"
+        "  return { getContentText: () => JSON.stringify(reply(url)) }; };"
         "const gs = vm.createContext({"
         "  SpreadsheetApp: { getActive: () => ({ getSheets: () => [sheet] }) },"
-        "  UrlFetchApp: { fetch: url => ({ getContentText: () => JSON.stringify(reply(url)) }) },"
-        "  Utilities: { formatDate: () => i.today } });"
+        "  UrlFetchApp: { fetch },"
+        "  Utilities: { formatDate: () => i.today, sleep() {} } });"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
         "gs.sync();"
         "console.log(JSON.stringify(writes));"
     )
-    given = json.dumps({"table": table, "studies": studies, "typed": typed, "model": model, "gid": model["gid"], "today": TODAY})
+    given = json.dumps({"table": table, "studies": studies, "typed": list(typed), "model": model, "gid": model["gid"], "today": TODAY, "flaky": flaky, "late": late})
     out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
     return json.loads(out.stdout)
 
@@ -355,3 +478,29 @@ def test_the_sheet_script_follows_the_model_on_main():
     stale = ["CC BY 4.0" if column == "license" else ROW.get(column, "") for column in HEAD]
     assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[], model=served) == []
     assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[]) == [[2, "license", "'CC-BY"]]
+
+
+def stale_licence():
+    return ["CC BY 4.0" if column == "license" else ROW.get(column, "") for column in HEAD]
+
+
+def test_the_sheet_script_retries_a_failed_request():
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, flaky=True) == [[2, "license", "'CC-BY"]]
+
+
+def test_the_sheet_script_writes_where_the_row_is_after_fetching():
+    moved = [HEAD, ["" for _ in HEAD], stale_licence()]
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, late=moved) == [[3, "license", "'CC-BY"]]
+
+
+def test_the_sheet_script_refuses_two_rows_for_one_accession():
+    row = [ROW.get(column, "") for column in HEAD]
+    with pytest.raises(subprocess.CalledProcessError) as e:
+        sync([HEAD, row, row], {"S-VHPS99": TRACKED})
+    assert "S-VHPS99" in e.value.stderr
+
+
+def test_the_sheet_script_finds_a_row_for_any_biostudies_accession():
+    other = {**TRACKED, "accno": "S-RHER381"}
+    row = {**ROW, **expected(other, ROW, TODAY)}
+    assert sync([HEAD, [row.get(column, "") for column in HEAD]], {"S-RHER381": other}) == []

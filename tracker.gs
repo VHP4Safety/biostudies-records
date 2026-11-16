@@ -5,6 +5,7 @@
  */
 const API = "https://www.ebi.ac.uk/biostudies/api/v1/";
 const MODEL = "https://raw.githubusercontent.com/VHP4Safety/biostudies-records/main/tracker.json";
+const ACCESSION = /S-[A-Z]+\d+/;
 
 function install() {
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
@@ -12,8 +13,16 @@ function install() {
   sync();
 }
 
+/** A request that fails is tried twice more: EBI refuses connections now and then. */
 function get(url) {
-  return JSON.parse(UrlFetchApp.fetch(url).getContentText());
+  for (let left = 2; ; left--) {
+    try {
+      return JSON.parse(UrlFetchApp.fetch(url).getContentText());
+    } catch (e) {
+      if (!left) throw e;
+      Utilities.sleep(2000);
+    }
+  }
 }
 
 /** What tracker.json wants in the tracker row of a record; bsmeta.py holds the same rules. */
@@ -36,14 +45,18 @@ function expected(model, study, row, today) {
     out[column] = spec.many ? values.join(", ") : values[0];
   }
   const embargo = row.embargoDate || "";
-  const passed = !embargo || (/^\d{4}-\d{2}-\d{2}$/.test(embargo) && embargo <= today);
   const have = row.status || "";
-  out.status = facts.files.length && passed ? "Public" : have === "Public" ? "Shared" : have;
+  // An embargo date that cannot be read leaves the status alone; check-sheet reports the date.
+  if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.status = have;
+  else out.status = facts.files.length && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
   return out;
 }
 
 function sync() {
   const model = get(MODEL);
+  // One page of 100 studies: page through when the collection outgrows it.
+  // Every request comes before the sheet is read, so rows moved meanwhile cannot move the writes.
+  const studies = get(API + model.collection + "/search?pageSize=100").hits.map(hit => get(API + "studies/" + hit.accession));
   const sheet = SpreadsheetApp.getActive().getSheets().find(s => s.getSheetId() === model.gid);
   const table = sheet.getDataRange().getDisplayValues().map(cells => cells.map(c => c.trim()));
   const head = table[0];
@@ -55,17 +68,18 @@ function sync() {
   Object.keys(model.columns).forEach(at);
   const rowOf = {};
   table.forEach((cells, i) => {
-    const acc = cells[at("identifier") - 1].match(/S-VHPS\d+/);
-    if (acc) rowOf[acc[0]] = i;
+    const acc = cells[at("identifier") - 1].match(ACCESSION);
+    if (!acc) return;
+    if (acc[0] in rowOf) throw new Error(acc[0] + " is in rows " + (rowOf[acc[0]] + 1) + " and " + (i + 1) + " of the tracker");
+    rowOf[acc[0]] = i;
   });
   const today = Utilities.formatDate(new Date(), "Europe/Amsterdam", "yyyy-MM-dd");
   const set = text => [...new Set(text.split(", "))].sort().join("\n");
-  // One page of 100 studies: page through when the collection outgrows it.
-  for (const hit of get(API + model.collection + "/search?pageSize=100").hits) {
-    if (!(hit.accession in rowOf)) rowOf[hit.accession] = table.push(head.map(() => "")) - 1;
-    const i = rowOf[hit.accession];
+  for (const study of studies) {
+    if (!(study.accno in rowOf)) rowOf[study.accno] = table.push(head.map(() => "")) - 1;
+    const i = rowOf[study.accno];
     const row = Object.fromEntries(head.map((name, c) => [name, table[i][c]]));
-    const want = expected(model, get(API + "studies/" + hit.accession), row, today);
+    const want = expected(model, study, row, today);
     for (const [name, value] of Object.entries(want)) {
       const same = model.columns[name].many ? set(row[name]) === set(value) : row[name] === value;
       // The apostrophe keeps the value as text: no date or formula is made of it, and a typed column accepts it.
