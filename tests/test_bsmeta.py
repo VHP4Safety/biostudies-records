@@ -258,6 +258,15 @@ def test_check_sheet_wants_an_iso_embargo_date():
     assert [(i.code, i.where) for i in issues] == [("SHEET_CELL", "S-VHPS99 embargoDate")]
 
 
+def test_check_sheet_holds_shared_to_the_deposit_folders(tmp_path):
+    (tmp_path / "S-VHPS99").mkdir()
+    codes = lambda doc, deposits, **cells: [i.code for i in check_sheet(doc, {"S-VHPS99": {**ROW, **cells}}, TODAY, deposits)]
+    assert codes(TRACKED, tmp_path) == []
+    assert codes(TRACKED, tmp_path, status="Not shared") == ["DEPOSIT"]
+    assert codes(TRACKED, tmp_path / "elsewhere") == ["DEPOSIT"]
+    assert codes(CRATED, tmp_path / "elsewhere", hasROCrate="Yes", status="Public") == []
+
+
 def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
     sheet = tmp_path / "tracker.csv"
     url = "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21"
