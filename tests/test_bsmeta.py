@@ -99,6 +99,16 @@ def test_a_read_retries_a_refused_connection(monkeypatch):
         assert read() == {"ok": True} and len(calls) == 3
 
 
+def test_a_read_retries_a_timeout_while_reading(monkeypatch):
+    class Stalled(io.BytesIO):
+        def read(self, *args):
+            raise TimeoutError("The read operation timed out")
+    replies = [Stalled(), io.BytesIO(b'{"ok": true}')]
+    monkeypatch.setattr(bsmeta.urllib.request, "urlopen", lambda req, timeout=None: replies.pop(0))
+    monkeypatch.setattr(bsmeta.time, "sleep", lambda seconds: None)
+    assert bsmeta.get_json("https://example.org/a") == {"ok": True}
+
+
 def test_a_submission_is_sent_once(monkeypatch):
     calls = []
     monkeypatch.setattr(bsmeta.urllib.request, "urlopen", refused(calls))
