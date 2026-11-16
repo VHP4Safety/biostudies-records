@@ -298,13 +298,26 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, dep
         many = MODEL["columns"][column].get("many")
         if (set(have.split(", ")) != set(want.split(", "))) if many else have != want:
             out.append(Issue("error", "SHEET_CELL", f"{acc} {column}", f"sheet {have!r} vs record {want!r}"))
-    if deposits is not None and wanted["status"] != "Public":
-        status = row.get("status", "")
-        if (Path(deposits) / acc).is_dir():
-            if status not in ("Shared", "Private"):
-                out.append(Issue("error", "DEPOSIT", acc, f"its deposit folder is in {deposits}, but the status is {status!r}, not Shared"))
-        elif status == "Shared":
-            out.append(Issue("error", "DEPOSIT", acc, f"the status is Shared, but {deposits} has no folder for it"))
+    if deposits is not None:
+        out += check_deposit(doc, Path(deposits) / acc, row.get("status", ""), wanted["status"] == "Public")
+    return out
+
+
+def check_deposit(doc: dict, folder: Path, status: str, public: bool) -> list[Issue]:
+    """A deposit is a folder with source files and a copy of the record; having one is what Shared means."""
+    acc = doc.get("accno")
+    held = any(f.is_file() for f in (folder / "source").rglob("*"))
+    out = []
+    if held and not public and status not in ("Shared", "Private"):
+        out.append(Issue("error", "DEPOSIT", acc, f"{folder}/source has files, but the status is {status!r}, not Shared"))
+    if not held and not public and status == "Shared":
+        out.append(Issue("error", "DEPOSIT", acc, f"the status is Shared, but {folder}/source has no files"))
+    if held:
+        copy = folder / f"{acc}.biostudies.json"
+        if not copy.is_file():
+            out.append(Issue("error", "DEPOSIT", acc, f"{folder} has no copy of the record"))
+        elif stale := len(flatten(strip_unfilled(_load(copy))) ^ flatten(strip_unfilled(doc))):
+            out.append(Issue("error", "DEPOSIT", acc, f"{copy} differs from the record in {stale} row(s)"))
     return out
 
 
