@@ -274,11 +274,6 @@ def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
     assert bsmeta.rows(sheet.as_uri()) == {"S-VHPS21": {"title": "A", "identifier": url, "caseStudy": "Thyroid"}}
 
 
-def test_the_sheet_script_carries_the_model():
-    root = Path(bsmeta.__file__).parent
-    assert (root / "tracker.json").read_text().strip() in (root / "tracker.gs").read_text()
-
-
 def test_the_sheet_script_derives_what_bsmeta_derives():
     node = shutil.which("node") or pytest.skip("node is not installed")
     cases = [(TRACKED, ROW), (CRATED, ROW), (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}), (BARE, {})]
@@ -286,15 +281,15 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
         "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
         "const i = JSON.parse(fs.readFileSync(0, 'utf8'));"
-        "console.log(JSON.stringify(i.cases.map(([study, row]) => gs.expected(study, row, i.today))));"
+        "console.log(JSON.stringify(i.cases.map(([study, row]) => gs.expected(i.model, study, row, i.today))));"
     )
-    given = json.dumps({"cases": cases, "today": TODAY})
+    given = json.dumps({"model": bsmeta.MODEL, "cases": cases, "today": TODAY})
     out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
 
 
-def sync(table, studies, typed):
-    """Run the sheet script's sync() under Node against a fake sheet whose typed columns refuse a number format; the raw values it writes."""
+def sync(table, studies, typed, model=bsmeta.MODEL):
+    """Run the sheet script's sync() under Node against a fake sheet whose typed columns refuse a number format, with model served as tracker.json on main; the raw values it writes."""
     node = shutil.which("node") or pytest.skip("node is not installed")
     run = (
         "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [];"
@@ -302,7 +297,8 @@ def sync(table, studies, typed):
         "  setNumberFormat() { if (i.typed.includes(i.table[0][c - 1])) throw new Error('typed column'); return this; },"
         "  setValue(v) { writes.push([r, i.table[0][c - 1], v]); } });"
         "const sheet = { getSheetId: () => i.gid, getDataRange: () => ({ getDisplayValues: () => i.table }), getRange: cell };"
-        "const reply = url => url.includes('/search') ? { hits: Object.keys(i.studies).map(accession => ({ accession })) } : i.studies[url.split('/').pop()];"
+        "const reply = url => url === 'https://raw.githubusercontent.com/VHP4Safety/biostudies-records/main/tracker.json' ? i.model"
+        "  : url.includes('/search') ? { hits: Object.keys(i.studies).map(accession => ({ accession })) } : i.studies[url.split('/').pop()];"
         "const gs = vm.createContext({"
         "  SpreadsheetApp: { getActive: () => ({ getSheets: () => [sheet] }) },"
         "  UrlFetchApp: { fetch: url => ({ getContentText: () => JSON.stringify(reply(url)) }) },"
@@ -311,7 +307,7 @@ def sync(table, studies, typed):
         "gs.sync();"
         "console.log(JSON.stringify(writes));"
     )
-    given = json.dumps({"table": table, "studies": studies, "typed": typed, "gid": bsmeta.MODEL["gid"], "today": TODAY})
+    given = json.dumps({"table": table, "studies": studies, "typed": typed, "model": model, "gid": model["gid"], "today": TODAY})
     out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
     return json.loads(out.stdout)
 
@@ -328,3 +324,10 @@ def test_the_sheet_script_adds_a_row_for_a_new_accession():
     writes = sync([HEAD, [ROW.get(column, "") for column in HEAD]], {"S-VHPS99": TRACKED, "S-VHPS98": BARE}, typed=["title"])
     assert [3, "identifier", "'https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS98"] in writes
     assert {row for row, _, _ in writes} == {3}
+
+
+def test_the_sheet_script_follows_the_model_on_main():
+    served = {**bsmeta.MODEL, "columns": {**bsmeta.MODEL["columns"], "license": {}}}
+    stale = ["CC BY 4.0" if column == "license" else ROW.get(column, "") for column in HEAD]
+    assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[], model=served) == []
+    assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[]) == [[2, "license", "'CC-BY"]]
