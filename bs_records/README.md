@@ -1,6 +1,6 @@
 # Records
 
-_Updated 2026-10-29._ These are the authored records; `uv run bsmeta diff` shows whether BioStudies has the same.
+_Updated 2026-11-16._ These are the authored records; `uv run bsmeta diff` shows whether BioStudies has the same.
 
 ## Status
 
@@ -18,7 +18,7 @@ _Updated 2026-10-29._ These are the authored records; `uv run bsmeta diff` shows
 | S-VHPS26 | – | `Tissue` is *epithelium of female gonad* (UBERON_0004911) for CHO-K1, to be confirmed by the depositor. `Sulfobromophthalein sodium` cites CAS 71-67-0 but CompoundCloudID Q4750 is the hydrate (CAS 123359-42-2); Compound Wiki has no item for 71-67-0. Indocyanine green CID 5282412 is unverified (Wikidata lists several) |
 | S-VHPS27 | `RRID`, `Supplier` (hBMEC) | |
 | S-VHPS28 | – | |
-| S-VHPS29 | `E-mail` (Staal), `ORCID` ×6, software versions | respiratory uptake in NHBE (RIVM); released 2026-10-29 |
+| S-VHPS29 | `ORCID` ×5, software `Version` ×2 | respiratory uptake in NHBE (RIVM); released 2026-10-29 |
 | 2OC.pagetab.json | see below | held, see below |
 
 Blank attributes are dropped at submit; they stay in these files only to show what is wanted.

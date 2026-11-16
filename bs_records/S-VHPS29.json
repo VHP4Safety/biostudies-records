@@ -267,7 +267,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Role",
@@ -289,7 +289,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : "0009-0003-6916-7554"
           },
           {
             "name" : "Role",
@@ -311,7 +311,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Role",
@@ -333,7 +333,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Role",
@@ -355,7 +355,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Role",
@@ -377,7 +377,7 @@
           },
           {
             "name" : "ORCID",
-            "value" : "[DRAFT]"
+            "value" : ""
           },
           {
             "name" : "Role",
@@ -1356,7 +1356,7 @@
                 },
                 {
                   "name" : "Version",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             },
@@ -1375,7 +1375,7 @@
                 },
                 {
                   "name" : "Version",
-                  "value" : "[DRAFT]"
+                  "value" : ""
                 }
               ]
             }
