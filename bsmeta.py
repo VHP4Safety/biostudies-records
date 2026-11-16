@@ -109,9 +109,22 @@ class OlsTerm:
     replaced_by: str | None
 
 
+def _open(req, timeout: float, tries: int = 3):
+    """urlopen, trying a read again when the connection fails: EBI refuses connections now and then. A POST is sent once."""
+    for left in range(tries - 1, -1, -1):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError:
+            raise
+        except OSError:
+            if not left or getattr(req, "data", None) is not None:
+                raise
+            time.sleep(2)
+
+
 def get_json(url: str) -> dict:
     req = urllib.request.Request(url, headers={"User-Agent": "bsmeta", "Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with _open(req, 30) as r:
         return json.load(r)
 
 
@@ -164,10 +177,12 @@ def _request(url: str, data=None, headers=None, timeout=300) -> dict:
     if body is not None:
         hdrs["Content-Type"] = "application/json"
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, data=body, headers=hdrs), timeout=timeout) as r:
+        with _open(urllib.request.Request(url, data=body, headers=hdrs), timeout) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
         raise BioStudiesError(f"{e.code} {url}\n{e.read().decode(errors='replace')[:2000]}") from None
+    except OSError as e:
+        raise BioStudiesError(f"{url}: {e}") from None
 
 
 def fetch_live(accno: str) -> dict:
@@ -189,8 +204,10 @@ def submit(doc: dict, session: str) -> dict:
 
 
 def diff(authored: dict, live: dict) -> list[str]:
-    a, l = flatten(strip_unfilled(authored)), flatten(live)
-    return [f"- {r}" for r in sorted(l - a, key=str)] + [f"+ {r}" for r in sorted(a - l, key=str)]
+    doc = strip_unfilled(authored)
+    a, l = flatten(doc), flatten(live)
+    lines = [f"- {r}" for r in sorted(l - a, key=str)] + [f"+ {r}" for r in sorted(a - l, key=str)]
+    return lines or ([] if doc == live else ["! the attributes agree, but files, links, sections or nested qualifiers differ"])
 
 
 METHODS_INDEX = "https://raw.githubusercontent.com/VHP4Safety/cloud/refs/heads/main/cap/methods_index.json"
@@ -237,19 +254,24 @@ def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:
 
 MODEL = json.loads(Path(__file__).with_name("tracker.json").read_text())
 SHEET = f"https://docs.google.com/spreadsheets/d/{MODEL['sheet']}/export?format=csv&gid={MODEL['gid']}"
-ACCESSION = re.compile(r"S-VHPS\d+")
+ACCESSION = re.compile(r"S-[A-Z]+\d+")
 ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def rows(url: str = SHEET) -> dict[str, dict]:
-    """Tracker rows by accession, headers and cells trimmed."""
-    with urllib.request.urlopen(url, timeout=30) as r:
+    """Tracker rows by accession, headers and cells trimmed. The tracker must have every column of the model and one row per accession."""
+    with _open(url, 30) as r:
         text = r.read().decode()
-    out = {}
-    for row in csv.DictReader(io.StringIO(text)):
+    reader = csv.DictReader(io.StringIO(text))
+    if missing := [c for c in MODEL["columns"] if c not in {k.strip() for k in reader.fieldnames or []}]:
+        sys.exit(f"the tracker has no column {', '.join(missing)}")
+    out, line = {}, {}
+    for n, row in enumerate(reader, 2):
         row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
         if acc := ACCESSION.search(row.get("identifier", "")):
-            out[acc.group()] = row
+            if acc.group() in out:
+                sys.exit(f"{acc.group()} is in rows {line[acc.group()]} and {n} of the tracker")
+            out[acc.group()], line[acc.group()] = row, n
     return out
 
 
@@ -273,10 +295,11 @@ def expected(doc: dict, row: dict, today: str) -> dict:
             values = [spec["present"]]
         values = [spec.get("prefix", "") + v for v in dict.fromkeys(values)] or [spec.get("default", "")]
         out[column] = ", ".join(values) if spec.get("many") else values[0]
-    embargo = row.get("embargoDate", "")
-    passed = not embargo or (ISO_DATE.fullmatch(embargo) is not None and embargo <= today)
-    have = row.get("status", "")
-    out["status"] = "Public" if facts["files"] and passed else "Shared" if have == "Public" else have
+    embargo, have = row.get("embargoDate", ""), row.get("status", "")
+    if embargo and not ISO_DATE.fullmatch(embargo):
+        out["status"] = have
+    else:
+        out["status"] = "Public" if facts["files"] and embargo <= today else "Shared" if have == "Public" else have
     return out
 
 
@@ -306,7 +329,7 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, dep
 def check_deposit(doc: dict, folder: Path, status: str, public: bool) -> list[Issue]:
     """A deposit is a folder with source files and a copy of the record; having one is what Shared means."""
     acc = doc.get("accno")
-    held = any(f.is_file() for f in (folder / "source").rglob("*"))
+    held = any(f.is_file() and not f.name.startswith(".") for f in (folder / "source").rglob("*"))
     out = []
     if held and not public and status not in ("Shared", "Private"):
         out.append(Issue("error", "DEPOSIT", acc, f"{folder}/source has files, but the status is {status!r}, not Shared"))
@@ -316,8 +339,8 @@ def check_deposit(doc: dict, folder: Path, status: str, public: bool) -> list[Is
         copy = folder / f"{acc}.biostudies.json"
         if not copy.is_file():
             out.append(Issue("error", "DEPOSIT", acc, f"{folder} has no copy of the record"))
-        elif stale := len(flatten(strip_unfilled(_load(copy))) ^ flatten(strip_unfilled(doc))):
-            out.append(Issue("error", "DEPOSIT", acc, f"{copy} differs from the record in {stale} row(s)"))
+        elif strip_unfilled(_load(copy)) != strip_unfilled(doc):
+            out.append(Issue("error", "DEPOSIT", acc, f"{copy} is not the record"))
     return out
 
 
@@ -385,8 +408,11 @@ def cmd_check_links(args) -> None:
 
 
 def cmd_check_sheet(args) -> None:
+    deposits = args.deposits and Path(args.deposits).expanduser()
+    if deposits and not deposits.is_dir():
+        sys.exit(f"{deposits}: no such folder")
     sheet_rows = rows()
-    _report(args, lambda doc: check_sheet(doc, sheet_rows, deposits=args.deposits))
+    _report(args, lambda doc: check_sheet(doc, sheet_rows, deposits=deposits))
 
 
 def cmd_diff(args) -> None:
@@ -469,6 +495,8 @@ def cmd_submit(args) -> None:
         errors = [i for i in check_terms(doc) if i.level == "error"]
         if errors:
             sys.exit(f"{path}: {len(errors)} ontology error(s); run `python3 bsmeta.py check-terms {path}`")
+        if doc["section"].get("files") and (held := [i for i in check_sheet(doc, rows()) if i.code == "EMBARGO"]):
+            sys.exit(f"{path}: {held[0].message}; not submitted")
         if args.dry_run:
             print(f"{path}: would submit {doc.get('accno', '<new accession>')}")
             continue

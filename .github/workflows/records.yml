@@ -28,7 +28,7 @@ jobs:
       - run: python bsmeta.py check-terms bs_records/*.json
 
   fresh:
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.submit)
     needs: check
     runs-on: ubuntu-latest
     steps:
@@ -37,8 +37,10 @@ jobs:
         with:
           python-version: "3.12"
       - run: python bsmeta.py check-links bs_records/*.json
-      - run: python bsmeta.py check-sheet bs_records/S-VHPS*.json
-      - run: python bsmeta.py diff bs_records/S-VHPS*.json
+      - if: ${{ !cancelled() }}
+        run: python bsmeta.py check-sheet bs_records/S-VHPS*.json
+      - if: ${{ !cancelled() }}
+        run: python bsmeta.py diff bs_records/S-VHPS*.json
 
   submit:
     if: github.event_name == 'workflow_dispatch' && inputs.submit
