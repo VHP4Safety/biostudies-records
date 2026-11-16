@@ -63,13 +63,17 @@ def test_strip_unfilled_drops_the_sections_it_empties():
                 {"type": "author", "attributes": [{"name": "affiliation", "value": "o1", "reference": True}]},
                 [{"type": "Software", "attributes": [{"name": "Name", "value": "[DRAFT]"}]}],
                 {"type": "Funding", "attributes": [{"name": "Agency", "value": "NWO"}]},
+                {"type": "Exposure", "attributes": [{"name": "Route", "value": "oral"}], "subsections": [{"type": "Regimen", "attributes": [{"name": "Dose", "value": ""}]}]},
             ],
             "files": [{"path": "a.zip", "type": "file"}],
             "links": [{"url": "https://example.org"}],
         },
     }
     out = strip_unfilled(doc)["section"]
-    assert out["subsections"] == [{"type": "Funding", "attributes": [{"name": "Agency", "value": "NWO"}]}]
+    assert out["subsections"] == [
+        {"type": "Funding", "attributes": [{"name": "Agency", "value": "NWO"}]},
+        {"type": "Exposure", "attributes": [{"name": "Route", "value": "oral"}]},
+    ]
     assert out["files"] == doc["section"]["files"] and out["links"] == doc["section"]["links"]
 
 
