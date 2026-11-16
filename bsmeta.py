@@ -267,20 +267,43 @@ ACCESSION = re.compile(r"S-[A-Z]+[0-9]+")
 ISO_DATE = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}")  # ASCII digits, as tracker.gs reads them
 
 
-def rows(url: str = SHEET) -> dict[str, dict]:
-    """Tracker rows by accession, headers and cells trimmed. The tracker must have every column of the model and one row per accession."""
+def tracker(url: str = SHEET) -> list[tuple[int, dict]]:
+    """Every tracker row with its row number, headers and cells trimmed. The tracker must have every column of the model."""
     reader = csv.DictReader(io.StringIO(_body(url, 30).decode()))
     if missing := [c for c in MODEL["columns"] if c not in {k.strip() for k in reader.fieldnames or []}]:
         if len(missing) == len(MODEL["columns"]):
             sys.exit(f"{url} did not return the tracker: is the sheet still readable by anyone with the link?")
         sys.exit(f"the tracker has no column {', '.join(missing)}")
+    return [(n, {k.strip(): (v or "").strip() for k, v in row.items() if k}) for n, row in enumerate(reader, 2)]
+
+
+def by_accession(table: list[tuple[int, dict]]) -> dict[str, dict]:
+    """The rows that name a BioStudies accession, one row per accession."""
     out, line = {}, {}
-    for n, row in enumerate(reader, 2):
-        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+    for n, row in table:
         if acc := ACCESSION.search(row.get("identifier", "")):
             if acc.group() in out:
                 sys.exit(f"{acc.group()} is in rows {line[acc.group()]} and {n} of the tracker")
             out[acc.group()], line[acc.group()] = row, n
+    return out
+
+
+def rows(url: str = SHEET) -> dict[str, dict]:
+    """Tracker rows by accession."""
+    return by_accession(tracker(url))
+
+
+def check_values(table: list[tuple[int, dict]]) -> list[Issue]:
+    """Cells outside the model: a value that is not one of its column's values, or a date not written YYYY-MM-DD."""
+    out = []
+    for n, row in table:
+        for column, spec in MODEL["columns"].items():
+            if not (cell := row.get(column, "")):
+                continue
+            if spec.get("date") and not ISO_DATE.fullmatch(cell):
+                out.append(Issue("error", "SHEET_VALUE", f"row {n} {column}", f"{cell!r} is not YYYY-MM-DD"))
+            if "values" in spec and (wrong := [v for v in (cell.split(", ") if spec.get("many") else [cell]) if v not in spec["values"]]):
+                out.append(Issue("error", "SHEET_VALUE", f"row {n} {column}", f"{', '.join(map(repr, wrong))} is not one of {spec['values']}"))
     return out
 
 
@@ -305,10 +328,11 @@ def expected(doc: dict, row: dict, today: str) -> dict:
         values = [spec.get("prefix", "") + v for v in dict.fromkeys(values)] or [spec.get("default", "")]
         out[column] = ", ".join(values) if spec.get("many") else values[0]
     embargo, have = row.get("embargoDate", ""), row.get("status", "")
+    released = (facts.get("ReleaseDate") or [""])[0] <= today
     if embargo and not ISO_DATE.fullmatch(embargo):
         out["status"] = have
     else:
-        out["status"] = "Public" if facts["files"] and embargo <= today else "Shared" if have == "Public" else have
+        out["status"] = "Public" if facts["files"] and released and embargo <= today else "Shared" if have == "Public" else have
     return out
 
 
@@ -380,8 +404,7 @@ def _emit(level: str, path: str, text: str) -> None:
                 f.write(f"- {level}: `{path}` {text}\n")
 
 
-def _report(args, check) -> None:
-    errors = 0
+def _report(args, check, errors: int = 0) -> None:
     for path in args.files:
         for i in check(strip_unfilled(_load(path))):
             if i.level == "error" or args.verbose:
@@ -420,8 +443,12 @@ def cmd_check_sheet(args) -> None:
     deposits = args.deposits and Path(args.deposits).expanduser()
     if deposits and not deposits.is_dir():
         sys.exit(f"{deposits}: no such folder")
-    sheet_rows = rows()
-    _report(args, lambda doc: check_sheet(doc, sheet_rows, deposits=deposits))
+    table = tracker()
+    cells = check_values(table)
+    for i in cells:
+        _emit(i.level, "tracker", f"{i.code} {i.where}: {i.message}")
+    sheet_rows = by_accession(table)
+    _report(args, lambda doc: check_sheet(doc, sheet_rows, deposits=deposits), errors=len(cells))
 
 
 def cmd_diff(args) -> None:
