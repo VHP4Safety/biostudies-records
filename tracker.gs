@@ -1,10 +1,74 @@
 /**
  * @OnlyCurrentDoc
  * Keeps the BioStudies rows of the RO inventory tracker as tracker.json describes them.
- * Lives at https://github.com/VHP4Safety/biostudies-records: paste it under Extensions > Apps Script, run install() once.
+ * Lives at https://github.com/VHP4Safety/biostudies-records: paste it under Extensions > Apps Script, run install() once,
+ * and paste it again whenever tracker.json changes.
  */
-const MODEL = "https://raw.githubusercontent.com/VHP4Safety/biostudies-records/main/tracker.json";
 const API = "https://www.ebi.ac.uk/biostudies/api/v1/";
+/** tracker.json, which a test keeps identical to this copy. */
+const MODEL = {
+  "sheet" : "1UfcQIZaGBU11n6jZtI6BmpCBZLy8IbWMBKr5pAqUwq0",
+  "gid" : 1572306711,
+  "collection" : "vhp4safety",
+  "columns" : {
+    "title" : {
+      "from" : "Title"
+    },
+    "Description" : {
+      "from" : "Description"
+    },
+    "identifier" : {
+      "from" : "accno",
+      "prefix" : "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/"
+    },
+    "privateLink" : {},
+    "caseStudy" : {
+      "from" : "Case study",
+      "many" : true,
+      "default" : "Other"
+    },
+    "regulatoryQuestion" : {
+      "from" : "Regulatory Question",
+      "many" : true,
+      "labels" : {
+        "reg_q_1a" : "Q1",
+        "reg_q_1b" : "Q2",
+        "reg_q_2a" : "Q1",
+        "reg_q_2b" : "Q2",
+        "reg_q_3a" : "Q1",
+        "reg_q_3b" : "Q2"
+      },
+      "default" : "N/A"
+    },
+    "workPackage" : {},
+    "workflowStep" : {
+      "from" : "Process Flow Step",
+      "many" : true
+    },
+    "status" : {},
+    "embargoDate" : {},
+    "releaseMetadata" : {
+      "from" : "ReleaseDate"
+    },
+    "license" : {
+      "from" : "License"
+    },
+    "hasMetadata" : {},
+    "hasToxTemp" : {},
+    "hasROCrate" : {
+      "from" : "files",
+      "present" : "Yes",
+      "default" : "No"
+    },
+    "contactPerson" : {},
+    "partnerCode" : {},
+    "type" : {},
+    "isReviewed" : {},
+    "FAStatus (platform.vhp4safety.nl)" : {},
+    "FAIRscore" : {},
+    "notes" : {}
+  }
+};
 
 function install() {
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
@@ -17,7 +81,7 @@ function get(url) {
 }
 
 /** What tracker.json wants in the tracker row of a record; bsmeta.py holds the same rules. */
-function expected(model, study, row, today) {
+function expected(study, row, today) {
   const facts = {};
   for (const attributes of [study.section.attributes || [], study.attributes || []]) {
     const found = {};
@@ -27,7 +91,7 @@ function expected(model, study, row, today) {
   facts.accno = [study.accno || ""];
   facts.files = (study.section.files || []).flat().map(f => f.path);
   const out = {};
-  for (const [column, spec] of Object.entries(model.columns)) {
+  for (const [column, spec] of Object.entries(MODEL.columns)) {
     if (!spec.from) continue;
     let values = (facts[spec.from] || []).filter(v => v).map(v => (spec.labels || {})[v] || v);
     if (values.length && spec.present) values = [spec.present];
@@ -43,8 +107,7 @@ function expected(model, study, row, today) {
 }
 
 function sync() {
-  const model = get(MODEL);
-  const sheet = SpreadsheetApp.getActive().getSheets().find(s => s.getSheetId() === model.gid);
+  const sheet = SpreadsheetApp.getActive().getSheets().find(s => s.getSheetId() === MODEL.gid);
   const table = sheet.getDataRange().getDisplayValues().map(cells => cells.map(c => c.trim()));
   const head = table[0];
   const at = name => {
@@ -52,7 +115,7 @@ function sync() {
     if (c < 0) throw new Error("The tracker has no column " + name);
     return c + 1;
   };
-  Object.keys(model.columns).forEach(at);
+  Object.keys(MODEL.columns).forEach(at);
   const rowOf = {};
   table.forEach((cells, i) => {
     const acc = cells[at("identifier") - 1].match(/S-VHPS\d+/);
@@ -61,13 +124,13 @@ function sync() {
   const today = Utilities.formatDate(new Date(), "Europe/Amsterdam", "yyyy-MM-dd");
   const set = text => [...new Set(text.split(", "))].sort().join("\n");
   // ponytail: one page of 100 studies; page through when the collection outgrows it
-  for (const hit of get(API + model.collection + "/search?pageSize=100").hits) {
+  for (const hit of get(API + MODEL.collection + "/search?pageSize=100").hits) {
     if (!(hit.accession in rowOf)) rowOf[hit.accession] = table.push(head.map(() => "")) - 1;
     const i = rowOf[hit.accession];
     const row = Object.fromEntries(head.map((name, c) => [name, table[i][c]]));
-    const want = expected(model, get(API + "studies/" + hit.accession), row, today);
+    const want = expected(get(API + "studies/" + hit.accession), row, today);
     for (const [name, value] of Object.entries(want)) {
-      const same = model.columns[name].many ? set(row[name]) === set(value) : row[name] === value;
+      const same = MODEL.columns[name].many ? set(row[name]) === set(value) : row[name] === value;
       if (!same) sheet.getRange(i + 1, at(name)).setNumberFormat("@").setValue(value);
     }
   }
