@@ -66,8 +66,8 @@ def strip_unfilled(node):
             kept = [strip_unfilled(a) for a in val if not _unfilled(a.get("value"))]
             if kept:
                 out[key] = kept
-        else:
-            out[key] = strip_unfilled(val)
+        elif (kept := strip_unfilled(val)) != [] or key not in ("subsections", "files", "links"):
+            out[key] = kept
     return out
 
 
