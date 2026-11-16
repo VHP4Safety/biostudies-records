@@ -1,5 +1,12 @@
+import json
+import shutil
+import subprocess
+from pathlib import Path
+
+import pytest
+
 import bsmeta
-from bsmeta import OlsTerm, check_links, check_terms, diff, iter_terms, strip_unfilled
+from bsmeta import OlsTerm, check_links, check_sheet, check_terms, diff, expected, iter_terms, strip_unfilled
 
 DOC = {
     "type": "submission",
@@ -64,35 +71,6 @@ def test_diff_lists_changed_rows_only():
     live["section"]["attributes"][0]["value"] = "Organ"
     out = diff(DOC, live)
     assert len(out) == 2 and out[0].startswith("- ") and out[1].startswith("+ ")
-
-
-def test_check_sheet_reports_only_differing_cells():
-    from bsmeta import check_sheet
-
-    row = {
-        "title": "T",
-        "license": "CC BY 4.0",
-        "releaseMetadata": "2026-05-01",
-        "hasROCrate": "Yes",
-        "caseStudy ": "Thyroid",
-        "workflowStep": "Toxicodynamics, Chemical Characteristics and Hazard Indentification",
-    }
-    doc = {
-        "type": "Submission",
-        "accno": "S-Y",
-        "attributes": [{"name": "Title", "value": "T"}, {"name": "ReleaseDate", "value": "2026-05-01"}],
-        "section": {
-            "type": "Study",
-            "attributes": [
-                {"name": "License", "value": "CC-BY"},
-                {"name": "Case study", "value": "Thyroid"},
-                {"name": "Process Flow Step", "value": "Toxicodynamics"},
-                {"name": "Process Flow Step", "value": "Chemical Characteristics and Hazard Identification"},
-            ],
-        },
-    }
-    assert [(i.code, i.where) for i in check_sheet(doc, {"S-Y": row})] == [("SHEET_CELL", "S-Y hasROCrate")]
-    assert [i.code for i in check_sheet(doc, {})] == ["SHEET_ROW"]
 
 
 def test_report_annotates_github_actions(monkeypatch, capsys, tmp_path):
@@ -192,13 +170,6 @@ def test_submit_registers_a_new_accession(tmp_path, monkeypatch):
     assert out["attributes"][1] == {"name": "DOI", "value": "10.6019/S-VHPS99"}
 
 
-def test_check_sheet_treats_missing_case_study_as_other():
-    from bsmeta import expected
-
-    doc = {"attributes": [{"name": "Title", "value": "T"}], "section": {"type": "Study", "attributes": []}}
-    assert expected(doc)["caseStudy"] == "Other"
-
-
 def test_login_explains_a_rejected_password(monkeypatch, tmp_path):
     import argparse
 
@@ -215,3 +186,94 @@ def test_login_explains_a_rejected_password(monkeypatch, tmp_path):
         bsmeta.cmd_login(argparse.Namespace())
     assert "Forgot password" in str(e.value)
     assert not (tmp_path / "session").exists()
+
+
+TODAY = "2026-11-16"
+TRACKED = {
+    "accno": "S-VHPS99",
+    "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2026-05-01"}],
+    "section": {
+        "type": "Study",
+        "attributes": [
+            {"name": "Title", "value": "T "},
+            {"name": "Description", "value": "D, with a comma"},
+            {"name": "License", "value": "CC-BY"},
+            {"name": "Case study", "value": "Parkinson"},
+            {"name": "Regulatory Question", "value": "reg_q_2a"},
+            {"name": "Regulatory Question", "value": "reg_q_2b"},
+            {"name": "Process Flow Step", "value": "Toxicodynamics"},
+            {"name": "Process Flow Step", "value": "Adverse Outcome"},
+        ],
+    },
+}
+CRATED = {**TRACKED, "section": {**TRACKED["section"], "files": [{"path": "S-VHPS99_rocrate_20261101.zip"}]}}
+BARE = {"accno": "S-VHPS98", "attributes": [{"name": "Title", "value": "T"}], "section": {"type": "Study", "attributes": []}}
+ROW = {
+    "title": "T",
+    "Description": "D, with a comma",
+    "identifier": "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS99",
+    "caseStudy": "Parkinson",
+    "regulatoryQuestion": "Q1, Q2",
+    "workflowStep": "Toxicodynamics, Adverse Outcome",
+    "status": "Shared",
+    "embargoDate": "",
+    "releaseMetadata": "2026-05-01",
+    "license": "CC-BY",
+    "hasROCrate": "No",
+}
+
+
+def test_expected_follows_the_tracker_model():
+    assert expected(TRACKED, ROW, TODAY) == {k: v for k, v in ROW.items() if k != "embargoDate"}
+
+
+def test_expected_defaults_when_the_record_is_silent():
+    want = expected(BARE, {}, TODAY)
+    assert (want["caseStudy"], want["regulatoryQuestion"], want["hasROCrate"], want["license"]) == ("Other", "N/A", "No", "")
+
+
+def test_status_is_public_once_a_crate_is_attached_and_the_embargo_has_passed():
+    status = lambda doc, **cells: expected(doc, {**ROW, **cells}, TODAY)["status"]
+    assert status(CRATED) == "Public"
+    assert status(CRATED, embargoDate=TODAY) == "Public"
+    assert status(CRATED, embargoDate="2026-12-31", status="Public") == "Shared"
+    assert status(TRACKED, status="Public") == "Shared"
+    assert status(TRACKED, status="Not shared") == "Not shared"
+
+
+def test_check_sheet_reports_only_differing_cells():
+    assert check_sheet(TRACKED, {"S-VHPS99": ROW}, TODAY) == []
+    off = {**ROW, "license": "CC BY 4.0", "workflowStep": "Adverse Outcome, Toxicodynamics"}
+    assert [(i.code, i.where) for i in check_sheet(TRACKED, {"S-VHPS99": off}, TODAY)] == [("SHEET_CELL", "S-VHPS99 license")]
+    assert [i.code for i in check_sheet(TRACKED, {}, TODAY)] == ["SHEET_ROW"]
+
+
+def test_check_sheet_reports_a_crate_attached_under_embargo():
+    row = {**ROW, "hasROCrate": "Yes", "embargoDate": "2026-12-31"}
+    assert [i.code for i in check_sheet(CRATED, {"S-VHPS99": row}, TODAY)] == ["EMBARGO"]
+
+
+def test_check_sheet_wants_an_iso_embargo_date():
+    issues = check_sheet(TRACKED, {"S-VHPS99": {**ROW, "embargoDate": "31-12-2026"}}, TODAY)
+    assert [(i.code, i.where) for i in issues] == [("SHEET_CELL", "S-VHPS99 embargoDate")]
+
+
+def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
+    sheet = tmp_path / "tracker.csv"
+    url = "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21"
+    sheet.write_text(f"title,identifier,caseStudy \nA,{url},Thyroid\nB,https://doi.org/10.5281/zenodo.1,Other\n")
+    assert bsmeta.rows(sheet.as_uri()) == {"S-VHPS21": {"title": "A", "identifier": url, "caseStudy": "Thyroid"}}
+
+
+def test_the_sheet_script_derives_what_bsmeta_derives():
+    node = shutil.which("node") or pytest.skip("node is not installed")
+    cases = [(TRACKED, ROW), (CRATED, ROW), (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}), (BARE, {})]
+    run = (
+        "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
+        "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
+        "const i = JSON.parse(fs.readFileSync(0, 'utf8'));"
+        "console.log(JSON.stringify(i.cases.map(([study, row]) => gs.expected(i.model, study, row, i.today))));"
+    )
+    given = json.dumps({"model": bsmeta.MODEL, "cases": cases, "today": TODAY})
+    out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
+    assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]

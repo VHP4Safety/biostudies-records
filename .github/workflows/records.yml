@@ -2,9 +2,9 @@ name: records
 
 on:
   push:
-    paths: ["bs_records/**", "template/**", "bsmeta.py", "tests/**", ".github/workflows/records.yml"]
+    paths: ["bs_records/**", "template/**", "bsmeta.py", "tracker.json", "tracker.gs", "tests/**", ".github/workflows/records.yml"]
   pull_request:
-    paths: ["bs_records/**", "template/**", "bsmeta.py", "tests/**", ".github/workflows/records.yml"]
+    paths: ["bs_records/**", "template/**", "bsmeta.py", "tracker.json", "tracker.gs", "tests/**", ".github/workflows/records.yml"]
   schedule:
     - cron: "17 6 1 * *"
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
           python-version: "3.12"
       - run: pip install pytest
       - run: python -m pytest -q
-      - run: python bsmeta.py fmt --check bs_records/*.json template/TEMPLATE.pagetab.json
+      - run: python bsmeta.py fmt --check bs_records/*.json template/TEMPLATE.pagetab.json tracker.json
       - run: python bsmeta.py check-terms bs_records/*.json
 
   fresh:
