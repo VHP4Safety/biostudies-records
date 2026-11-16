@@ -861,23 +861,19 @@
             "valqual" : [
               {
                 "name" : "Concentration",
-                "value" : "100",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "µM"
-                  }
-                ]
+                "value" : "100"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "µM"
               },
               {
                 "name" : "Exposure duration",
-                "value" : "24",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "hours"
-                  }
-                ]
+                "value" : "24"
+              },
+              {
+                "name" : "Exposure duration unit",
+                "value" : "hours"
               }
             ]
           }
@@ -987,23 +983,19 @@
             "valqual" : [
               {
                 "name" : "Concentration",
-                "value" : "1",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "µM"
-                  }
-                ]
+                "value" : "1"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "µM"
               },
               {
                 "name" : "Exposure duration",
-                "value" : "24",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "hours"
-                  }
-                ]
+                "value" : "24"
+              },
+              {
+                "name" : "Exposure duration unit",
+                "value" : "hours"
               }
             ]
           }

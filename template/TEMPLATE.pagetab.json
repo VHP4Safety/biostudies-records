@@ -603,13 +603,11 @@
               },
               {
                 "name" : "Concentration",
-                "value" : "[DRAFT]",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "[DRAFT]"
-                  }
-                ]
+                "value" : "[DRAFT]"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "[DRAFT]"
               }
             ]
           }
