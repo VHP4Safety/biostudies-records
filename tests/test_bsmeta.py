@@ -130,7 +130,7 @@ def test_a_read_retries_a_refused_connection(monkeypatch):
 def test_a_lost_connection_ends_a_command_with_a_message(tmp_path, monkeypatch):
     def lost():
         raise urllib.error.URLError(ConnectionRefusedError(61, "Connection refused"))
-    monkeypatch.setattr(bsmeta, "rows", lost)
+    monkeypatch.setattr(bsmeta, "tracker", lost)
     f = tmp_path / "S-VHPS99.json"
     f.write_text(json.dumps(TRACKED))
     with pytest.raises(SystemExit) as e:
@@ -339,12 +339,12 @@ ROW = {
     "Description": "D, with a comma",
     "identifier": "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS99",
     "caseStudy": "Parkinson",
-    "regulatoryQuestion": "Q1, Q2",
+    "regulatoryQuestion": "Parkinson Q1, Parkinson Q2",
     "workflowStep": "Toxicodynamics, Adverse Outcome",
     "status": "Shared",
     "embargoDate": "",
     "releaseMetadata": "2026-05-01",
-    "license": "CC-BY",
+    "license": "CC-BY-4.0",
     "hasROCrate": "No",
 }
 
@@ -365,6 +365,11 @@ def test_status_is_public_once_a_crate_is_attached_and_the_embargo_has_passed():
     assert status(CRATED, embargoDate="2026-12-31", status="Public") == "Shared"
     assert status(TRACKED, status="Public") == "Shared"
     assert status(TRACKED, status="Not shared") == "Not shared"
+
+
+def test_status_waits_for_the_metadata_release():
+    unreleased = {**CRATED, "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2099-01-01"}]}
+    assert expected(unreleased, {**ROW, "status": "Public"}, TODAY)["status"] == "Shared"
 
 
 def test_status_is_left_alone_when_the_embargo_date_cannot_be_read():
@@ -437,8 +442,32 @@ def test_check_sheet_compares_the_whole_record_copy(tmp_path):
     assert deposit_codes(TRACKED, deposit(tmp_path, record=linked)) == ["DEPOSIT"]
 
 
+def test_check_values_holds_every_row_to_the_model():
+    off = {**ROW, "workflowStep": "Toxicodynamics, External exposure", "license": "CC BY 4.0", "embargoDate": "31-12-2026", "partnerCode": "XYZ"}
+    issues = bsmeta.check_values([(2, ROW), (3, off), (4, {"title": "[planned]"})])
+    assert [(i.code, i.where) for i in issues] == [
+        ("SHEET_VALUE", "row 3 workflowStep"),
+        ("SHEET_VALUE", "row 3 embargoDate"),
+        ("SHEET_VALUE", "row 3 license"),
+        ("SHEET_VALUE", "row 3 partnerCode"),
+    ]
+
+
+def test_check_sheet_reports_cells_outside_the_vocabulary(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(bsmeta, "tracker", lambda: [(2, ROW), (3, {**ROW, "identifier": "", "workflowStep": "External exposure"})])
+    f = tmp_path / "S-VHPS99.json"
+    f.write_text(json.dumps(TRACKED))
+    with pytest.raises(SystemExit) as e:
+        bsmeta.main(["check-sheet", str(f)])
+    assert e.value.code == 1 and "row 3 workflowStep" in capsys.readouterr().out
+
+
+def test_every_column_of_the_model_says_what_it_holds():
+    assert [c for c, spec in bsmeta.MODEL["columns"].items() if not spec.get("note")] == []
+
+
 def check_sheet_cli(tmp_path, monkeypatch, deposits):
-    monkeypatch.setattr(bsmeta, "rows", lambda: {"S-VHPS99": ROW})
+    monkeypatch.setattr(bsmeta, "tracker", lambda: [(2, ROW)])
     f = tmp_path / "S-VHPS99.json"
     f.write_text(json.dumps(TRACKED))
     with pytest.raises(SystemExit) as e:
@@ -504,6 +533,7 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
         (CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}),
         (CRATED, {**ROW, "embargoDate": "２０２６-１２-３１", "status": "Public"}),
         (BARE, {}),
+        ({**CRATED, "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2099-01-01"}]}, {**ROW, "status": "Public"}),
     ]
     run = (
         "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
@@ -516,18 +546,21 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
 
 
-def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None):
+def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None, notes=None):
     """Run the sheet script's sync() under Node against a fake sheet, with model served as tracker.json on main; the raw values it writes.
 
     Typed columns refuse a number format, flaky fails every address's first request, and late is what the sheet holds
-    once every study has been fetched."""
+    once every study has been fetched. The header notes already match the model unless notes gives them; then the
+    writes and the notes set are returned."""
     node = shutil.which("node") or pytest.skip("node is not installed")
     run = (
-        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [], tried = new Set();"
+        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [], notes = [], tried = new Set();"
         "let fetched = 0;"
         "const table = () => (i.late && fetched >= 2 + Object.keys(i.studies).length ? i.late : i.table);"
         "const cell = (r, c) => ({"
         "  setNumberFormat() { if (i.typed.includes(i.table[0][c - 1])) throw new Error('typed column'); return this; },"
+        "  getNote: () => (r === 1 && i.notes[i.table[0][c - 1]]) || '',"
+        "  setNote(n) { notes.push([i.table[0][c - 1], n]); },"
         "  setValue(v) { writes.push([r, i.table[0][c - 1], v]); } });"
         "const sheet = { getSheetId: () => i.gid, getDataRange: () => ({ getDisplayValues: () => table() }), getRange: cell };"
         "const reply = url => url === 'https://raw.githubusercontent.com/VHP4Safety/biostudies-records/main/tracker.json' ? i.model"
@@ -542,11 +575,12 @@ def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None):
         "  Utilities: { formatDate: () => i.today, sleep() {} } });"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
         "gs.sync();"
-        "console.log(JSON.stringify(writes));"
+        "console.log(JSON.stringify({ writes, notes }));"
     )
-    given = json.dumps({"table": table, "studies": studies, "typed": list(typed), "model": model, "gid": model["gid"], "today": TODAY, "flaky": flaky, "late": late})
-    out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
-    return json.loads(out.stdout)
+    noted = {column: spec.get("note", "") for column, spec in model["columns"].items()} if notes is None else notes
+    given = json.dumps({"table": table, "studies": studies, "typed": list(typed), "model": model, "gid": model["gid"], "today": TODAY, "flaky": flaky, "late": late, "notes": noted})
+    out = json.loads(subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent).stdout)
+    return out if notes is not None else out["writes"]
 
 
 HEAD = list(bsmeta.MODEL["columns"])
@@ -567,7 +601,7 @@ def test_the_sheet_script_follows_the_model_on_main():
     served = {**bsmeta.MODEL, "columns": {**bsmeta.MODEL["columns"], "license": {}}}
     stale = ["CC BY 4.0" if column == "license" else ROW.get(column, "") for column in HEAD]
     assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[], model=served) == []
-    assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[]) == [[2, "license", "'CC-BY"]]
+    assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=[]) == [[2, "license", "'CC-BY-4.0"]]
 
 
 def stale_licence():
@@ -575,12 +609,12 @@ def stale_licence():
 
 
 def test_the_sheet_script_retries_a_failed_request():
-    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, flaky=True) == [[2, "license", "'CC-BY"]]
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, flaky=True) == [[2, "license", "'CC-BY-4.0"]]
 
 
 def test_the_sheet_script_writes_where_the_row_is_after_fetching():
     moved = [HEAD, ["" for _ in HEAD], stale_licence()]
-    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, late=moved) == [[3, "license", "'CC-BY"]]
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, late=moved) == [[3, "license", "'CC-BY-4.0"]]
 
 
 def test_the_sheet_script_refuses_two_rows_for_one_accession():
@@ -602,3 +636,10 @@ def test_records_are_read_as_utf8_whatever_the_locale():
     env = {"PATH": "/usr/bin:/bin", "LC_ALL": "en_US.ISO8859-1", "PYTHONUTF8": "0", "PYTHONIOENCODING": "utf-8"}
     out = subprocess.run(["python3", "-c", run, str(record)], capture_output=True, text=True, check=True, env=env, cwd=record.parent.parent)
     assert json.loads(out.stdout) == json.loads(record.read_bytes().decode("utf-8"))
+
+
+def test_the_sheet_script_writes_the_model_notes_into_the_header():
+    row = [ROW.get(column, "") for column in HEAD]
+    stale = {column: spec["note"] for column, spec in bsmeta.MODEL["columns"].items()} | {"title": "an old note"}
+    out = sync([HEAD, row], {"S-VHPS99": TRACKED}, notes=stale)
+    assert out == {"writes": [], "notes": [["title", bsmeta.MODEL["columns"]["title"]["note"]]]}

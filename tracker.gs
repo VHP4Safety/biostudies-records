@@ -46,9 +46,10 @@ function expected(model, study, row, today) {
   }
   const embargo = row.embargoDate || "";
   const have = row.status || "";
+  const released = (facts.ReleaseDate || [""])[0] <= today;
   // An embargo date that cannot be read leaves the status alone; check-sheet reports the date.
   if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.status = have;
-  else out.status = facts.files.length && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
+  else out.status = facts.files.length && released && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
   return out;
 }
 
@@ -65,7 +66,11 @@ function sync() {
     if (c < 0) throw new Error("The tracker has no column " + name);
     return c + 1;
   };
-  Object.keys(model.columns).forEach(at);
+  // The header notes say what each column holds, as the model defines it.
+  for (const [name, spec] of Object.entries(model.columns)) {
+    const header = sheet.getRange(1, at(name));
+    if (spec.note && header.getNote() !== spec.note) header.setNote(spec.note);
+  }
   const rowOf = {};
   table.forEach((cells, i) => {
     const acc = cells[at("identifier") - 1].match(ACCESSION);
