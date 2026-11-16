@@ -43,10 +43,21 @@ def _unfilled(value) -> bool:
     return not s or s.startswith(DRAFT)
 
 
-def strip_unfilled(node):
-    """Copy without blank or [DRAFT] attributes and valquals."""
+def _hollow(node) -> bool:
+    """A section left with nothing in it, an author without a name, or an emptied table."""
     if isinstance(node, list):
-        return [strip_unfilled(x) for x in node]
+        return not node
+    if not isinstance(node, dict) or "type" not in node or "path" in node or "url" in node:
+        return False
+    if node["type"].lower() == "author" and not any(a.get("name") == "Name" for a in node.get("attributes", [])):
+        return True
+    return not any(node.get(k) for k in ("attributes", "subsections", "files", "links"))
+
+
+def strip_unfilled(node):
+    """Copy without blank or [DRAFT] attributes and valquals, and without the sections that leaves empty."""
+    if isinstance(node, list):
+        return [x for x in map(strip_unfilled, node) if not _hollow(x)]
     if not isinstance(node, dict):
         return node
     out = {}
@@ -250,7 +261,7 @@ def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:
     return out
 
 
-MODEL = json.loads(Path(__file__).with_name("tracker.json").read_text())
+MODEL = json.loads(Path(__file__).with_name("tracker.json").read_text(encoding="utf-8"))
 SHEET = f"https://docs.google.com/spreadsheets/d/{MODEL['sheet']}/export?format=csv&gid={MODEL['gid']}"
 ACCESSION = re.compile(r"S-[A-Z]+\d+")
 ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
@@ -260,6 +271,8 @@ def rows(url: str = SHEET) -> dict[str, dict]:
     """Tracker rows by accession, headers and cells trimmed. The tracker must have every column of the model and one row per accession."""
     reader = csv.DictReader(io.StringIO(_body(url, 30).decode()))
     if missing := [c for c in MODEL["columns"] if c not in {k.strip() for k in reader.fieldnames or []}]:
+        if len(missing) == len(MODEL["columns"]):
+            sys.exit(f"{url} did not return the tracker: is the sheet still readable by anyone with the link?")
         sys.exit(f"the tracker has no column {', '.join(missing)}")
     out, line = {}, {}
     for n, row in enumerate(reader, 2):
@@ -344,7 +357,7 @@ SESSION_FILE = Path.home() / ".config" / "bsmeta" / "session"
 
 
 def _load(path: str) -> dict:
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -363,7 +376,7 @@ def _emit(level: str, path: str, text: str) -> None:
     if os.environ.get("GITHUB_ACTIONS"):
         print(f"::{'error' if level == 'error' else 'warning'} file={path}::{text}")
         if summary := os.environ.get("GITHUB_STEP_SUMMARY"):
-            with open(summary, "a") as f:
+            with open(summary, "a", encoding="utf-8") as f:
                 f.write(f"- {level}: `{path}` {text}\n")
 
 
@@ -382,13 +395,13 @@ def cmd_fmt(args) -> None:
     bad = 0
     for path in args.files:
         want = dumps(_load(path))
-        if Path(path).read_text() == want:
+        if Path(path).read_text(encoding="utf-8") == want:
             continue
         if args.check:
             _emit("error", path, "FORMAT not canonical; run `python3 bsmeta.py fmt`")
             bad += 1
         else:
-            Path(path).write_text(want)
+            Path(path).write_text(want, encoding="utf-8")
             print(f"{path}: formatted")
     if args.check:
         print(f"{bad} error(s)")
@@ -457,14 +470,16 @@ def cmd_attach(args) -> None:
         sys.exit(f"{args.record}: submit the record first; a crate is named after its accession")
     files = doc["section"].get("files") or []
     doc["section"]["files"] = files
-    session = _session()
-    for path in args.files:
-        name = f"{doc['accno']}_rocrate_{date.today():%Y%m%d}{Path(path).suffix}"
-        upload(path, session, name)
-        if not any(f.get("path") == name for f in files):
-            files.append({"path": name, "size": os.path.getsize(path), "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"})
-        print(f"{path}: uploaded as {name} and listed in {args.record}")
-    Path(args.record).write_text(dumps(doc))
+    path = args.crate
+    name = f"{doc['accno']}_rocrate_{date.today():%Y%m%d}{Path(path).suffix}"
+    upload(path, _session(), name)
+    entry = next((f for f in files if f.get("path") == name), None)
+    if entry is None:
+        entry = {"path": name, "size": 0, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
+        files.append(entry)
+    entry["size"] = os.path.getsize(path)
+    print(f"{path}: uploaded as {name} and listed in {args.record}")
+    Path(args.record).write_text(dumps(doc), encoding="utf-8")
     print(f"next: python3 bsmeta.py submit {args.record}")
 
 
@@ -479,9 +494,22 @@ def _register(path: str, raw: dict, accno: str) -> Path:
         after = next((n + 1 for n, a in enumerate(top) if a.get("name") == "Title"), len(top))
         top.insert(after, {"name": "DOI", "value": f"10.6019/{accno}"})
     new = Path(path).with_name(f"{accno}.json")
-    new.write_text(dumps(doc))
+    new.write_text(dumps(doc), encoding="utf-8")
     Path(path).unlink()
     return new
+
+
+def embargo_hold(doc: dict, today: str | None = None) -> str | None:
+    """Why a record with files may not go public yet: the tracker must hold a readable embargo date that has passed, or none."""
+    row = rows().get(doc.get("accno"))
+    if row is None:
+        return "the tracker has no row for it"
+    embargo = row.get("embargoDate", "")
+    if embargo and not ISO_DATE.fullmatch(embargo):
+        return f"its embargoDate {embargo!r} in the tracker is not YYYY-MM-DD"
+    if embargo > (today or date.today().isoformat()):
+        return f"a file is attached, but the data are under embargo until {embargo}"
+    return None
 
 
 def cmd_submit(args) -> None:
@@ -491,8 +519,8 @@ def cmd_submit(args) -> None:
         errors = [i for i in check_terms(doc) if i.level == "error"]
         if errors:
             sys.exit(f"{path}: {len(errors)} ontology error(s); run `python3 bsmeta.py check-terms {path}`")
-        if doc["section"].get("files") and (held := [i for i in check_sheet(doc, rows()) if i.code == "EMBARGO"]):
-            sys.exit(f"{path}: {held[0].message}; not submitted")
+        if doc["section"].get("files") and (why := embargo_hold(doc)):
+            sys.exit(f"{path}: {why}; not submitted")
         if args.dry_run:
             print(f"{path}: would submit {doc.get('accno', '<new accession>')}")
             continue
@@ -526,9 +554,9 @@ def main(argv=None) -> None:
     s.add_argument("files", nargs="+")
     s.add_argument("--check", action="store_true")
     s.set_defaults(fn=cmd_fmt)
-    s = sub.add_parser("attach", help="upload RO-Crate zips to the user area and list them in the record")
+    s = sub.add_parser("attach", help="upload an RO-Crate zip to the user area and list it in the record")
     s.add_argument("record")
-    s.add_argument("files", nargs="+")
+    s.add_argument("crate")
     s.set_defaults(fn=cmd_attach)
     args = p.parse_args(argv)
     try:

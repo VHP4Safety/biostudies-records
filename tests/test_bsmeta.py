@@ -52,6 +52,27 @@ def test_strip_unfilled_drops_blank_and_draft():
     assert DOC["section"]["attributes"][1]["value"] == ""
 
 
+def test_strip_unfilled_drops_the_sections_it_empties():
+    doc = {
+        "accno": "S-X",
+        "section": {
+            "type": "Study",
+            "attributes": [{"name": "Title", "value": "T"}],
+            "subsections": [
+                {"type": "Detection instrument", "attributes": [{"name": "Name", "value": ""}]},
+                {"type": "author", "attributes": [{"name": "affiliation", "value": "o1", "reference": True}]},
+                [{"type": "Software", "attributes": [{"name": "Name", "value": "[DRAFT]"}]}],
+                {"type": "Funding", "attributes": [{"name": "Agency", "value": "NWO"}]},
+            ],
+            "files": [{"path": "a.zip", "type": "file"}],
+            "links": [{"url": "https://example.org"}],
+        },
+    }
+    out = strip_unfilled(doc)["section"]
+    assert out["subsections"] == [{"type": "Funding", "attributes": [{"name": "Agency", "value": "NWO"}]}]
+    assert out["files"] == doc["section"]["files"] and out["links"] == doc["section"]["links"]
+
+
 def test_iter_terms():
     t = next(iter_terms(DOC))
     assert (t.path, t.name, t.ontology, t.term_id) == ("/submission/Study", "Organ", "UBERON", "UBERON_0000992")
@@ -174,13 +195,20 @@ def test_attach_uploads_under_the_naming_convention(tmp_path, monkeypatch):
     rec.write_text(json.dumps(DOC))
     crate = tmp_path / "whatever_the_builder_called_it.zip"
     crate.write_bytes(b"zip")
-    bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
-    bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=[str(crate)]))
+    bsmeta.main(["attach", str(rec), str(crate)])
+    crate.write_bytes(b"a corrected zip")
+    bsmeta.main(["attach", str(rec), str(crate)])
     name = f"S-X_rocrate_{date.today():%Y%m%d}.zip"
     assert uploads == [(str(crate), name)] * 2
     assert json.loads(rec.read_text())["section"]["files"] == [
-        {"path": name, "size": 3, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
+        {"path": name, "size": 15, "attributes": [{"name": "Description", "value": "RO-Crate"}, {"name": "Type", "value": "Dataset"}], "type": "file"}
     ]
+
+
+def test_attach_takes_one_crate(tmp_path):
+    with pytest.raises(SystemExit) as e:
+        bsmeta.main(["attach", str(tmp_path / "S-X.json"), "a.zip", "b.zip"])
+    assert e.value.code == 2
 
 
 def test_attach_needs_an_accession(tmp_path, monkeypatch):
@@ -193,7 +221,7 @@ def test_attach_needs_an_accession(tmp_path, monkeypatch):
     rec = tmp_path / "draft.pagetab.json"
     rec.write_text(json.dumps({k: v for k, v in DOC.items() if k != "accno"}))
     with pytest.raises(SystemExit) as e:
-        bsmeta.cmd_attach(argparse.Namespace(record=str(rec), files=["x.zip"]))
+        bsmeta.cmd_attach(argparse.Namespace(record=str(rec), crate="x.zip"))
     assert "submit the record first" in str(e.value)
 
 
@@ -226,6 +254,28 @@ def test_submit_holds_back_a_file_under_embargo(tmp_path, monkeypatch):
         with pytest.raises(SystemExit) as e:
             bsmeta.cmd_submit(argparse.Namespace(files=[str(f)], dry_run=dry_run, verbose=False))
         assert "2099-01-01" in str(e.value)
+
+
+def submitted(tmp_path, monkeypatch, sheet):
+    sent = []
+    monkeypatch.setattr(bsmeta, "rows", lambda: sheet)
+    monkeypatch.setattr(bsmeta, "check_terms", lambda doc: [])
+    monkeypatch.setattr(bsmeta, "_session", lambda: "tok")
+    monkeypatch.setattr(bsmeta, "submit", lambda doc, session: sent.append(doc["accno"]) or {"accno": doc["accno"]})
+    f = tmp_path / "S-VHPS99.json"
+    f.write_text(json.dumps(CRATED))
+    try:
+        bsmeta.cmd_submit(argparse.Namespace(files=[str(f)], dry_run=False, verbose=False))
+    except SystemExit as e:
+        return str(e)
+    return sent
+
+
+def test_submit_holds_back_files_without_a_readable_passed_embargo_date(tmp_path, monkeypatch):
+    assert "01-01-2099" in submitted(tmp_path, monkeypatch, {"S-VHPS99": {**ROW, "embargoDate": "01-01-2099"}})
+    assert "no row" in submitted(tmp_path, monkeypatch, {})
+    assert submitted(tmp_path, monkeypatch, {"S-VHPS99": {**ROW, "embargoDate": "2026-01-01"}}) == ["S-VHPS99"]
+    assert submitted(tmp_path, monkeypatch, {"S-VHPS99": ROW}) == ["S-VHPS99"]
 
 
 def test_login_explains_a_rejected_password(monkeypatch, tmp_path):
@@ -401,6 +451,14 @@ def test_rows_refuses_a_tracker_without_a_model_column(tmp_path):
     assert "embargoDate" in str(e.value)
 
 
+def test_rows_says_when_the_export_is_not_the_sheet(tmp_path):
+    page = tmp_path / "signin.html"
+    page.write_text("<!DOCTYPE html><html><head><title>Sign in</title></head></html>\n")
+    with pytest.raises(SystemExit) as e:
+        bsmeta.rows(page.as_uri())
+    assert "readable" in str(e.value)
+
+
 def test_rows_refuses_two_rows_for_one_accession(tmp_path):
     url = "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21"
     with pytest.raises(SystemExit) as e:
@@ -514,3 +572,11 @@ def test_the_sheet_script_finds_a_row_for_any_biostudies_accession():
     other = {**TRACKED, "accno": "S-RHER381"}
     row = {**ROW, **expected(other, ROW, TODAY)}
     assert sync([HEAD, [row.get(column, "") for column in HEAD]], {"S-RHER381": other}) == []
+
+
+def test_records_are_read_as_utf8_whatever_the_locale():
+    record = Path(bsmeta.__file__).parent / "bs_records" / "S-VHPS26.json"
+    run = "import json, bsmeta, sys; print(json.dumps(bsmeta._load(sys.argv[1])))"
+    env = {"PATH": "/usr/bin:/bin", "LC_ALL": "en_US.ISO8859-1", "PYTHONUTF8": "0", "PYTHONIOENCODING": "utf-8"}
+    out = subprocess.run(["python3", "-c", run, str(record)], capture_output=True, text=True, check=True, env=env, cwd=record.parent.parent)
+    assert json.loads(out.stdout) == json.loads(record.read_bytes().decode("utf-8"))
