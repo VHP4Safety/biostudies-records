@@ -1,0 +1,63 @@
+{
+  "sheet" : "1UfcQIZaGBU11n6jZtI6BmpCBZLy8IbWMBKr5pAqUwq0",
+  "gid" : 1572306711,
+  "collection" : "vhp4safety",
+  "columns" : {
+    "title" : {
+      "from" : "Title"
+    },
+    "Description" : {
+      "from" : "Description"
+    },
+    "identifier" : {
+      "from" : "accno",
+      "prefix" : "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/"
+    },
+    "privateLink" : {},
+    "caseStudy" : {
+      "from" : "Case study",
+      "many" : true,
+      "default" : "Other"
+    },
+    "regulatoryQuestion" : {
+      "from" : "Regulatory Question",
+      "many" : true,
+      "labels" : {
+        "reg_q_1a" : "Q1",
+        "reg_q_1b" : "Q2",
+        "reg_q_2a" : "Q1",
+        "reg_q_2b" : "Q2",
+        "reg_q_3a" : "Q1",
+        "reg_q_3b" : "Q2"
+      },
+      "default" : "N/A"
+    },
+    "workPackage" : {},
+    "workflowStep" : {
+      "from" : "Process Flow Step",
+      "many" : true
+    },
+    "status" : {},
+    "embargoDate" : {},
+    "releaseMetadata" : {
+      "from" : "ReleaseDate"
+    },
+    "license" : {
+      "from" : "License"
+    },
+    "hasMetadata" : {},
+    "hasToxTemp" : {},
+    "hasROCrate" : {
+      "from" : "files",
+      "present" : "Yes",
+      "default" : "No"
+    },
+    "contactPerson" : {},
+    "partnerCode" : {},
+    "type" : {},
+    "isReviewed" : {},
+    "FAStatus (platform.vhp4safety.nl)" : {},
+    "FAIRscore" : {},
+    "notes" : {}
+  }
+}

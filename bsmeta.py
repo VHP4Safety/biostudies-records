@@ -7,6 +7,7 @@ import getpass
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -234,52 +235,69 @@ def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:
     return out
 
 
-SHEET = "https://docs.google.com/spreadsheets/d/1UfcQIZaGBU11n6jZtI6BmpCBZLy8IbWMBKr5pAqUwq0/export?format=csv&gid=1572306711"
-LICENSE = {"cc by 4.0": "CC-BY", "cc-by": "CC-BY", "cc0": "CC0", "cc-by-nc-nd": "CC-BY-NC-ND"}
+MODEL = json.loads(Path(__file__).with_name("tracker.json").read_text())
+SHEET = f"https://docs.google.com/spreadsheets/d/{MODEL['sheet']}/export?format=csv&gid={MODEL['gid']}"
+ACCESSION = re.compile(r"S-VHPS\d+")
+ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def rows(url: str = SHEET) -> dict[str, dict]:
+    """Tracker rows by accession, headers and cells trimmed."""
     with urllib.request.urlopen(url, timeout=30) as r:
         text = r.read().decode()
     out = {}
     for row in csv.DictReader(io.StringIO(text)):
-        ident = row.get("identifier", "")
-        if "/studies/S-VHPS" in ident:
-            out[ident.rsplit("/", 1)[1].strip()] = row
+        row = {k.strip(): (v or "").strip() for k, v in row.items() if k}
+        if acc := ACCESSION.search(row.get("identifier", "")):
+            out[acc.group()] = row
     return out
 
 
-def expected(doc: dict) -> dict:
-    top = {a["name"]: a.get("value") for a in doc.get("attributes", [])}
+def expected(doc: dict, row: dict, today: str) -> dict:
+    """What tracker.json wants in the tracker row of a record; tracker.gs holds the same rules."""
     sec = doc["section"]
-    st = {}
-    for a in sec.get("attributes", []):
-        st.setdefault(a["name"], []).append(a.get("value"))
-    return {
-        "title": (top.get("Title") or st.get("Title", [""])[0]).strip(),
-        "license": st.get("License", [""])[0],
-        "releaseMetadata": top.get("ReleaseDate") or st.get("ReleaseDate", [""])[0],
-        "hasROCrate": "Yes" if sec.get("files") else "No",
-        "caseStudy": ", ".join(st.get("Case study", [])) or "Other",
-        "workflowStep": set(st.get("Process Flow Step", [])),
-    }
+    facts = {}
+    for attributes in (sec.get("attributes", []), doc.get("attributes", [])):
+        found = {}
+        for a in attributes:
+            found.setdefault(a["name"], []).append(str(a.get("value") or "").strip())
+        facts.update(found)
+    facts["accno"] = [doc.get("accno") or ""]
+    facts["files"] = [f.get("path") for x in sec.get("files") or [] for f in (x if isinstance(x, list) else [x])]
+    out = {}
+    for column, spec in MODEL["columns"].items():
+        if "from" not in spec:
+            continue
+        values = [spec.get("labels", {}).get(v, v) for v in facts.get(spec["from"], []) if v]
+        if values and "present" in spec:
+            values = [spec["present"]]
+        values = [spec.get("prefix", "") + v for v in dict.fromkeys(values)] or [spec.get("default", "")]
+        out[column] = ", ".join(values) if spec.get("many") else values[0]
+    embargo = row.get("embargoDate", "")
+    passed = not embargo or (ISO_DATE.fullmatch(embargo) is not None and embargo <= today)
+    have = row.get("status", "")
+    out["status"] = "Public" if facts["files"] and passed else "Shared" if have == "Public" else have
+    return out
 
 
-def check_sheet(doc: dict, sheet: dict[str, dict]) -> list[Issue]:
+def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None) -> list[Issue]:
     acc = doc.get("accno")
     row = sheet.get(acc)
     if row is None:
         return [Issue("error", "SHEET_ROW", acc, "no row with this accession in the tracker")]
-    want = expected(doc)
-    have = {
-        "title": row["title"].strip(),
-        "license": LICENSE.get(row["license"].strip().lower(), row["license"].strip()),
-        "releaseMetadata": row["releaseMetadata"].strip(),
-        "hasROCrate": row["hasROCrate"].strip() or "No",
-        "caseStudy": row["caseStudy "].strip(),
-        "workflowStep": {s.strip().replace("Indentification", "Identification") for s in row["workflowStep"].split(",") if s.strip()},
-    }
-    return [Issue("error", "SHEET_CELL", f"{acc} {col}", f"sheet {have[col]!r} vs record {want[col]!r}") for col in want if want[col] != have[col]]
+    today = today or date.today().isoformat()
+    out = []
+    embargo = row.get("embargoDate", "")
+    if embargo and not ISO_DATE.fullmatch(embargo):
+        out.append(Issue("error", "SHEET_CELL", f"{acc} embargoDate", f"{embargo!r} is not YYYY-MM-DD"))
+    elif embargo > today and doc["section"].get("files"):
+        out.append(Issue("error", "EMBARGO", acc, f"a file is attached, but the data are under embargo until {embargo}"))
+    for column, want in expected(doc, row, today).items():
+        have = row.get(column, "")
+        many = MODEL["columns"][column].get("many")
+        if (set(have.split(", ")) != set(want.split(", "))) if many else have != want:
+            out.append(Issue("error", "SHEET_CELL", f"{acc} {column}", f"sheet {have!r} vs record {want!r}"))
+    return out
 
 
 SESSION_FILE = Path.home() / ".config" / "bsmeta" / "session"
