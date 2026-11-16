@@ -131,7 +131,8 @@ function sync() {
     const want = expected(get(API + "studies/" + hit.accession), row, today);
     for (const [name, value] of Object.entries(want)) {
       const same = MODEL.columns[name].many ? set(row[name]) === set(value) : row[name] === value;
-      if (!same) sheet.getRange(i + 1, at(name)).setNumberFormat("@").setValue(value);
+      // The apostrophe keeps the value as text: no date or formula is made of it, and a typed column accepts it.
+      if (!same) sheet.getRange(i + 1, at(name)).setValue(value && "'" + value);
     }
   }
 }

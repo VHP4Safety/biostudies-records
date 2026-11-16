@@ -282,3 +282,40 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
     given = json.dumps({"cases": cases, "today": TODAY})
     out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
+
+
+def sync(table, studies, typed):
+    """Run the sheet script's sync() under Node against a fake sheet whose typed columns refuse a number format; the raw values it writes."""
+    node = shutil.which("node") or pytest.skip("node is not installed")
+    run = (
+        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [];"
+        "const cell = (r, c) => ({"
+        "  setNumberFormat() { if (i.typed.includes(i.table[0][c - 1])) throw new Error('typed column'); return this; },"
+        "  setValue(v) { writes.push([r, i.table[0][c - 1], v]); } });"
+        "const sheet = { getSheetId: () => i.gid, getDataRange: () => ({ getDisplayValues: () => i.table }), getRange: cell };"
+        "const reply = url => url.includes('/search') ? { hits: Object.keys(i.studies).map(accession => ({ accession })) } : i.studies[url.split('/').pop()];"
+        "const gs = vm.createContext({"
+        "  SpreadsheetApp: { getActive: () => ({ getSheets: () => [sheet] }) },"
+        "  UrlFetchApp: { fetch: url => ({ getContentText: () => JSON.stringify(reply(url)) }) },"
+        "  Utilities: { formatDate: () => i.today } });"
+        "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
+        "gs.sync();"
+        "console.log(JSON.stringify(writes));"
+    )
+    given = json.dumps({"table": table, "studies": studies, "typed": typed, "gid": bsmeta.MODEL["gid"], "today": TODAY})
+    out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
+    return json.loads(out.stdout)
+
+
+HEAD = list(bsmeta.MODEL["columns"])
+
+
+def test_the_sheet_script_corrects_a_cell_in_a_typed_column():
+    stale = ["" if column == "hasROCrate" else ROW.get(column, "") for column in HEAD]
+    assert sync([HEAD, stale], {"S-VHPS99": TRACKED}, typed=["hasROCrate"]) == [[2, "hasROCrate", "'No"]]
+
+
+def test_the_sheet_script_adds_a_row_for_a_new_accession():
+    writes = sync([HEAD, [ROW.get(column, "") for column in HEAD]], {"S-VHPS99": TRACKED, "S-VHPS98": BARE}, typed=["title"])
+    assert [3, "identifier", "'https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS98"] in writes
+    assert {row for row, _, _ in writes} == {3}
