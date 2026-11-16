@@ -751,17 +751,15 @@
               },
               {
                 "name" : "Role",
-                "value" : "detection agent",
-                "valqual" : [
-                  {
-                    "name" : "Ontology",
-                    "value" : "BAO"
-                  },
-                  {
-                    "name" : "TermId",
-                    "value" : "BAO_0110004"
-                  }
-                ]
+                "value" : "detection agent"
+              },
+              {
+                "name" : "Role ontology",
+                "value" : "BAO"
+              },
+              {
+                "name" : "Role TermId",
+                "value" : "BAO_0110004"
               }
             ]
           },
@@ -831,13 +829,11 @@
             "valqual" : [
               {
                 "name" : "Concentration",
-                "value" : "1",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "%"
-                  }
-                ]
+                "value" : "1"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "%"
               }
             ]
           }

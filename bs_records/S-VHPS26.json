@@ -1124,13 +1124,11 @@
             "valqual" : [
               {
                 "name" : "Concentration",
-                "value" : "100",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "µM"
-                  }
-                ]
+                "value" : "100"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "µM"
               }
             ]
           }
@@ -1227,13 +1225,11 @@
             "valqual" : [
               {
                 "name" : "Concentration",
-                "value" : "10",
-                "valqual" : [
-                  {
-                    "name" : "Unit",
-                    "value" : "mM"
-                  }
-                ]
+                "value" : "10"
+              },
+              {
+                "name" : "Concentration unit",
+                "value" : "mM"
               }
             ]
           }
