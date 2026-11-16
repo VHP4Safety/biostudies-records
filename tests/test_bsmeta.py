@@ -258,13 +258,37 @@ def test_check_sheet_wants_an_iso_embargo_date():
     assert [(i.code, i.where) for i in issues] == [("SHEET_CELL", "S-VHPS99 embargoDate")]
 
 
+def deposit(root, record=TRACKED, files=("data.csv",)):
+    """A deposit folder as vitro-crate takes it: source files and a copy of the record."""
+    folder = root / record["accno"]
+    (folder / "source").mkdir(parents=True)
+    for name in files:
+        (folder / "source" / name).write_text("x")
+    if record:
+        (folder / f"{record['accno']}.biostudies.json").write_text(json.dumps(record))
+    return root
+
+
+def deposit_codes(doc, deposits, **cells):
+    return [i.code for i in check_sheet(doc, {"S-VHPS99": {**ROW, **cells}}, TODAY, deposits)]
+
+
 def test_check_sheet_holds_shared_to_the_deposit_folders(tmp_path):
-    (tmp_path / "S-VHPS99").mkdir()
-    codes = lambda doc, deposits, **cells: [i.code for i in check_sheet(doc, {"S-VHPS99": {**ROW, **cells}}, TODAY, deposits)]
-    assert codes(TRACKED, tmp_path) == []
-    assert codes(TRACKED, tmp_path, status="Not shared") == ["DEPOSIT"]
-    assert codes(TRACKED, tmp_path / "elsewhere") == ["DEPOSIT"]
-    assert codes(CRATED, tmp_path / "elsewhere", hasROCrate="Yes", status="Public") == []
+    here = deposit(tmp_path / "here")
+    assert deposit_codes(TRACKED, here) == []
+    assert deposit_codes(TRACKED, here, status="Not shared") == ["DEPOSIT"]
+    assert deposit_codes(TRACKED, tmp_path / "elsewhere") == ["DEPOSIT"]
+    assert deposit_codes(CRATED, tmp_path / "elsewhere", hasROCrate="Yes", status="Public") == []
+
+
+def test_check_sheet_wants_files_in_a_deposit(tmp_path):
+    assert deposit_codes(TRACKED, deposit(tmp_path, files=())) == ["DEPOSIT"]
+
+
+def test_check_sheet_wants_the_current_record_in_a_deposit(tmp_path):
+    old = {**TRACKED, "attributes": [{"name": "Title", "value": "An earlier title"}]}
+    assert deposit_codes(TRACKED, deposit(tmp_path / "old", record=old)) == ["DEPOSIT"]
+    assert deposit_codes(CRATED, deposit(tmp_path / "public", record=old), hasROCrate="Yes", status="Public") == ["DEPOSIT"]
 
 
 def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
