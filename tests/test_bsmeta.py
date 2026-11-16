@@ -265,6 +265,11 @@ def test_rows_are_keyed_by_accession_with_trimmed_headers(tmp_path):
     assert bsmeta.rows(sheet.as_uri()) == {"S-VHPS21": {"title": "A", "identifier": url, "caseStudy": "Thyroid"}}
 
 
+def test_the_sheet_script_carries_the_model():
+    root = Path(bsmeta.__file__).parent
+    assert (root / "tracker.json").read_text().strip() in (root / "tracker.gs").read_text()
+
+
 def test_the_sheet_script_derives_what_bsmeta_derives():
     node = shutil.which("node") or pytest.skip("node is not installed")
     cases = [(TRACKED, ROW), (CRATED, ROW), (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}), (BARE, {})]
@@ -272,8 +277,8 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
         "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
         "const i = JSON.parse(fs.readFileSync(0, 'utf8'));"
-        "console.log(JSON.stringify(i.cases.map(([study, row]) => gs.expected(i.model, study, row, i.today))));"
+        "console.log(JSON.stringify(i.cases.map(([study, row]) => gs.expected(study, row, i.today))));"
     )
-    given = json.dumps({"model": bsmeta.MODEL, "cases": cases, "today": TODAY})
+    given = json.dumps({"cases": cases, "today": TODAY})
     out = subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent)
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
