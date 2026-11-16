@@ -109,11 +109,12 @@ class OlsTerm:
     replaced_by: str | None
 
 
-def _open(req, timeout: float, tries: int = 3):
-    """urlopen, trying a read again when the connection fails: EBI refuses connections now and then. A POST is sent once."""
+def _body(req, timeout: float, tries: int = 3) -> bytes:
+    """The response body, asked for again when the connection fails or stalls: EBI does both now and then. A POST is sent once."""
     for left in range(tries - 1, -1, -1):
         try:
-            return urllib.request.urlopen(req, timeout=timeout)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read()
         except urllib.error.HTTPError:
             raise
         except OSError:
@@ -123,9 +124,7 @@ def _open(req, timeout: float, tries: int = 3):
 
 
 def get_json(url: str) -> dict:
-    req = urllib.request.Request(url, headers={"User-Agent": "bsmeta", "Accept": "application/json"})
-    with _open(req, 30) as r:
-        return json.load(r)
+    return json.loads(_body(urllib.request.Request(url, headers={"User-Agent": "bsmeta", "Accept": "application/json"}), 30))
 
 
 @cache
@@ -177,8 +176,7 @@ def _request(url: str, data=None, headers=None, timeout=300) -> dict:
     if body is not None:
         hdrs["Content-Type"] = "application/json"
     try:
-        with _open(urllib.request.Request(url, data=body, headers=hdrs), timeout) as r:
-            return json.load(r)
+        return json.loads(_body(urllib.request.Request(url, data=body, headers=hdrs), timeout))
     except urllib.error.HTTPError as e:
         raise BioStudiesError(f"{e.code} {url}\n{e.read().decode(errors='replace')[:2000]}") from None
     except OSError as e:
@@ -260,9 +258,7 @@ ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 def rows(url: str = SHEET) -> dict[str, dict]:
     """Tracker rows by accession, headers and cells trimmed. The tracker must have every column of the model and one row per accession."""
-    with _open(url, 30) as r:
-        text = r.read().decode()
-    reader = csv.DictReader(io.StringIO(text))
+    reader = csv.DictReader(io.StringIO(_body(url, 30).decode()))
     if missing := [c for c in MODEL["columns"] if c not in {k.strip() for k in reader.fieldnames or []}]:
         sys.exit(f"the tracker has no column {', '.join(missing)}")
     out, line = {}, {}
