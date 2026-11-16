@@ -263,8 +263,8 @@ def check_links(doc, slugs=method_slugs, status=status) -> list[Issue]:
 
 MODEL = json.loads(Path(__file__).with_name("tracker.json").read_text(encoding="utf-8"))
 SHEET = f"https://docs.google.com/spreadsheets/d/{MODEL['sheet']}/export?format=csv&gid={MODEL['gid']}"
-ACCESSION = re.compile(r"S-[A-Z]+\d+")
-ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}")
+ACCESSION = re.compile(r"S-[A-Z]+[0-9]+")
+ISO_DATE = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}")  # ASCII digits, as tracker.gs reads them
 
 
 def rows(url: str = SHEET) -> dict[str, dict]:
@@ -563,6 +563,8 @@ def main(argv=None) -> None:
         args.fn(args)
     except BioStudiesError as e:
         sys.exit(f"BioStudies error: {e}")
+    except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+        sys.exit(f"no answer from a remote service: {e}")
 
 
 

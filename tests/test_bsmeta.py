@@ -103,12 +103,12 @@ def test_diff_sees_what_is_not_an_attribute():
     assert diff(linked, live) and not diff(DOC, live)
 
 
-def refused(calls):
+def refused(calls, body=b'{"ok": true}'):
     def urlopen(req, timeout=None):
         calls.append(req)
         if len(calls) < 3:
             raise urllib.error.URLError(ConnectionRefusedError(61, "Connection refused"))
-        return io.BytesIO(b'{"ok": true}')
+        return io.BytesIO(body)
     return urlopen
 
 
@@ -118,6 +118,20 @@ def test_a_read_retries_a_refused_connection(monkeypatch):
         calls = []
         monkeypatch.setattr(bsmeta.urllib.request, "urlopen", refused(calls))
         assert read() == {"ok": True} and len(calls) == 3
+    calls = []
+    monkeypatch.setattr(bsmeta.urllib.request, "urlopen", refused(calls, ",".join(HEAD).encode() + b"\n"))
+    assert bsmeta.rows("https://example.org/tracker.csv") == {} and len(calls) == 3
+
+
+def test_a_lost_connection_ends_a_command_with_a_message(tmp_path, monkeypatch):
+    def lost():
+        raise urllib.error.URLError(ConnectionRefusedError(61, "Connection refused"))
+    monkeypatch.setattr(bsmeta, "rows", lost)
+    f = tmp_path / "S-VHPS99.json"
+    f.write_text(json.dumps(TRACKED))
+    with pytest.raises(SystemExit) as e:
+        bsmeta.main(["check-sheet", str(f)])
+    assert "Connection refused" in str(e.value.code)
 
 
 def test_a_read_retries_a_timeout_while_reading(monkeypatch):
@@ -350,7 +364,10 @@ def test_status_is_public_once_a_crate_is_attached_and_the_embargo_has_passed():
 
 
 def test_status_is_left_alone_when_the_embargo_date_cannot_be_read():
-    assert expected(CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}, TODAY)["status"] == "Public"
+    for unreadable in ("31-12-2026", "２０２６-１２-３１"):
+        assert expected(CRATED, {**ROW, "embargoDate": unreadable, "status": "Public"}, TODAY)["status"] == "Public"
+        issues = check_sheet(CRATED, {"S-VHPS99": {**ROW, "embargoDate": unreadable, "hasROCrate": "Yes", "status": "Public"}}, TODAY)
+        assert [(i.code, i.where) for i in issues] == [("SHEET_CELL", "S-VHPS99 embargoDate")]
 
 
 def test_check_sheet_reports_only_differing_cells():
@@ -481,6 +498,7 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
         (CRATED, ROW),
         (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}),
         (CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}),
+        (CRATED, {**ROW, "embargoDate": "２０２６-１２-３１", "status": "Public"}),
         (BARE, {}),
     ]
     run = (
