@@ -20,6 +20,7 @@ python3 bsmeta.py fmt [--check] bs_records/*.json           # canonical JSON lay
 python3 bsmeta.py check-terms bs_records/*.json             # ontology terms resolve in OLS4
 python3 bsmeta.py check-links bs_records/*.json             # method slugs, CompoundCloud ids, DOIs, bioassay names
 python3 bsmeta.py check-sheet bs_records/S-VHPS*.json       # RO inventory tracker matches the records
+python3 bsmeta.py check-sheet --deposits <dir> bs_records/S-VHPS*.json   # ... and Shared means <dir>/<accession> exists
 python3 bsmeta.py diff bs_records/S-VHPS*.json              # differences from the live record
 python3 bsmeta.py login                                     # session id -> ~/.config/bsmeta/session
 python3 bsmeta.py attach bs_records/<acc>.json <crate>.zip  # upload to your user area and list under section.files

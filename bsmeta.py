@@ -280,7 +280,7 @@ def expected(doc: dict, row: dict, today: str) -> dict:
     return out
 
 
-def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None) -> list[Issue]:
+def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, deposits: str | Path | None = None) -> list[Issue]:
     acc = doc.get("accno")
     row = sheet.get(acc)
     if row is None:
@@ -292,11 +292,19 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None) -> 
         out.append(Issue("error", "SHEET_CELL", f"{acc} embargoDate", f"{embargo!r} is not YYYY-MM-DD"))
     elif embargo > today and doc["section"].get("files"):
         out.append(Issue("error", "EMBARGO", acc, f"a file is attached, but the data are under embargo until {embargo}"))
-    for column, want in expected(doc, row, today).items():
+    wanted = expected(doc, row, today)
+    for column, want in wanted.items():
         have = row.get(column, "")
         many = MODEL["columns"][column].get("many")
         if (set(have.split(", ")) != set(want.split(", "))) if many else have != want:
             out.append(Issue("error", "SHEET_CELL", f"{acc} {column}", f"sheet {have!r} vs record {want!r}"))
+    if deposits is not None and wanted["status"] != "Public":
+        status = row.get("status", "")
+        if (Path(deposits) / acc).is_dir():
+            if status not in ("Shared", "Private"):
+                out.append(Issue("error", "DEPOSIT", acc, f"its deposit folder is in {deposits}, but the status is {status!r}, not Shared"))
+        elif status == "Shared":
+            out.append(Issue("error", "DEPOSIT", acc, f"the status is Shared, but {deposits} has no folder for it"))
     return out
 
 
@@ -365,7 +373,7 @@ def cmd_check_links(args) -> None:
 
 def cmd_check_sheet(args) -> None:
     sheet_rows = rows()
-    _report(args, lambda doc: check_sheet(doc, sheet_rows))
+    _report(args, lambda doc: check_sheet(doc, sheet_rows, deposits=args.deposits))
 
 
 def cmd_diff(args) -> None:
@@ -473,6 +481,8 @@ def main(argv=None) -> None:
         s.add_argument("files", nargs="+")
         s.add_argument("-v", "--verbose", action="store_true")
         s.add_argument("--dry-run", action="store_true")
+        if fn is cmd_check_sheet:
+            s.add_argument("--deposits", metavar="DIR", help="also hold the Shared status to the deposit folders DIR/<accession>")
         s.set_defaults(fn=fn)
     sub.add_parser("login", help="store a BioStudies session token").set_defaults(fn=cmd_login)
     s = sub.add_parser("fmt", help="rewrite records in the canonical JSON layout (--check only reports)")
