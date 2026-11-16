@@ -4,7 +4,6 @@ on:
   push:
     paths: ["bs_records/**", "template/**", "bsmeta.py", "tracker.json", "tracker.gs", "tests/**", ".github/workflows/records.yml"]
   pull_request:
-    paths: ["bs_records/**", "template/**", "bsmeta.py", "tracker.json", "tracker.gs", "tests/**", ".github/workflows/records.yml"]
   schedule:
     - cron: "17 6 1 * *"
   workflow_dispatch:
