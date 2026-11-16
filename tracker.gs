@@ -60,7 +60,7 @@ function sync() {
   });
   const today = Utilities.formatDate(new Date(), "Europe/Amsterdam", "yyyy-MM-dd");
   const set = text => [...new Set(text.split(", "))].sort().join("\n");
-  // ponytail: one page of 100 studies; page through when the collection outgrows it
+  // One page of 100 studies: page through when the collection outgrows it.
   for (const hit of get(API + model.collection + "/search?pageSize=100").hits) {
     if (!(hit.accession in rowOf)) rowOf[hit.accession] = table.push(head.map(() => "")) - 1;
     const i = rowOf[hit.accession];
