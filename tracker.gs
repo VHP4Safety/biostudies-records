@@ -8,7 +8,7 @@ const MODEL = "https://raw.githubusercontent.com/VHP4Safety/biostudies-records/m
 
 function install() {
   ScriptApp.getProjectTriggers().forEach(t => ScriptApp.deleteTrigger(t));
-  ScriptApp.newTrigger("sync").timeBased().everyHours(1).create();
+  ScriptApp.newTrigger("sync").timeBased().everyDays(1).atHour(6).create();
   sync();
 }
 
