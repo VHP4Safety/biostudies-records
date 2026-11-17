@@ -45,11 +45,11 @@ function expected(model, study, row, today) {
     out[column] = spec.many ? values.join(", ") : values[0];
   }
   const embargo = row.embargoDate || "";
-  const have = row.status || "";
+  const have = row.creativeWorkStatus || "";
   const released = (facts.ReleaseDate || [""])[0] <= today;
   // An embargo date that cannot be read leaves the status alone; check-sheet reports the date.
-  if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.status = have;
-  else out.status = facts.files.length && released && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
+  if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.creativeWorkStatus = have;
+  else out.creativeWorkStatus = facts.files.length && released && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
   return out;
 }
 
@@ -80,6 +80,7 @@ function sync() {
   });
   const today = Utilities.formatDate(new Date(), "Europe/Amsterdam", "yyyy-MM-dd");
   const set = text => [...new Set(text.split(", "))].sort().join("\n");
+  let corrected = 0;
   for (const study of studies) {
     if (!(study.accno in rowOf)) rowOf[study.accno] = table.push(head.map(() => "")) - 1;
     const i = rowOf[study.accno];
@@ -88,7 +89,14 @@ function sync() {
     for (const [name, value] of Object.entries(want)) {
       const same = model.columns[name].many ? set(row[name]) === set(value) : row[name] === value;
       // The apostrophe keeps the value as text: no date or formula is made of it, and a typed column accepts it.
-      if (!same) sheet.getRange(i + 1, at(name)).setValue(value && "'" + value);
+      if (!same) {
+        sheet.getRange(i + 1, at(name)).setValue(value && "'" + value);
+        corrected++;
+      }
     }
   }
+  // A range named lastSync shows when the sync last finished, so a sync that stopped running is seen.
+  const stamp = SpreadsheetApp.getActive().getRangeByName("lastSync");
+  const now = Utilities.formatDate(new Date(), "Europe/Amsterdam", "yyyy-MM-dd HH:mm");
+  if (stamp) stamp.setValue("'" + now + ": " + corrected + " cell" + (corrected === 1 ? "" : "s") + " corrected");
 }
