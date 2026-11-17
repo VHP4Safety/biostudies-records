@@ -294,17 +294,12 @@ def rows(url: str = SHEET) -> dict[str, dict]:
 
 
 def check_values(table: list[tuple[int, dict]]) -> list[Issue]:
-    """Cells outside the model: a value that is not one of its column's values, a date not written YYYY-MM-DD, or a
-    Draft that is not exactly a row without an identifier."""
+    """Cells outside the model: a value that is not one of its column's values, a date not written YYYY-MM-DD, or
+    Private or Public on a Draft, a row without an identifier."""
     out = []
     for n, row in table:
-        if not any(row.values()):
-            continue
-        status = row.get("creativeWorkStatus", "")
-        if not row.get("identifier") and status != "Draft":
-            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", f"{status!r} on a row without an identifier, which is a Draft"))
-        if row.get("identifier") and status == "Draft":
-            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", "a Draft has no identifier yet"))
+        if not row.get("identifier") and (status := row.get("creativeWorkStatus", "")) in ("Private", "Public"):
+            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", f"{status} needs an identifier: this row is still a Draft"))
         for column, spec in MODEL["columns"].items():
             if not (cell := row.get(column, "")):
                 continue
