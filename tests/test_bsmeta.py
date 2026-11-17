@@ -444,7 +444,7 @@ def test_check_sheet_compares_the_whole_record_copy(tmp_path):
 
 def test_check_values_holds_every_row_to_the_model():
     off = {**ROW, "workflowStep": "Toxicodynamics, External exposure", "license": "CC BY 4.0", "embargoDate": "31-12-2026", "partnerCode": "XYZ"}
-    issues = bsmeta.check_values([(2, ROW), (3, off), (4, {"name": "Planned", "creativeWorkStatus": "Draft"}), (5, {})])
+    issues = bsmeta.check_values([(2, ROW), (3, off), (4, {"name": "Planned", "creativeWorkStatus": "Not shared"}), (5, {})])
     assert [(i.code, i.where) for i in issues] == [
         ("SHEET_VALUE", "row 3 workflowStep"),
         ("SHEET_VALUE", "row 3 embargoDate"),
@@ -453,11 +453,16 @@ def test_check_values_holds_every_row_to_the_model():
     ]
 
 
-def test_a_draft_is_a_row_without_an_identifier():
-    unnamed = {**ROW, "identifier": ""}
-    named = {**ROW, "creativeWorkStatus": "Draft"}
-    issues = bsmeta.check_values([(2, ROW), (3, unnamed), (4, {**unnamed, "creativeWorkStatus": "Draft"}), (5, named), (6, {"name": ""})])
-    assert [(i.code, i.where) for i in issues] == [("SHEET_VALUE", "row 3 creativeWorkStatus"), ("SHEET_VALUE", "row 5 creativeWorkStatus")]
+def test_only_a_ro_with_an_identifier_can_be_private_or_public():
+    draft = {**ROW, "identifier": ""}
+    rows = [(2, ROW), (3, {**draft, "creativeWorkStatus": "Partially shared"}), (4, {**draft, "creativeWorkStatus": "Public"}), (5, {**draft, "creativeWorkStatus": "Private"}), (6, {"name": ""})]
+    issues = bsmeta.check_values(rows)
+    assert [(i.code, i.where) for i in issues] == [("SHEET_VALUE", "row 4 creativeWorkStatus"), ("SHEET_VALUE", "row 5 creativeWorkStatus")]
+
+
+def test_draft_is_not_a_status():
+    issues = bsmeta.check_values([(2, {**ROW, "identifier": "", "creativeWorkStatus": "Draft"})])
+    assert [(i.code, i.where) for i in issues] == [("SHEET_VALUE", "row 2 creativeWorkStatus")]
 
 
 def test_check_sheet_reports_cells_outside_the_vocabulary(tmp_path, monkeypatch, capsys):

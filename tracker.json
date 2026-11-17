@@ -5,7 +5,7 @@
   "columns" : {
     "name" : {
       "from" : "Title",
-      "note" : "Name of the RO; provisional while it is a Draft. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
+      "note" : "Name of the RO; provisional while it is a Draft, a row without an identifier. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "description" : {
       "from" : "Description",
@@ -14,7 +14,7 @@
     "identifier" : {
       "from" : "accno",
       "prefix" : "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/",
-      "note" : "Persistent link to the RO as an https URL: https://doi.org/… where it has a DOI (for Zenodo the DOI for all versions), otherwise its landing page. Empty while the RO is a Draft; never a storage path. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
+      "note" : "Persistent link to the RO as an https URL: https://doi.org/… where it has a DOI (for Zenodo the DOI for all versions), otherwise its landing page. Empty while the RO is a Draft (still being made or not yet deposited); never a storage path. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "privateLink" : {
       "note" : "Where non-public files are kept, such as a project-drive path. Never an access key or other secret: anyone with the link can read this sheet."
@@ -85,14 +85,13 @@
     },
     "creativeWorkStatus" : {
       "values" : [
-        "Draft",
         "Not shared",
         "Partially shared",
         "Shared",
         "Private",
         "Public"
       ],
-      "note" : "Draft: no persistent identifier yet, as the RO is still being made or not yet deposited. Not shared: the tracker owner does not have the files. Partially shared: the owner has some of them. Shared: not public, and the files are in the deposit folder on the owner's laptop. Private: in a public repository but not yet released. Public: the files are openly available. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargoDate has passed, and turns an earlier Public into Shared."
+      "note" : "Where the files of the RO are. Not shared: the tracker owner does not have them. Partially shared: the owner has some of them. Shared: not public, and the files are in the deposit folder on the owner's laptop. Private: in a public repository but not yet released. Public: openly available. Private and Public need an identifier. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargoDate has passed, and turns an earlier Public into Shared."
     },
     "embargoDate" : {
       "date" : true,
