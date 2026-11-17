@@ -167,16 +167,14 @@
       "values" : [
         "Dataset",
         "ScholarlyArticle",
-        "BioAssay",
-        "Software",
-        "BioModel",
-        "AdverseOutcomePathway",
-        "BioSample/CellModel/BarrierModel(?)",
-        "LabProtocol",
-        "Study",
-        "In vitro model"
+        "SoftwareSourceCode",
+        "CreativeWork",
+        "ComputationalWorkflow",
+        "PresentationDigitalDocument",
+        "MediaObject",
+        "LearningResource"
       ],
-      "note" : "Kinds of research output the RO is."
+      "note" : "schema.org or Bioschemas type of the RO, matching the Zenodo resource type: Dataset (dataset), ScholarlyArticle (journal article), SoftwareSourceCode (software), CreativeWork (model or poster; schema.org has no model type), ComputationalWorkflow (workflow), PresentationDigitalDocument (presentation), MediaObject (video), LearningResource (lesson). A Zenodo RO takes the type of its record."
     },
     "isReviewed" : {
       "values" : [
