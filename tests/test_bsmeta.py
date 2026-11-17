@@ -335,15 +335,15 @@ TRACKED = {
 CRATED = {**TRACKED, "section": {**TRACKED["section"], "files": [{"path": "S-VHPS99_rocrate_20261101.zip"}]}}
 BARE = {"accno": "S-VHPS98", "attributes": [{"name": "Title", "value": "T"}], "section": {"type": "Study", "attributes": []}}
 ROW = {
-    "title": "T",
-    "Description": "D, with a comma",
+    "name": "T",
+    "description": "D, with a comma",
     "identifier": "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS99",
     "caseStudy": "Parkinson",
     "regulatoryQuestion": "Parkinson Q1, Parkinson Q2",
     "workflowStep": "Toxicodynamics, Adverse Outcome",
-    "status": "Shared",
+    "creativeWorkStatus": "Shared",
     "embargoDate": "",
-    "releaseMetadata": "2026-05-01",
+    "datePublished": "2026-05-01",
     "license": "CC-BY-4.0",
     "hasROCrate": "No",
 }
@@ -359,23 +359,23 @@ def test_expected_defaults_when_the_record_is_silent():
 
 
 def test_status_is_public_once_a_crate_is_attached_and_the_embargo_has_passed():
-    status = lambda doc, **cells: expected(doc, {**ROW, **cells}, TODAY)["status"]
+    status = lambda doc, **cells: expected(doc, {**ROW, **cells}, TODAY)["creativeWorkStatus"]
     assert status(CRATED) == "Public"
     assert status(CRATED, embargoDate=TODAY) == "Public"
-    assert status(CRATED, embargoDate="2026-12-31", status="Public") == "Shared"
-    assert status(TRACKED, status="Public") == "Shared"
-    assert status(TRACKED, status="Not shared") == "Not shared"
+    assert status(CRATED, embargoDate="2026-12-31", creativeWorkStatus="Public") == "Shared"
+    assert status(TRACKED, creativeWorkStatus="Public") == "Shared"
+    assert status(TRACKED, creativeWorkStatus="Not shared") == "Not shared"
 
 
 def test_status_waits_for_the_metadata_release():
     unreleased = {**CRATED, "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2099-01-01"}]}
-    assert expected(unreleased, {**ROW, "status": "Public"}, TODAY)["status"] == "Shared"
+    assert expected(unreleased, {**ROW, "creativeWorkStatus": "Public"}, TODAY)["creativeWorkStatus"] == "Shared"
 
 
 def test_status_is_left_alone_when_the_embargo_date_cannot_be_read():
     for unreadable in ("31-12-2026", "２０２６-１２-３１"):
-        assert expected(CRATED, {**ROW, "embargoDate": unreadable, "status": "Public"}, TODAY)["status"] == "Public"
-        issues = check_sheet(CRATED, {"S-VHPS99": {**ROW, "embargoDate": unreadable, "hasROCrate": "Yes", "status": "Public"}}, TODAY)
+        assert expected(CRATED, {**ROW, "embargoDate": unreadable, "creativeWorkStatus": "Public"}, TODAY)["creativeWorkStatus"] == "Public"
+        issues = check_sheet(CRATED, {"S-VHPS99": {**ROW, "embargoDate": unreadable, "hasROCrate": "Yes", "creativeWorkStatus": "Public"}}, TODAY)
         assert [(i.code, i.where) for i in issues] == [("SHEET_CELL", "S-VHPS99 embargoDate")]
 
 
@@ -414,9 +414,9 @@ def deposit_codes(doc, deposits, **cells):
 def test_check_sheet_holds_shared_to_the_deposit_folders(tmp_path):
     here = deposit(tmp_path / "here")
     assert deposit_codes(TRACKED, here) == []
-    assert deposit_codes(TRACKED, here, status="Not shared") == ["DEPOSIT"]
+    assert deposit_codes(TRACKED, here, creativeWorkStatus="Not shared") == ["DEPOSIT"]
     assert deposit_codes(TRACKED, tmp_path / "elsewhere") == ["DEPOSIT"]
-    assert deposit_codes(CRATED, tmp_path / "elsewhere", hasROCrate="Yes", status="Public") == []
+    assert deposit_codes(CRATED, tmp_path / "elsewhere", hasROCrate="Yes", creativeWorkStatus="Public") == []
 
 
 def test_check_sheet_wants_files_in_a_deposit(tmp_path):
@@ -426,7 +426,7 @@ def test_check_sheet_wants_files_in_a_deposit(tmp_path):
 def test_check_sheet_wants_the_current_record_in_a_deposit(tmp_path):
     old = {**TRACKED, "attributes": [{"name": "Title", "value": "An earlier title"}]}
     assert deposit_codes(TRACKED, deposit(tmp_path / "old", record=old)) == ["DEPOSIT"]
-    assert deposit_codes(CRATED, deposit(tmp_path / "public", record=old), hasROCrate="Yes", status="Public") == ["DEPOSIT"]
+    assert deposit_codes(CRATED, deposit(tmp_path / "public", record=old), hasROCrate="Yes", creativeWorkStatus="Public") == ["DEPOSIT"]
 
 
 def test_check_sheet_does_not_count_hidden_files_as_a_deposit(tmp_path):
@@ -444,13 +444,20 @@ def test_check_sheet_compares_the_whole_record_copy(tmp_path):
 
 def test_check_values_holds_every_row_to_the_model():
     off = {**ROW, "workflowStep": "Toxicodynamics, External exposure", "license": "CC BY 4.0", "embargoDate": "31-12-2026", "partnerCode": "XYZ"}
-    issues = bsmeta.check_values([(2, ROW), (3, off), (4, {"title": "[planned]"})])
+    issues = bsmeta.check_values([(2, ROW), (3, off), (4, {"name": "Planned", "creativeWorkStatus": "Draft"}), (5, {})])
     assert [(i.code, i.where) for i in issues] == [
         ("SHEET_VALUE", "row 3 workflowStep"),
         ("SHEET_VALUE", "row 3 embargoDate"),
         ("SHEET_VALUE", "row 3 license"),
         ("SHEET_VALUE", "row 3 partnerCode"),
     ]
+
+
+def test_a_draft_is_a_row_without_an_identifier():
+    unnamed = {**ROW, "identifier": ""}
+    named = {**ROW, "creativeWorkStatus": "Draft"}
+    issues = bsmeta.check_values([(2, ROW), (3, unnamed), (4, {**unnamed, "creativeWorkStatus": "Draft"}), (5, named), (6, {"name": ""})])
+    assert [(i.code, i.where) for i in issues] == [("SHEET_VALUE", "row 3 creativeWorkStatus"), ("SHEET_VALUE", "row 5 creativeWorkStatus")]
 
 
 def test_check_sheet_reports_cells_outside_the_vocabulary(tmp_path, monkeypatch, capsys):
@@ -495,7 +502,7 @@ def tracker_csv(path, *identifiers):
 
 def test_rows_refuses_a_tracker_without_a_model_column(tmp_path):
     sheet = tmp_path / "tracker.csv"
-    sheet.write_text("title,identifier\nA,https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21\n")
+    sheet.write_text("name,identifier\nA,https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS21\n")
     with pytest.raises(SystemExit) as e:
         bsmeta.rows(sheet.as_uri())
     assert "embargoDate" in str(e.value)
@@ -529,11 +536,11 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
     cases = [
         (TRACKED, ROW),
         (CRATED, ROW),
-        (CRATED, {**ROW, "embargoDate": "2026-12-31", "status": "Public"}),
-        (CRATED, {**ROW, "embargoDate": "31-12-2026", "status": "Public"}),
-        (CRATED, {**ROW, "embargoDate": "２０２６-１２-３１", "status": "Public"}),
+        (CRATED, {**ROW, "embargoDate": "2026-12-31", "creativeWorkStatus": "Public"}),
+        (CRATED, {**ROW, "embargoDate": "31-12-2026", "creativeWorkStatus": "Public"}),
+        (CRATED, {**ROW, "embargoDate": "２０２６-１２-３１", "creativeWorkStatus": "Public"}),
         (BARE, {}),
-        ({**CRATED, "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2099-01-01"}]}, {**ROW, "status": "Public"}),
+        ({**CRATED, "attributes": [{"name": "Title", "value": "T "}, {"name": "ReleaseDate", "value": "2099-01-01"}]}, {**ROW, "creativeWorkStatus": "Public"}),
     ]
     run = (
         "const vm = require('vm'), fs = require('fs'), gs = vm.createContext({});"
@@ -546,15 +553,15 @@ def test_the_sheet_script_derives_what_bsmeta_derives():
     assert json.loads(out.stdout) == [expected(study, row, TODAY) for study, row in cases]
 
 
-def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None, notes=None):
+def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None, notes=None, stamp=False):
     """Run the sheet script's sync() under Node against a fake sheet, with model served as tracker.json on main; the raw values it writes.
 
     Typed columns refuse a number format, flaky fails every address's first request, and late is what the sheet holds
     once every study has been fetched. The header notes already match the model unless notes gives them; then the
-    writes and the notes set are returned."""
+    writes and the notes set are returned. With stamp the spreadsheet has a lastSync range, and what is written there is returned."""
     node = shutil.which("node") or pytest.skip("node is not installed")
     run = (
-        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [], notes = [], tried = new Set();"
+        "const vm = require('vm'), fs = require('fs'), i = JSON.parse(fs.readFileSync(0, 'utf8')), writes = [], notes = [], stamps = [], tried = new Set();"
         "let fetched = 0;"
         "const table = () => (i.late && fetched >= 2 + Object.keys(i.studies).length ? i.late : i.table);"
         "const cell = (r, c) => ({"
@@ -570,17 +577,20 @@ def sync(table, studies, typed=(), model=bsmeta.MODEL, flaky=False, late=None, n
         "  fetched++;"
         "  return { getContentText: () => JSON.stringify(reply(url)) }; };"
         "const gs = vm.createContext({"
-        "  SpreadsheetApp: { getActive: () => ({ getSheets: () => [sheet] }) },"
+        "  SpreadsheetApp: { getActive: () => ({ getSheets: () => [sheet],"
+        "    getRangeByName: name => (i.stamp && name === 'lastSync' ? { setValue(v) { stamps.push(v); } } : null) }) },"
         "  UrlFetchApp: { fetch },"
         "  Utilities: { formatDate: () => i.today, sleep() {} } });"
         "vm.runInContext(fs.readFileSync('tracker.gs', 'utf8'), gs);"
         "gs.sync();"
-        "console.log(JSON.stringify({ writes, notes }));"
+        "console.log(JSON.stringify({ writes, notes, stamps }));"
     )
     noted = {column: spec.get("note", "") for column, spec in model["columns"].items()} if notes is None else notes
-    given = json.dumps({"table": table, "studies": studies, "typed": list(typed), "model": model, "gid": model["gid"], "today": TODAY, "flaky": flaky, "late": late, "notes": noted})
+    given = json.dumps({"table": table, "studies": studies, "typed": list(typed), "model": model, "gid": model["gid"], "today": TODAY, "flaky": flaky, "late": late, "notes": noted, "stamp": stamp})
     out = json.loads(subprocess.run([node, "-e", run], input=given, capture_output=True, text=True, check=True, cwd=Path(bsmeta.__file__).parent).stdout)
-    return out if notes is not None else out["writes"]
+    if stamp:
+        return out["stamps"]
+    return {"writes": out["writes"], "notes": out["notes"]} if notes is not None else out["writes"]
 
 
 HEAD = list(bsmeta.MODEL["columns"])
@@ -592,7 +602,7 @@ def test_the_sheet_script_corrects_a_cell_in_a_typed_column():
 
 
 def test_the_sheet_script_adds_a_row_for_a_new_accession():
-    writes = sync([HEAD, [ROW.get(column, "") for column in HEAD]], {"S-VHPS99": TRACKED, "S-VHPS98": BARE}, typed=["title"])
+    writes = sync([HEAD, [ROW.get(column, "") for column in HEAD]], {"S-VHPS99": TRACKED, "S-VHPS98": BARE}, typed=["name"])
     assert [3, "identifier", "'https://www.ebi.ac.uk/biostudies/vhp4safety/studies/S-VHPS98"] in writes
     assert {row for row, _, _ in writes} == {3}
 
@@ -638,8 +648,14 @@ def test_records_are_read_as_utf8_whatever_the_locale():
     assert json.loads(out.stdout) == json.loads(record.read_bytes().decode("utf-8"))
 
 
+def test_the_sheet_script_stamps_each_finished_sync():
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}, stamp=True) == [f"'{TODAY}: 1 cell corrected"]
+    assert sync([HEAD, [ROW.get(column, "") for column in HEAD]], {"S-VHPS99": TRACKED}, stamp=True) == [f"'{TODAY}: 0 cells corrected"]
+    assert sync([HEAD, stale_licence()], {"S-VHPS99": TRACKED}) == [[2, "license", "'CC-BY-4.0"]]
+
+
 def test_the_sheet_script_writes_the_model_notes_into_the_header():
     row = [ROW.get(column, "") for column in HEAD]
-    stale = {column: spec["note"] for column, spec in bsmeta.MODEL["columns"].items()} | {"title": "an old note"}
+    stale = {column: spec["note"] for column, spec in bsmeta.MODEL["columns"].items()} | {"name": "an old note"}
     out = sync([HEAD, row], {"S-VHPS99": TRACKED}, notes=stale)
-    assert out == {"writes": [], "notes": [["title", bsmeta.MODEL["columns"]["title"]["note"]]]}
+    assert out == {"writes": [], "notes": [["name", bsmeta.MODEL["columns"]["name"]["note"]]]}

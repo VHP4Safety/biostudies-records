@@ -3,18 +3,18 @@
   "gid" : 1572306711,
   "collection" : "vhp4safety",
   "columns" : {
-    "title" : {
+    "name" : {
       "from" : "Title",
-      "note" : "Name of the RO; a planned RO gets a short name in [square brackets]. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
+      "note" : "Name of the RO; provisional while it is a Draft. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "Description" : {
+    "description" : {
       "from" : "Description",
       "note" : "What the RO is. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "identifier" : {
       "from" : "accno",
       "prefix" : "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/",
-      "note" : "Persistent link to the RO as an https URL: https://doi.org/… where it has a DOI (for Zenodo the DOI for all versions), otherwise its landing page. Empty while the RO is planned; never a storage path. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
+      "note" : "Persistent link to the RO as an https URL: https://doi.org/… where it has a DOI (for Zenodo the DOI for all versions), otherwise its landing page. Empty while the RO is a Draft; never a storage path. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "privateLink" : {
       "note" : "Where non-public files are kept, such as a project-drive path. Never an access key or other secret: anyone with the link can read this sheet."
@@ -83,21 +83,22 @@
       ],
       "note" : "Process flow steps of the VHP4Safety glossary (glossary.vhp4safety.nl). On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "status" : {
+    "creativeWorkStatus" : {
       "values" : [
-        "Public",
-        "Shared",
-        "Partially shared",
+        "Draft",
         "Not shared",
-        "Private"
+        "Partially shared",
+        "Shared",
+        "Private",
+        "Public"
       ],
-      "note" : "Public: the files are openly available. Shared: not public, and the files are in the deposit folder on the tracker owner's laptop. Partially shared: some of them are. Not shared: the owner does not have them. Private: in a public repository but not yet released. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargoDate has passed, and turns an earlier Public into Shared."
+      "note" : "Draft: no persistent identifier yet, as the RO is still being made or not yet deposited. Not shared: the tracker owner does not have the files. Partially shared: the owner has some of them. Shared: not public, and the files are in the deposit folder on the owner's laptop. Private: in a public repository but not yet released. Public: the files are openly available. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargoDate has passed, and turns an earlier Public into Shared."
     },
     "embargoDate" : {
       "date" : true,
       "note" : "Date from which the data may be public, as YYYY-MM-DD; empty if there is no embargo. No file is attached before it."
     },
-    "releaseMetadata" : {
+    "datePublished" : {
       "from" : "ReleaseDate",
       "date" : true,
       "note" : "Date the metadata are (or will be) public, as YYYY-MM-DD. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
@@ -162,7 +163,7 @@
       ],
       "note" : "Partner institution of the contact person."
     },
-    "type" : {
+    "@type" : {
       "many" : true,
       "values" : [
         "Dataset",

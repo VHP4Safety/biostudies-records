@@ -294,9 +294,17 @@ def rows(url: str = SHEET) -> dict[str, dict]:
 
 
 def check_values(table: list[tuple[int, dict]]) -> list[Issue]:
-    """Cells outside the model: a value that is not one of its column's values, or a date not written YYYY-MM-DD."""
+    """Cells outside the model: a value that is not one of its column's values, a date not written YYYY-MM-DD, or a
+    Draft that is not exactly a row without an identifier."""
     out = []
     for n, row in table:
+        if not any(row.values()):
+            continue
+        status = row.get("creativeWorkStatus", "")
+        if not row.get("identifier") and status != "Draft":
+            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", f"{status!r} on a row without an identifier, which is a Draft"))
+        if row.get("identifier") and status == "Draft":
+            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", "a Draft has no identifier yet"))
         for column, spec in MODEL["columns"].items():
             if not (cell := row.get(column, "")):
                 continue
@@ -327,12 +335,12 @@ def expected(doc: dict, row: dict, today: str) -> dict:
             values = [spec["present"]]
         values = [spec.get("prefix", "") + v for v in dict.fromkeys(values)] or [spec.get("default", "")]
         out[column] = ", ".join(values) if spec.get("many") else values[0]
-    embargo, have = row.get("embargoDate", ""), row.get("status", "")
+    embargo, have = row.get("embargoDate", ""), row.get("creativeWorkStatus", "")
     released = (facts.get("ReleaseDate") or [""])[0] <= today
     if embargo and not ISO_DATE.fullmatch(embargo):
-        out["status"] = have
+        out["creativeWorkStatus"] = have
     else:
-        out["status"] = "Public" if facts["files"] and released and embargo <= today else "Shared" if have == "Public" else have
+        out["creativeWorkStatus"] = "Public" if facts["files"] and released and embargo <= today else "Shared" if have == "Public" else have
     return out
 
 
@@ -355,7 +363,7 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, dep
         if (set(have.split(", ")) != set(want.split(", "))) if many else have != want:
             out.append(Issue("error", "SHEET_CELL", f"{acc} {column}", f"sheet {have!r} vs record {want!r}"))
     if deposits is not None:
-        out += check_deposit(doc, Path(deposits) / acc, row.get("status", ""), wanted["status"] == "Public")
+        out += check_deposit(doc, Path(deposits) / acc, row.get("creativeWorkStatus", ""), wanted["creativeWorkStatus"] == "Public")
     return out
 
 
