@@ -4,22 +4,25 @@
   "collection" : "vhp4safety",
   "columns" : {
     "name" : {
+      "property" : "https://schema.org/name",
       "from" : "Title",
       "note" : "Name of the RO; provisional while it is a Draft, a row without an identifier. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "description" : {
+      "property" : "https://schema.org/description",
       "from" : "Description",
       "note" : "What the RO is. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "identifier" : {
+      "property" : "https://schema.org/identifier",
       "from" : "accno",
       "prefix" : "https://www.ebi.ac.uk/biostudies/vhp4safety/studies/",
       "note" : "Persistent link to the RO as an https URL: https://doi.org/… where it has a DOI (for Zenodo the DOI for all versions), otherwise its landing page. Empty while the RO is a Draft (still being made or not yet deposited); never a storage path. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "privateLink" : {
+    "private_link" : {
       "note" : "Where non-public files are kept, such as a project-drive path. Never an access key or other secret: anyone with the link can read this sheet."
     },
-    "caseStudy" : {
+    "case_study" : {
       "from" : "Case study",
       "many" : true,
       "default" : "Other",
@@ -32,7 +35,7 @@
       ],
       "note" : "Case studies the RO serves; Other if none of the three. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "regulatoryQuestion" : {
+    "regulatory_question" : {
       "from" : "Regulatory Question",
       "many" : true,
       "labels" : {
@@ -55,7 +58,7 @@
       ],
       "note" : "Regulatory questions of the case studies the RO addresses (platform.vhp4safety.nl/casestudies/<case>/Q1 or Q2); N/A if none. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "workPackage" : {
+    "work_package" : {
       "values" : [
         "WP1.1",
         "WP1.2",
@@ -70,7 +73,7 @@
       ],
       "note" : "VHP4Safety work package that produced the RO."
     },
-    "workflowStep" : {
+    "workflow_step" : {
       "from" : "Process Flow Step",
       "many" : true,
       "values" : [
@@ -83,7 +86,8 @@
       ],
       "note" : "Process flow steps of the VHP4Safety glossary (glossary.vhp4safety.nl). On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "creativeWorkStatus" : {
+    "creative_work_status" : {
+      "property" : "https://schema.org/creativeWorkStatus",
       "values" : [
         "Not shared",
         "Partially shared",
@@ -91,18 +95,20 @@
         "Private",
         "Public"
       ],
-      "note" : "Where the files of the RO are. Not shared: the tracker owner does not have them. Partially shared: the owner has some of them. Shared: not public, and the files are in the deposit folder on the owner's laptop. Private: in a public repository but not yet released. Public: openly available. Private and Public need an identifier. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargoDate has passed, and turns an earlier Public into Shared."
+      "note" : "Where the files of the RO are. Not shared: the tracker owner does not have them. Partially shared: the owner has some of them. Shared: not public, and the files are in the deposit folder on the owner's laptop. Private: in a public repository but not yet released. Public: openly available. Private and Public need an identifier. On BioStudies rows the daily script sets Public once a file is attached, the record is released and embargo_date has passed, and turns an earlier Public into Shared."
     },
-    "embargoDate" : {
+    "embargo_date" : {
       "date" : true,
       "note" : "Date from which the data may be public, as YYYY-MM-DD; empty if there is no embargo. No file is attached before it."
     },
-    "datePublished" : {
+    "date_published" : {
+      "property" : "https://schema.org/datePublished",
       "from" : "ReleaseDate",
       "date" : true,
       "note" : "Date the metadata are (or will be) public, as YYYY-MM-DD. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "license" : {
+      "property" : "https://schema.org/license",
       "from" : "License",
       "labels" : {
         "CC-BY" : "CC-BY-4.0",
@@ -115,7 +121,7 @@
       ],
       "note" : "SPDX licence identifier (spdx.org/licenses) of the RO, from the deposit at the identifier. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
-    "hasMetadata" : {
+    "has_metadata" : {
       "values" : [
         "Identifiable dataset descriptor + contextual metadata (DSM-1-R1)",
         "Identifiable dataset descriptor (DSM-1-R0)",
@@ -124,7 +130,7 @@
       ],
       "note" : "FAIRplus Data Maturity indicator the metadata meet (fairplus.github.io/Data-Maturity/docs/Indicators); N/A if no dataset descriptor can be assessed."
     },
-    "hasToxTemp" : {
+    "has_toxtemp" : {
       "values" : [
         "Yes",
         "Started",
@@ -133,7 +139,7 @@
       ],
       "note" : "Whether a ToxTemp (template to report toxicity test methods) exists for the RO; N/A if the RO is not a test method or its data."
     },
-    "hasROCrate" : {
+    "has_ro_crate" : {
       "from" : "files",
       "present" : "Yes",
       "default" : "No",
@@ -143,10 +149,10 @@
       ],
       "note" : "Yes if an RO-Crate is published with the RO. On BioStudies rows the daily script sets it from the files attached to the record; edits there are overwritten."
     },
-    "contactPerson" : {
+    "contact_person" : {
       "note" : "People to contact about the RO, each written Given Family, separated by ', '."
     },
-    "partnerCode" : {
+    "partner_code" : {
       "values" : [
         "AUMC",
         "HU",
@@ -162,7 +168,8 @@
       ],
       "note" : "Partner institution of the contact person."
     },
-    "@type" : {
+    "type" : {
+      "property" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
       "many" : true,
       "values" : [
         "Dataset",
@@ -176,7 +183,7 @@
       ],
       "note" : "schema.org or Bioschemas type of the RO, matching the Zenodo resource type: Dataset (dataset), ScholarlyArticle (journal article), SoftwareSourceCode (software), CreativeWork (model or poster; schema.org has no model type), ComputationalWorkflow (workflow), PresentationDigitalDocument (presentation), MediaObject (video), LearningResource (lesson). A Zenodo RO takes the type of its record."
     },
-    "isReviewed" : {
+    "is_reviewed" : {
       "values" : [
         "Yes",
         "Ongoing",
@@ -185,7 +192,7 @@
       ],
       "note" : "Whether the RO and its RO-Crate metadata were reviewed within the project."
     },
-    "FAStatus (platform.vhp4safety.nl)" : {
+    "fa_status" : {
       "values" : [
         "Discoverable and Accessible",
         "Discoverable",
@@ -194,7 +201,7 @@
       ],
       "note" : "Whether the RO can be found, discovered and/or accessed via platform.vhp4safety.nl."
     },
-    "FAIRscore" : {
+    "fair_score" : {
       "values" : [
         "Yes",
         "Ongoing",

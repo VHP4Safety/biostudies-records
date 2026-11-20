@@ -298,8 +298,8 @@ def check_values(table: list[tuple[int, dict]]) -> list[Issue]:
     Private or Public on a Draft, a row without an identifier."""
     out = []
     for n, row in table:
-        if not row.get("identifier") and (status := row.get("creativeWorkStatus", "")) in ("Private", "Public"):
-            out.append(Issue("error", "SHEET_VALUE", f"row {n} creativeWorkStatus", f"{status} needs an identifier: this row is still a Draft"))
+        if not row.get("identifier") and (status := row.get("creative_work_status", "")) in ("Private", "Public"):
+            out.append(Issue("error", "SHEET_VALUE", f"row {n} creative_work_status", f"{status} needs an identifier: this row is still a Draft"))
         for column, spec in MODEL["columns"].items():
             if not (cell := row.get(column, "")):
                 continue
@@ -330,12 +330,12 @@ def expected(doc: dict, row: dict, today: str) -> dict:
             values = [spec["present"]]
         values = [spec.get("prefix", "") + v for v in dict.fromkeys(values)] or [spec.get("default", "")]
         out[column] = ", ".join(values) if spec.get("many") else values[0]
-    embargo, have = row.get("embargoDate", ""), row.get("creativeWorkStatus", "")
+    embargo, have = row.get("embargo_date", ""), row.get("creative_work_status", "")
     released = (facts.get("ReleaseDate") or [""])[0] <= today
     if embargo and not ISO_DATE.fullmatch(embargo):
-        out["creativeWorkStatus"] = have
+        out["creative_work_status"] = have
     else:
-        out["creativeWorkStatus"] = "Public" if facts["files"] and released and embargo <= today else "Shared" if have == "Public" else have
+        out["creative_work_status"] = "Public" if facts["files"] and released and embargo <= today else "Shared" if have == "Public" else have
     return out
 
 
@@ -346,9 +346,9 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, dep
         return [Issue("error", "SHEET_ROW", acc, "no row with this accession in the tracker")]
     today = today or date.today().isoformat()
     out = []
-    embargo = row.get("embargoDate", "")
+    embargo = row.get("embargo_date", "")
     if embargo and not ISO_DATE.fullmatch(embargo):
-        out.append(Issue("error", "SHEET_CELL", f"{acc} embargoDate", f"{embargo!r} is not YYYY-MM-DD"))
+        out.append(Issue("error", "SHEET_CELL", f"{acc} embargo_date", f"{embargo!r} is not YYYY-MM-DD"))
     elif embargo > today and doc["section"].get("files"):
         out.append(Issue("error", "EMBARGO", acc, f"a file is attached, but the data are under embargo until {embargo}"))
     wanted = expected(doc, row, today)
@@ -358,7 +358,7 @@ def check_sheet(doc: dict, sheet: dict[str, dict], today: str | None = None, dep
         if (set(have.split(", ")) != set(want.split(", "))) if many else have != want:
             out.append(Issue("error", "SHEET_CELL", f"{acc} {column}", f"sheet {have!r} vs record {want!r}"))
     if deposits is not None:
-        out += check_deposit(doc, Path(deposits) / acc, row.get("creativeWorkStatus", ""), wanted["creativeWorkStatus"] == "Public")
+        out += check_deposit(doc, Path(deposits) / acc, row.get("creative_work_status", ""), wanted["creative_work_status"] == "Public")
     return out
 
 
@@ -534,9 +534,9 @@ def embargo_hold(doc: dict, today: str | None = None) -> str | None:
     row = rows().get(doc.get("accno"))
     if row is None:
         return "the tracker has no row for it"
-    embargo = row.get("embargoDate", "")
+    embargo = row.get("embargo_date", "")
     if embargo and not ISO_DATE.fullmatch(embargo):
-        return f"its embargoDate {embargo!r} in the tracker is not YYYY-MM-DD"
+        return f"its embargo_date {embargo!r} in the tracker is not YYYY-MM-DD"
     if embargo > (today or date.today().isoformat()):
         return f"a file is attached, but the data are under embargo until {embargo}"
     return None

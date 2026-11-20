@@ -44,12 +44,12 @@ function expected(model, study, row, today) {
     if (!values.length) values = [spec.default || ""];
     out[column] = spec.many ? values.join(", ") : values[0];
   }
-  const embargo = row.embargoDate || "";
-  const have = row.creativeWorkStatus || "";
+  const embargo = row.embargo_date || "";
+  const have = row.creative_work_status || "";
   const released = (facts.ReleaseDate || [""])[0] <= today;
   // An embargo date that cannot be read leaves the status alone; check-sheet reports the date.
-  if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.creativeWorkStatus = have;
-  else out.creativeWorkStatus = facts.files.length && released && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
+  if (embargo && !/^\d{4}-\d{2}-\d{2}$/.test(embargo)) out.creative_work_status = have;
+  else out.creative_work_status = facts.files.length && released && embargo <= today ? "Public" : have === "Public" ? "Shared" : have;
   return out;
 }
 
