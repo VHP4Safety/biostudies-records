@@ -105,7 +105,7 @@
       "property" : "https://schema.org/datePublished",
       "from" : "ReleaseDate",
       "date" : true,
-      "note" : "Date the metadata are (or will be) public, as YYYY-MM-DD. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
+      "note" : "Date the RO's metadata are (or will be) public, as YYYY-MM-DD: for Zenodo the publication date of its first version, for an article the date its DOI was registered. On BioStudies rows the daily script copies it from the record; edits there are overwritten."
     },
     "license" : {
       "property" : "https://schema.org/license",
